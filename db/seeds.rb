@@ -1,5 +1,11 @@
 require 'faker'
 
+User.all.destroy_all
+Tweet.all.destroy_all
+Following.all.destroy_all
+Tag.all.destroy_all
+TweetTag.all.destroy_all
+
 tom = User.new(handle: '@tom', email: 'tom@tom.com', password: 'tomtom', first_name: 'tom', last_name: 'tom')
 tom.save!
 tom1 = User.new(handle: '@tom1', email: 'tom1@tom1.com', password: 'tom1tom1', first_name: 'tom1', last_name: 'tom1')
@@ -14,11 +20,12 @@ User.all.each do |user|
     tweet = Tweet.new(tweet: Faker::Hacker.say_something_smart, user: user)
     tweet.save!
     tweet2 = Tweet.new(tweet: "hashtags galore #this #that #blessed #yomomma #up", user: user)
+    tweet2.save!
   end
 end
 
-Following.new(user:tom, following_id:tom2.id)
-Following.new(user:tom, following_id:tom3.id)
-Following.new(user:tom3, following_id:tom.id)
-Following.new(user:tom2, following_id:tom.id)
+Following.new(user:tom, following_id:tom2.id).save
+Following.new(user:tom, following_id:tom3.id).save
+Following.new(user:tom3, following_id:tom.id).save
+Following.new(user:tom2, following_id:tom.id).save
 
