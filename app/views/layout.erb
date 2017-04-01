@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- 
+  <!--
     normalize.css removes cross-browser differences in defaults, e.g.,
     differences in how form elements appear between Firefox and IE
     See: http://necolas.github.com/normalize.css/
@@ -18,6 +18,32 @@
   <title></title>
 </head>
 <body>
+  <nav>
+    <div class="container nav">
+      <div id="logo">Twitter Clone <sup>&reg;</sup></div>
+      <div id="login-form">
+        Log In:
+        <form action="/login" method="POST">
+          <input type="text" name="handle" placeholder="Handle">
+          <input type="password" name="password" placeholder="Password">
+          <button type="submit">Login</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+  <section id="sign-up" class="container">
+    <h1>Sign Up</h1>
+    <p>Join the epic world of tweets! Tweeting is seconds away.</p>
+    <form id="signup-form" action="/signup" method="POST">
+      <input type="text" name="user[first_name]" placeholder="First Name">
+      <input type="text" name="user[last_name]" placeholder="Last Name">
+      <input type="text" name="user[email]" placeholder="Email">
+      <input type="text" name="user[handle]" placeholder="Handle">
+      <input type="text" name="user[password]" placeholder="Password">
+      <input type="text" name="password-confirm" placeholder="Confirm Password">
+      <button type="submit">Sign Up</button>
+    </form>
+  </section>
   <%= yield %>
 </body>
 </html>
