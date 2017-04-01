@@ -1,0 +1,50 @@
+body {
+  margin-top: 150px;
+}
+nav {
+  margin-top: 5px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: grey;
+  color: white;
+  height: 100px;
+  display: flex;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  width: 1120px;
+  margin: auto;
+}
+
+.container.nav {
+  justify-content: space-between;
+}
+
+#logo {
+  font-size: 28px;
+}
+#login-form {
+  display: flex;
+}
+#sign-up {
+  display: flex;
+  flex-direction: column;
+}
+#signup-form {
+  display: flex;
+  flex-direction: column;
+}
+
+input, button  {
+  height: 50px;
+  margin: 15px 10px;
+}
+
+button {
+  padding: 0 25px;
+  background-color: crimson:
+}
