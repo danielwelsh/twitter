@@ -4,7 +4,6 @@ class User < ActiveRecord::Base
   has_many :tweets
   has_many :followings
   has_many :followers, through: :followings, foreign_key: :following_id
-  validates :tweet, length: { maximum: 140, minimum: 1 }
 
   def authenticate(input_password)
     self.password == input_password
