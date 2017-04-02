@@ -16,6 +16,16 @@ nav {
   align-items: center;
 }
 
+input, button  {
+  height: 50px;
+  margin: 15px 0;
+}
+
+button {
+  padding: 0 25px;
+  background-color: crimson:
+}
+
 .container {
   display: flex;
   width: 1120px;
@@ -37,21 +47,33 @@ nav {
   align-items: center;
 }
 
+#login-form input {
+  margin-right: 15px;
+
+}
+
 #sign-up {
   display: flex;
-  flex-direction: column;
 }
+
+#mockup {
+  display: flex;
+  align-items: center;
+  width: 50%;
+}
+
 #signup-form {
   display: flex;
   flex-direction: column;
+  width: 50%
 }
 
-input, button  {
-  height: 50px;
-  margin: 15px 10px;
+#signup-form form {
+  display: flex;
+  flex-direction: column;
 }
 
-button {
-  padding: 0 25px;
-  background-color: crimson:
+.form-errors {
+  color: red;
+  font-weight: bold;
 }
