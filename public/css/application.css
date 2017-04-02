@@ -1,3 +1,7 @@
+* {
+  border: 1px solid blue;
+}
+
 body {
   margin-top: 150px;
   margin: 150px auto 0 auto;
@@ -16,6 +20,11 @@ nav {
   align-items: center;
 }
 
+a {
+  text-decoration: none;
+  color: #66757f;
+}
+
 .container {
   display: flex;
   width: 1120px;
@@ -29,7 +38,7 @@ nav {
 #logo {
   display: flex;
   align-items: center;
-  font-size: 28px;
+  font-size: 18px;
 }
 #login-form {
   display: flex;
@@ -55,3 +64,30 @@ button {
   padding: 0 25px;
   background-color: crimson:
 }
+
+.tweet-container {
+
+}
+
+.tweet-info {
+  margin-bottom: 10px;
+  padding: 5px;
+}
+
+.tweet-text {
+  height: 200px;
+  font-size: 20px;
+}
+
+.tweet-extra-info {
+  font-size: 15px;
+}
+
+#tweet-user-name {
+  font-size:  20px;
+  font-weight: bold;
+  color: #55ACEE;
+}
+
+
+

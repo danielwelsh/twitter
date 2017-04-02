@@ -2,11 +2,18 @@
 <% @tweets.each do |tweet| %>
   <div class="tweet-container">
     <% current_user = User.find(tweet.user_id) %>
-      <div class="tweet-info">
-        <a href="/#{current_user.handle}"><%= "#{current_user.full_name}"  %></a>
-        <a href="/#{current_user.handle}"><%= "@#{current_user.handle}"  %></a>
-        <a href="/#{current_user.handle}"><%= "@#{tweet.created_at}"  %></a>
-        <div><%= "#{tweet.tweet}" %></div>
+      <div>
+        <div class="tweet-info">
+          <a id="tweet-user-name" href="<%="/#{current_user.handle}" %>"><%= "#{current_user.full_name}"  %></a>
+          <a class="" ="tweet-extra-info" href="<%="/#{current_user.handle}" %>"><%= "#{current_user.handle}"  %></a>
+          <a class="" ="tweet-extra-info" href="<%= "/#{current_user.handle}" %>"><%= "#{tweet.created_at}"  %></a>
+        </div>
+
+        <div class="tweet-text">
+          <%= "#{tweet.tweet}" %>
+        </div>
+
+
         <div class="tweet-interaction">
 
           <form action="<%= "/tweets/#{tweet.id}/retweet" %>" method="POST">

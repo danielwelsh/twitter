@@ -33,9 +33,8 @@ end
 #RETWEET
 post '/tweets/:tweet_id/retweet' do
   @tweet = Tweet.find(:tweet_id)
-
-  #Recreates that same tweet for a person.
-  new_tweet = Tweet.create(user_id: current_user.id, tweet: @tweet.tweet, replied_to_id: @tweet)
+  #Recreates that same tweet for current user.
+  Tweet.create(:tweet)
 end
 
 
