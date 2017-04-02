@@ -2,6 +2,8 @@ class Tweet < ActiveRecord::Base
   belongs_to :user
   has_many :tweet_tags
   has_many :tags, through: :tweet_tags
+  has_many :liked_tweets
+  has_many :likes, through: :liked_tweets
   validates :tweet, length: { maximum: 140, minimum: 1 }
   after_create :parse_tags
 
