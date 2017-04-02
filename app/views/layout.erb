@@ -15,35 +15,47 @@
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script src="/js/application.js"></script>
 
-  <title></title>
+  <title>Twitter Clone</title>
 </head>
 <body>
   <nav>
     <div class="container nav">
       <div id="logo">Twitter Clone <sup>&reg;</sup></div>
-      <div id="login-form">
-        Log In:
-        <form action="/login" method="POST">
-          <input type="text" name="handle" placeholder="Handle">
-          <input type="password" name="password" placeholder="Password">
-          <button type="submit">Login</button>
-        </form>
-      </div>
+      <% if current_user %>
+        <div id="logout-form">
+          <form action="/logout" method="POST">
+            <button type="submit">Logout</button>
+          </form>
+        </div>
+      <% else %>
+        <div id="login-form">
+          <form action="/login" method="POST">
+            <%= @login_error if @login_error %>
+            <input type="text" name="handle" placeholder="Handle">
+            <input type="password" name="password" placeholder="Password">
+            <button type="submit">Login</button>
+          </form>
+        </div>
+      <% end %>
     </div>
   </nav>
-  <section id="sign-up" class="container">
-    <h1>Sign Up</h1>
-    <p>Join the epic world of tweets! Tweeting is seconds away.</p>
-    <form id="signup-form" action="/signup" method="POST">
-      <input type="text" name="user[first_name]" placeholder="First Name">
-      <input type="text" name="user[last_name]" placeholder="Last Name">
-      <input type="text" name="user[email]" placeholder="Email">
-      <input type="text" name="user[handle]" placeholder="Handle">
-      <input type="text" name="user[password]" placeholder="Password">
-      <input type="text" name="password-confirm" placeholder="Confirm Password">
-      <button type="submit">Sign Up</button>
-    </form>
-  </section>
+  <% if current_user %>
+    <%= erb :'show' %>
+  <% else %>
+    <section id="sign-up" class="container">
+      <h1>Sign Up</h1>
+      <p>Join the epic world of tweets! Tweeting is seconds away.</p>
+      <form id="signup-form" action="/signup" method="POST">
+        <input type="text" name="user[first_name]" placeholder="First Name">
+        <input type="text" name="user[last_name]" placeholder="Last Name">
+        <input type="text" name="user[email]" placeholder="Email">
+        <input type="text" name="user[handle]" placeholder="Handle">
+        <input type="text" name="user[password]" placeholder="Password">
+        <input type="text" name="password-confirm" placeholder="Confirm Password">
+        <button type="submit">Sign Up</button>
+      </form>
+    </section>
+  <% end %>
   <%= yield %>
 </body>
 </html>

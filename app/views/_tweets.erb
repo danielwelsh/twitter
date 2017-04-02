@@ -1,15 +1,16 @@
 
 <% @tweets.each do |tweet| %>
   <div class="tweet-container">
-    <% @user = User.find(tweet.user_id) %>
+    <% current_user = User.find(tweet.user_id) %>
       <div class="tweet-info">
-        <a href="/#{@user.handle}"><%= "@#{@user.full_name}"  %></a>
-        <a href="/#{@user.handle}"><%= "@#{@user.handle}"  %></a>
-        <a href="/#{@user.handle}"><%= "@#{@tweet.created_at}"  %></a>
+        <a href="/#{current_user.handle}"><%= "#{current_user.full_name}"  %></a>
+        <a href="/#{current_user.handle}"><%= "@#{current_user.handle}"  %></a>
+        <a href="/#{current_user.handle}"><%= "@#{tweet.created_at}"  %></a>
+        <div><%= "#{tweet.tweet}" %></div>
         <div class="tweet-interaction">
 
           <form action="/reply" method="POST">
-            <input type="hidden" name="user_id" value="#{@user.id}">
+            <input type="hidden" name="user_id" value="#{current_user.id}">
             <input type="hidden" name="tweet_id" value="#{tweet.id}">
             <input type="hidden" name="_method" value="put">
             <button type="submit">Reply</button>
@@ -17,19 +18,18 @@
 
           <form action="/retweet" method="POST">
             <input type="hidden" name="_method" value="put">
-            <input type="hidden" name="user_id" value="#{@user.id}">
+            <input type="hidden" name="user_id" value="#{current_user.id}">
             <input type="hidden" name="tweet_id" value="#{tweet.id}">
             <button type="submit">Like</button>
           </form>
 
           <form action="/like" method="POST">
             <input type="hidden" name="_method" value="put">
-            <input type="hidden" name="user_id" value="#{@user.id}">
+            <input type="hidden" name="user_id" value="#{current_user.id}">
             <input type="hidden" name="tweet_id" value="#{tweet.id}">
             <button type="submit" >Retweet</button>
           </form>
         </div>
       </div>
-    <%= "<div> #{tweet.tweet} </div>" %>
   </div>
 <% end %>
