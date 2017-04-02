@@ -20,9 +20,21 @@ nav {
   align-items: center;
 }
 
+
 a {
   text-decoration: none;
   color: #66757f;
+}
+
+input, button  {
+  height: 50px;
+  margin: 15px 0;
+}
+
+button {
+  padding: 0 25px;
+  background-color: crimson:
+>>>>>>> 4d28dbb5489f7649eca0c35831c3365788eb5953
 }
 
 .container {
@@ -46,23 +58,35 @@ a {
   align-items: center;
 }
 
+#login-form input {
+  margin-right: 15px;
+
+}
+
 #sign-up {
   display: flex;
-  flex-direction: column;
 }
+
+#mockup {
+  display: flex;
+  align-items: center;
+  width: 50%;
+}
+
 #signup-form {
   display: flex;
   flex-direction: column;
+  width: 50%
 }
 
-input, button  {
-  height: 50px;
-  margin: 15px 10px;
+#signup-form form {
+  display: flex;
+  flex-direction: column;
 }
 
-button {
-  padding: 0 25px;
-  background-color: crimson:
+.form-errors {
+  color: red;
+  font-weight: bold;
 }
 
 .tweet-container {
