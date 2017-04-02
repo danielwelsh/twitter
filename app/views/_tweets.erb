@@ -1,4 +1,3 @@
-
 <% @tweets.each do |tweet| %>
   <div class="tweet-container">
     <% current_user = User.find(tweet.user_id) %>
@@ -10,7 +9,7 @@
         </div>
 
         <div class="tweet-text">
-          <%= "#{tweet.tweet}" %>
+          <%= "#{parse_tweet_for_hashtags(tweet.tweet)}" %>
         </div>
 
 
@@ -19,19 +18,19 @@
           <form action="<%= "/tweets/#{tweet.id}/retweet" %>" method="POST">
             <input type="hidden" name="tweet_id" value="#{tweet.id}">
             <input type="hidden" name="_method" value="put">
-            <button type="submit">Reply</button>
+            <button type="submit">&#8617; Reply</button>
           </form>
 
           <form action="<%= "/tweets/#{tweet.id}/retweet" %>" method="POST">
             <input type="hidden" name="_method" value="put">
             <input type="hidden" name="tweet_id" value="#{tweet.id}">
-            <button type="submit">Like</button>
+            <button type="submit">&#x2764; Like</button>
           </form>
 
           <form action="<%= "/tweets/#{tweet.id}/like" %> method="POST">
             <input type="hidden" name="_method" value="put">
             <input type="hidden" name="tweet_id" value="#{tweet.id}">
-            <button type="submit" >Retweet</button>
+            <button type="submit">&#5079;Retweet</button>
           </form>
         </div>
       </div>
