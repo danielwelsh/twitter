@@ -2,8 +2,8 @@ class CreateRepliedTweets < ActiveRecord::Migration
   def change
     create_table :replied_tweets do |t|
       t.references :user
-      t.references :original_tweet_id, references: :tweets
-      t.references :replied_tweet_id, references: :tweets
+      t.references :tweet
+      t.integer :replied_to_tweet_id
 
       t.timestamps null: false
     end
