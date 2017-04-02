@@ -7,12 +7,15 @@
 
 # update '/like' do
 
-# end
+put '/like' do
+  @user = User.find(params[:user_id])
+  @tweet = Tweet.find(params[:tweet_id])
+end
 
-# update '/reply' do
+put '/reply' do
+  @user = User.find(params[:user_id])
+end
 
-# end
-
-# update '/retweet' do
-
-# end
+put '/retweet' do
+  @user = User.find(params[:user_id])
+end

@@ -1,6 +1,6 @@
 get '/' do
   if current_user
-    @tweets = current_user.get_tweets_feed
+    @tweets = get_tweets_feed(current_user)
     erb :'show'
   else
     if params[:error_type]
@@ -25,5 +25,11 @@ post '/login' do
 end
 
 post '/signup' do
+  @user = User.find_by(handle: params[:user][:handle])
+  # if
+end
 
+post '/logout' do
+  logout_user
+  redirect '/'
 end
