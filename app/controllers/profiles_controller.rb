@@ -1,24 +1,18 @@
-before do
-  if !current_user
-    erb :'index.erb'
-  end
-end
-
-get '/' do
-  @user = User.find(current_user.user_id)
-  @tweets = @user.get_tweets_feed
-  erb :'show.erb'
-end
+# get '/' do
+#   @user = User.find(current_user.id)
+#   @tweets = @user.get_tweets_feed
+#   erb :'show'
+# end
 
 
-update '/like' do
+# update '/like' do
 
-end
+# end
 
-update '/reply' do
+# update '/reply' do
 
-end
+# end
 
-update '/retweet' do
+# update '/retweet' do
 
-end
+# end
