@@ -1,10 +1,10 @@
 <% @tweets.each do |tweet| %>
   <div class="tweet-container">
-    <% @user = User.find(tweet.user_id) %>
+    <% current_user = User.find(tweet.user_id) %>
       <div class="tweet-info">
-        <a href="/#{@user.handle}"><%= "@#{@user.full_name}"  %></a>
-        <a href="/#{@user.handle}"><%= "@#{@user.handle}"  %></a>
-        <a href="/#{@user.handle}"><%= "@#{@tweet.created_at}"  %></a>
+        <a href="/#{current_user.handle}"><%= "@#{current_user.full_name}"  %></a>
+        <a href="/#{current_user.handle}"><%= "@#{current_user.handle}"  %></a>
+        <a href="/#{current_user.handle}"><%= "@#{@tweet.created_at}"  %></a>
         <div class="tweet-interaction">
 
           <form action="/reply" method="POST">

@@ -25,11 +25,16 @@ nav {
 }
 
 #logo {
+  display: flex;
+  align-items: center;
   font-size: 28px;
 }
 #login-form {
   display: flex;
+  color: black;
+  align-items: center;
 }
+
 #sign-up {
   display: flex;
   flex-direction: column;
