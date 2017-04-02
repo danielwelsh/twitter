@@ -6,7 +6,7 @@
         <div class="tweet-info">
           <a id="tweet-user-name" href="<%="/#{current_user.handle}" %>"><%= "#{current_user.full_name}"  %></a>
           <a class="" ="tweet-extra-info" href="<%="/#{current_user.handle}" %>"><%= "#{current_user.handle}"  %></a>
-          <a class="" ="tweet-extra-info" href="<%= "/#{current_user.handle}" %>"><%= "#{tweet.created_at}"  %></a>
+          <a class="" ="tweet-extra-info" href="<%= "/#{current_user.handle}" %>"><%= "#{tweet.date}"  %></a>
         </div>
 
         <div class="tweet-text">
@@ -21,17 +21,18 @@
             <input type="hidden" name="_method" value="put">
             <button type="submit">Reply</button>
           </form>
+          <span></span>
 
           <form action="<%= "/tweets/#{tweet.id}/retweet" %>" method="POST">
             <input type="hidden" name="_method" value="put">
             <input type="hidden" name="tweet_id" value="#{tweet.id}">
-            <button type="submit">Like</button>
+            <button type="submit"><%=  %></button>
           </form>
 
           <form action="<%= "/tweets/#{tweet.id}/like" %> method="POST">
             <input type="hidden" name="_method" value="put">
             <input type="hidden" name="tweet_id" value="#{tweet.id}">
-            <button type="submit" >Retweet</button>
+            <button type="submit" ><%= tweet.likes %></button>
           </form>
         </div>
       </div>
