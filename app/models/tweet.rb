@@ -5,6 +5,10 @@ class Tweet < ActiveRecord::Base
   validates :tweet, length: { maximum: 140, minimum: 1 }
   after_create :parse_tags
 
+  def date
+    self.created_at.to_date
+  end
+
   def parse_tags
     pattern = /#[a-z]{3,}/
     hash_tags = self.tweet.scan(pattern)
@@ -19,7 +23,6 @@ class Tweet < ActiveRecord::Base
     end
   end
 
-  def date
-    self.created_at.to_date
-  end
+
+
 end
