@@ -8,6 +8,7 @@ TweetTag.all.destroy_all
 LikedTweet.all.destroy_all
 RepliedTweet.all.destroy_all
 Follower.all.destroy_all
+Retweet.all.destroy_all
 
 tom = User.new(handle: 'tom', email: 'tom@tom.com', password: 'tomtom', first_name: 'tom', last_name: 'tom')
 tom.save!
@@ -61,5 +62,9 @@ RepliedTweet.new(user: tom, tweet: Tweet.create(tweet: Faker::Hacker.say_somethi
 
 RepliedTweet.new(user: tom1, tweet: Tweet.create(tweet: Faker::Hacker.say_something_smart, user: tom1), replied_to_tweet_id: 8).save
 RepliedTweet.new(user: tom1, tweet: Tweet.create(tweet: Faker::Hacker.say_something_smart, user: tom1), replied_to_tweet_id: 9).save
+
+
+Retweet.new(user: tom, original_tweet_id: 25, tweet: Tweet.create(tweet: Tweet.find(25).tweet, user: tom)).save
+Retweet.new(user: tom1, original_tweet_id: 12, tweet: Tweet.create(tweet: Tweet.find(12).tweet, user: tom1)).save
 
 

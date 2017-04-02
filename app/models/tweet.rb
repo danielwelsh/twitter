@@ -6,6 +6,7 @@ class Tweet < ActiveRecord::Base
   has_many :likes, through: :liked_tweets, source: :user # works; gives us the users who liked the tweet
   has_many :replied_tweets, foreign_key: :replied_to_tweet_id #works: gives replied tweet objects
   has_many :replies, through: :replied_tweets, source: :tweet #works: gives tweets that are replies to the tweets
+  has_many :retweets, foreign_key: :original_tweet_id
 
   validates :tweet, length: { maximum: 140, minimum: 1 }
   after_create :parse_tags
@@ -31,4 +32,15 @@ class Tweet < ActiveRecord::Base
   def total_likes
     self.likes.count
   end
+
+  def get_nested_objects(self_association_method, pluck_field_sym, class_name)
+    nested_objects_ids = self_association_method.pluck(pluck_field_sym)
+    nested_objects_ids_string = nested_objects_ids.reduce('(') { |final_string, id| final_string + id.to_s + ','}.chop + ')'
+    class_name.where("id in #{nested_objects_ids_string}")
+  end
+
+  def get_retweets
+    get_nested_objects(self.retweets, :tweet_id, Tweet)
+  end
+
 end
