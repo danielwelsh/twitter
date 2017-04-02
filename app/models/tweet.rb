@@ -4,6 +4,8 @@ class Tweet < ActiveRecord::Base
   has_many :tags, through: :tweet_tags
   has_many :liked_tweets
   has_many :likes, through: :liked_tweets
+  has_many :replied_tweets
+  has_many :replies, through: :replied_tweets, foreign_key: :original_tweet_id
   validates :tweet, length: { maximum: 140, minimum: 1 }
   after_create :parse_tags
 
