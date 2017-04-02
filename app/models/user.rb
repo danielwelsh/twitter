@@ -4,8 +4,10 @@ class User < ActiveRecord::Base
   has_many :tweets
   has_many :followings
   has_many :followers, through: :followings, foreign_key: :following_id
+  # has_many :liked_tweets
   validates :first_name, :last_name, :handle, :email, :password_hash, presence:true
   validates :handle, :email, uniqueness: true
+  before_save :capitalize_names
 
   def authenticate(input_password)
     self.password == input_password
@@ -22,6 +24,11 @@ class User < ActiveRecord::Base
 
   def full_name
     "#{self.first_name} #{self.last_name}"
+  end
+
+  def capitalize_names
+    self.first_name = self.first_name.capitalize
+    self.last_name = self.last_name.capitalize
   end
 
 end

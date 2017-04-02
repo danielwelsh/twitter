@@ -21,17 +21,18 @@
             <input type="hidden" name="_method" value="put">
             <button type="submit">Reply</button>
           </form>
+          <span></span>
 
           <form action="<%= "/tweets/#{tweet.id}/retweet" %>" method="POST">
             <input type="hidden" name="_method" value="put">
             <input type="hidden" name="tweet_id" value="#{tweet.id}">
-            <button type="submit">Like</button>
+            <button type="submit"><%=  %></button>
           </form>
 
           <form action="<%= "/tweets/#{tweet.id}/like" %> method="POST">
             <input type="hidden" name="_method" value="put">
             <input type="hidden" name="tweet_id" value="#{tweet.id}">
-            <button type="submit" >Retweet</button>
+            <button type="submit" ><%= tweet.likes %></button>
           </form>
         </div>
       </div>
