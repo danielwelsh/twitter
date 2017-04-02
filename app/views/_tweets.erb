@@ -6,7 +6,7 @@
         <div class="tweet-info">
           <a id="tweet-user-name" href="<%="/#{current_user.handle}" %>"><%= "#{current_user.full_name}"  %></a>
           <a class="" ="tweet-extra-info" href="<%="/#{current_user.handle}" %>"><%= "#{current_user.handle}"  %></a>
-          <a class="" ="tweet-extra-info" href="<%= "/#{current_user.handle}" %>"><%= "#{tweet.created_at}"  %></a>
+          <a class="" ="tweet-extra-info" href="<%= "/#{current_user.handle}" %>"><%= "#{tweet.date}"  %></a>
         </div>
 
         <div class="tweet-text">

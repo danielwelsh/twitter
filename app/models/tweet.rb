@@ -18,4 +18,8 @@ class Tweet < ActiveRecord::Base
       TweetTag.create(tweet: self, tag: tag)
     end
   end
+
+  def date
+    self.created_at.to_date
+  end
 end
