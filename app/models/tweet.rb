@@ -1,11 +1,12 @@
 class Tweet < ActiveRecord::Base
-  belongs_to :user
-  has_many :tweet_tags
-  has_many :tags, through: :tweet_tags
-  has_many :liked_tweets
-  has_many :likes, through: :liked_tweets
-  has_many :replied_tweets
-  has_many :replies, through: :replied_tweets, foreign_key: :original_tweet_id
+  belongs_to :user #works
+  has_many :tweet_tags #work
+  has_many :tags, through: :tweet_tags # works
+  has_many :liked_tweets # works; gives us back liked_tweet records
+  has_many :likes, through: :liked_tweets, source: :user # works; gives us the users who liked the tweet
+  has_many :replied_tweets, foreign_key: :replied_to_tweet_id #works: gives replied tweet objects
+  has_many :replies, through: :replied_tweets, source: :tweet #works: gives tweets that are replies to the tweets
+
   validates :tweet, length: { maximum: 140, minimum: 1 }
   after_create :parse_tags
 
@@ -27,6 +28,7 @@ class Tweet < ActiveRecord::Base
     end
   end
 
-
-
+  def total_likes
+    self.likes.count
+  end
 end

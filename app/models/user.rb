@@ -1,13 +1,13 @@
 require 'bcrypt'
 class User < ActiveRecord::Base
   include BCrypt
-  has_many :tweets
+  has_many :tweets # works
   has_many :followings
   has_many :followers, through: :followings, foreign_key: :following_id
   has_many :liked_tweets
   has_many :replied_tweets
-  has_many :replies, through: :replied_tweets
   has_many :retweets, through: :tweets, foreign_key: :retweet_id
+
   validates :first_name, :last_name, :handle, :email, :password_hash, presence:true
   validates :handle, :email, uniqueness: true
   before_save :capitalize_names
