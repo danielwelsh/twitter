@@ -1,5 +1,7 @@
 body {
   margin-top: 150px;
+  margin: 150px auto 0 auto;
+  width: 1120px;
 }
 nav {
   margin-top: 5px;
