@@ -1,3 +1,11 @@
 
-<%= erb :'_create_tweet' %>
-<%= erb :'_tweets' %>
+<div class="col-12">
+  <div class="col-3">profile content here</div>
+  <div id="middle-container" class="col-6">
+    <div class="create-tweet-form-container">
+      <%= erb :'_create_tweet' %>
+    </div>
+    <%= erb :'_tweets' %>
+  </div>
+  <div class="col-3">aside content here</div>
+</div>
