@@ -2,30 +2,34 @@
 <% @tweets.each do |tweet| %>
   <div class="tweet-container">
     <% current_user = User.find(tweet.user_id) %>
-      <div class="tweet-info">
-        <a href="/#{current_user.handle}"><%= "#{current_user.full_name}"  %></a>
-        <a href="/#{current_user.handle}"><%= "@#{current_user.handle}"  %></a>
-        <a href="/#{current_user.handle}"><%= "@#{tweet.created_at}"  %></a>
-        <div><%= "#{tweet.tweet}" %></div>
+      <div>
+        <div class="tweet-info">
+          <a id="tweet-user-name" href="<%="/#{current_user.handle}" %>"><%= "#{current_user.full_name}"  %></a>
+          <a class="" ="tweet-extra-info" href="<%="/#{current_user.handle}" %>"><%= "#{current_user.handle}"  %></a>
+          <a class="" ="tweet-extra-info" href="<%= "/#{current_user.handle}" %>"><%= "#{tweet.created_at}"  %></a>
+        </div>
+
+        <div class="tweet-text">
+          <%= "#{tweet.tweet}" %>
+        </div>
+
+
         <div class="tweet-interaction">
 
-          <form action="/reply" method="POST">
-            <input type="hidden" name="user_id" value="#{current_user.id}">
+          <form action="<%= "/tweets/#{tweet.id}/retweet" %>" method="POST">
             <input type="hidden" name="tweet_id" value="#{tweet.id}">
             <input type="hidden" name="_method" value="put">
             <button type="submit">Reply</button>
           </form>
 
-          <form action="/retweet" method="POST">
+          <form action="<%= "/tweets/#{tweet.id}/retweet" %>" method="POST">
             <input type="hidden" name="_method" value="put">
-            <input type="hidden" name="user_id" value="#{current_user.id}">
             <input type="hidden" name="tweet_id" value="#{tweet.id}">
             <button type="submit">Like</button>
           </form>
 
-          <form action="/like" method="POST">
+          <form action="<%= "/tweets/#{tweet.id}/like" %> method="POST">
             <input type="hidden" name="_method" value="put">
-            <input type="hidden" name="user_id" value="#{current_user.id}">
             <input type="hidden" name="tweet_id" value="#{tweet.id}">
             <button type="submit" >Retweet</button>
           </form>

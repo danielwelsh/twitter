@@ -1,0 +1,6 @@
+<form action="/tweets/#{tweet.id}/retweet">
+  <input type="hidden" name="tweet[user_id]" value="tweet[current_user.id]">
+  <input type="hidden" name="tweet[retweet_id]" value="tweet.id">
+  <input type="hidden" name="tweet[tweet]" value="tweet.tweet">
+  <button type="submit">Retweet</button>
+</form>
