@@ -30,7 +30,7 @@
       <% else %>
         <div id="login-form">
           <form action="/login" method="POST">
-            <%= @login_error if @login_error %>
+            <div class="form-errors"><%= @login_error if @login_error %></div>
             <input type="text" name="handle" placeholder="Handle">
             <input type="password" name="password" placeholder="Password">
             <button type="submit">Login</button>
@@ -40,22 +40,29 @@
     </div>
   </nav>
   <% if current_user %>
-    <%= erb :'show' %>
+    <%= yield %>
   <% else %>
     <section id="sign-up" class="container">
+    <div id="mockup"><img width="400px" src="/images/ios.png"></div>
+    <div id="signup-form">
       <h1>Sign Up</h1>
       <p>Join the epic world of tweets! Tweeting is seconds away.</p>
-      <form id="signup-form" action="/signup" method="POST">
-        <input type="text" name="user[first_name]" placeholder="First Name">
-        <input type="text" name="user[last_name]" placeholder="Last Name">
-        <input type="text" name="user[email]" placeholder="Email">
-        <input type="text" name="user[handle]" placeholder="Handle">
-        <input type="text" name="user[password]" placeholder="Password">
-        <input type="text" name="password-confirm" placeholder="Confirm Password">
+      <form action="/signup" method="POST">
+        <input type="text" name="user[first_name]" placeholder="First Name" value="<%= @user.first_name %>">
+        <div class="form-errors"><%= "First name " + @signup_errors[:first_name][0] if @signup_errors && @signup_errors[:first_name] %></div>
+        <input type="text" name="user[last_name]" placeholder="Last Name" value="<%= @user.last_name %>">
+        <div class="form-errors"><%= "Last name " + @signup_errors[:last_name][0] if @signup_errors && @signup_errors[:last_name] %></div>
+        <input type="text" name="user[email]" placeholder="Email" value="<%= @user.email %>">
+        <div class="form-errors"><%= "Email " + @signup_errors[:email][0] if @signup_errors && @signup_errors[:email] %></div>
+        <input type="text" name="user[handle]" placeholder="Handle" value="<%= @user.handle %>">
+        <div class="form-errors"><%= "Handle " + @signup_errors[:handle][0] if @signup_errors && @signup_errors[:handle] %></div>
+        <input type="password" name="user[password]" placeholder="Password">
+        <div class="form-errors"><%= @signup_errors[:password][0] if @signup_errors && @signup_errors[:password] %></div>
+        <input type="password" name="password-confirm" placeholder="Confirm Password">
         <button type="submit">Sign Up</button>
       </form>
+    </div>
     </section>
   <% end %>
-  <%= yield %>
 </body>
 </html>
