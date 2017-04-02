@@ -11,14 +11,15 @@ get '/' do
 end
 
 
-update '/like' do
-
+put '/like' do
+  @user = User.find(params[:user_id])
+  @tweet = Tweet.find(params[:tweet_id])
 end
 
-update '/reply' do
-
+put '/reply' do
+  @user = User.find(params[:user_id])
 end
 
-update '/retweet' do
-
+put '/retweet' do
+  @user = User.find(params[:user_id])
 end
