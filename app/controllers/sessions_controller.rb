@@ -1,13 +1,10 @@
 get '/' do
   if current_user
-    p "-" * 25
     @tweets = get_tweets_feed(current_user)
-    p "-" * 25
+    p @tweets.pluck(:user_id)
     erb :'show'
   else
-    p "*" * 25
     @user = User.new()
-    p "*" * 25
     if params[:error_type]
       @login_error = 'Incorrect handle/password.'
     end
@@ -17,7 +14,6 @@ end
 
 post '/login' do
     @user = User.find_by(handle: params[:handle])
-  p @user
   if @user && @user.authenticate(params[:password])
     login_user
     redirect '/'
