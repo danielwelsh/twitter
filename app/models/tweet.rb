@@ -52,10 +52,12 @@ class Tweet < ActiveRecord::Base
     self.likes.where(id: id).count == 1
   end
 
+  #Checks to see if the user has retweeted a given tweet
   def retweeted?(user)
     id = user.id
     self.retweets.where(id: id).count == 1
   end
+
 
   def retweet?(user)
     id = user.id
@@ -66,4 +68,7 @@ class Tweet < ActiveRecord::Base
     self.retweets.count
   end
 
+  def own_tweet?(user)
+    self.user_id == user.id
+  end
 end

@@ -22,41 +22,39 @@
           </form>
 
 
-
+<!-- likes functionality start -->
           <% if tweet.liked?(current_user) %>
             <form action="<%= "/tweets/#{tweet.id}/like" %>" method="POST">
               <input type="hidden" name="_method" value="delete">
               <input type="hidden" name="tweet_id" value="#{tweet.id}">
               <button class="liked-heart" type="submit">&#x2764;</button>
-              <!-- <span><a href=""><%= tweet.likes_count %></a></span> -->
-              <span><a href=""><%= tweet.likes_count %></a></span>
             </form>
           <% else %>
             <form action="<%= "/tweets/#{tweet.id}/like" %>" method="POST">
               <input type="hidden" name="tweet_id" value="#{tweet.id}">
               <button type="submit">&#x2764;</button>
-              <!-- <span><a href=""><%= tweet.likes_count %></a></span> -->
+            </form>
+          <% end %>
               <span><a href=""><%= tweet.likes_count %></a></span>
-            </form>
-          <% end %>
-
-          <% if tweet.retweeted?(current_user) %>
-            <form action="<%= "/tweets/#{tweet.id}/retweet" %>" method="POST">
-              <input type="hidden" name="_method" value="delete">
-              <input type="hidden" name="tweet_id" value="#{tweet.id}">
-              <button type="submit"></button>
-              <button class="retweeted-symbol" type="submit" >&#9851;</button>
-              <span><a href=""><%= tweet.retweets_count %></a></span>
-            </form>
+<!-- likes functionality end-->
+<!-- retweet functionality start -->
+          <% if tweet.own_tweet?(current_user) %>
+            <span>&#9851; <a href=""><%= tweet.retweets_count %></a></span>
           <% else %>
-            <form action="<%= "/tweets/#{tweet.id}/retweet" %>" method="POST">
-              <input type="hidden" name="tweet_id" value="#{tweet.id}">
-              <button type="submit"></button>
-              <button type="submit" >&#9851;</button>
-              <span><a href=""><%= tweet.retweets_count %></a></span>
-            </form>
+            <% if tweet.retweeted?(current_user) %>
+              <form action="<%= "/tweets/#{tweet.id}/retweet" %>" method="POST">
+                <input type="hidden" name="_method" value="delete">
+                <button class="retweeted-symbol" type="submit" >&#9851;</button>
+                <span><a href=""><%= tweet.retweets_count %></a></span>
+              </form>
+            <% else %>
+              <form action="<%= "/tweets/#{tweet.id}/retweet" %>" method="POST">
+                <button type="submit" >&#9851;</button>
+                <span><a href=""><%= tweet.retweets_count %></a></span>
+              </form>
+            <% end %>
           <% end %>
-
+<!-- retweet functionality end -->
 
 
         </div>
