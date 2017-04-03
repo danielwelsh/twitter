@@ -65,4 +65,14 @@ class User < ActiveRecord::Base
   def get_retweets
     get_nested_objects(self.retweets, :tweet_id, Tweet)
   end
+
+  def get_following_ids_string
+    following_ids = self.followings.pluck(:following_id) << self.id
+    following_ids.reduce('(') { |final_string, id| final_string + id.to_s + ','}.chop + ')'
+  end
+
+  def get_not_following_users
+    User.all.where("id not in #{self.get_following_ids_string}")
+  end
+
 end
