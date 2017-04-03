@@ -1,4 +1,4 @@
-<div class="create-tweet-profile-image"><img src="" width="48px" height="48px"></div>
+<div class="create-tweet-profile-image"><img src="<%= current_user.profile_image_location %>"" height="48px"></div>
 <form id="create-tweet-form" action="/tweet/create" method="POST">
   <input type="text" name="tweet[tweet]" placeholder="What's happening?">
   <button type="submit">Post</button>
