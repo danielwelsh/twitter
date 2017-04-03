@@ -21,12 +21,14 @@ end
 post '/:handle/follow' do
   user_to_follow = User.find_by(handle: params[:handle])
   Following.create(user: current_user, following_id: user_to_follow.id)
+  Follower.create(user: user_to_follow, follower_id: current_user.id)
   redirect '/'
 end
 
 delete '/:handle/follow'  do
   user_to_unfollow = User.find_by(handle: params[:handle])
   Following.find_by(user: current_user, following_id: user_to_unfollow.id).destroy
+  Follower.find_by(user: user_to_follow, follower_id: current_user.id).destroy
   redirect '/'
 end
 

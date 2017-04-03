@@ -100,7 +100,7 @@ input, button  {
   font-weight: bold;
 }
 
-#middle-container {
+.section-borders, #middle-container {
   border: 1px solid #e6ecf0;
   border-radius: 3px;
   padding: 0;
@@ -204,5 +204,78 @@ input, button  {
 
 .retweeted-symbol {
   color: green;
+}
 
+/* SIDE PROFILE SECTION CSS */
+.no-top-padding {
+  padding-top: 0;
+}
+
+.side-profile-user-background {
+  overflow: hidden;
+}
+.side-profile-user-info {
+  position: relative;
+  display: flex;
+}
+.side-profile-profile-photo {
+  width: 76px;
+  height: 76px;
+  overflow: hidden;
+  border: 3px solid white;
+  position: relative;
+  top: -30px;
+  left: 10px;
+  border-radius: 3px;
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.side-profile-general-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.side-profile-user-full-name {
+  font-size: 18px;
+  font-weight: bold;
+  padding: 5px 0;
+}
+
+.side-profile-user-handle {
+  font-size: 13px;
+  color: #657786;
+}
+
+.side-profile-profile-stats {
+  position: relative;
+  top: -20px;
+}
+
+.side-profile-profile-stats ul {
+  list-style: none;
+  display: flex;
+  padding: 0;
+  margin: 0;
+
+}
+
+.side-profile-profile-stats li {
+  display: inline-block;
+  padding: 0 20px 0 15px ;
+}
+
+.side-profile-profile-stats li span {
+  display: block;
+}
+
+.side-profile-profile-stats li span:first-child {
+  color: #657786;
+  font-size: 10px;
+}
+
+.side-profile-profile-stats li span:last-child {
+  color: #990000;
+  font-size: 18px;
+  font-weight: bold;
 }

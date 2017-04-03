@@ -66,6 +66,18 @@ class User < ActiveRecord::Base
     get_nested_objects(self.retweets, :tweet_id, Tweet)
   end
 
+  def get_tweet_count
+    self.tweets.count
+  end
+
+  def get_followings_count
+    self.followings.count
+  end
+
+  def get_followers_count
+    self.followers.count
+  end
+
   def get_following_ids_string
     following_ids = self.followings.pluck(:following_id) << self.id
     following_ids.reduce('(') { |final_string, id| final_string + id.to_s + ','}.chop + ')'
