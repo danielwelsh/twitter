@@ -1,0 +1,26 @@
+<div class="section-borders">
+  <div class="side-profile-user-background"><img src="/user_profile_images/default_side_profile_background.jpg" height="96px"></div>
+  <div class="side-profile-user-info">
+    <div class="side-profile-profile-photo"><img src="/user_profile_images/default_side_profile_photo.png" height="72px"></div>
+    <div class="side-profile-general-details">
+      <span class="side-profile-user-full-name"><%= current_user.full_name %></span>
+      <span class="side-profile-user-handle">@<%= current_user.handle %></span>
+    </div>
+  </div>
+  <div class="side-profile-profile-stats">
+    <ul>
+      <li>
+        <span>Tweets</span>
+        <span>1284</span>
+      </li>
+      <li>
+        <span>Following</span>
+        <span>98</span>
+      </li>
+      <li>
+        <span>Followers</span>
+        <span>23K</span>
+      </li>
+    </ul>
+  </div>
+</div>
