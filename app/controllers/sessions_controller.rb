@@ -23,6 +23,7 @@ post '/login' do
 end
 
 post '/signup' do
+  # p params
   @signup_errors = {}
   @user = User.find_by(handle: params[:user][:handle])
 
@@ -38,12 +39,32 @@ post '/signup' do
     if params[:user][:password] != params["password-confirm"]
       @signup_errors[:password] = ["Passwords don't match"]
     end
-    if @user.save
-      login_user
-      redirect '/'
-    else
-      @signup_errors = @signup_errors.merge(@user.errors.messages)
-      erb :'index'
+
+    if params[:profile_image]
+    profile_image_hash = params[:profile_image]
+
+    temp_file = profile_image_hash[:tempfile] # <Tempfile:/var/folders/_c/7cmjqt3d051475p3v8xl5dlr0000gn/T/..jpg>
+
+    if @user.valid?
+      if less_than_3mb?(temp_file)
+        @user.save
+        login_user
+        # extra info good to know
+        # filetype = profile_image_hash[:type] # "image/jpeg"
+        # img_headers = profile_image_hash[:head] #the same info as above minus the tempfile
+        filename = profile_image_hash[:filename] # "NBC_SNL_VANESSA_BAYER.jpg"
+        copy_file(temp_file, filename)
+
+        #need a migration to save the file location
+
+        redirect '/'
+        else
+          @signup_errors[:profile_image] = ["Image cannot be greater than 3MB"]
+        end
+      else
+        @signup_errors = @signup_errors.merge(@user.errors.messages)
+        erb :'index'
+      end
     end
   end
 end
