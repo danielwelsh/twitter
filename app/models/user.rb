@@ -65,4 +65,16 @@ class User < ActiveRecord::Base
   def get_retweets
     get_nested_objects(self.retweets, :tweet_id, Tweet)
   end
+
+  def get_tweet_count
+    self.tweets.count
+  end
+
+  def get_followings_count
+    self.followings.count
+  end
+
+  def get_followers_count
+    self.get_followers.count
+  end
 end
