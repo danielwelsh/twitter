@@ -16,13 +16,13 @@ end
 post 'tweets/:tweet_id/retweet' do
   #Create a new tweet and a retweet object
   original_tweet = Tweet.find(params[:tweet_id])
-  Tweet.create(user: current_user, tweet: original_tweet.tweet, re )
-  Retweet.create(user: current_user, )
+  Tweet.create(user: current_user, tweet: original_tweet.tweet)
+  Retweet.create(user: current_user, tweet: original_tweet.tweet, original_tweet_id: original_tweet.id)
 
 end
 
 delete 'tweets/:tweet_id/retweet' do
-
+  Retweet.find_by(user: current_user, tweet: Tweet.find(params[:tweet_id])).destroy
 end
 
 
