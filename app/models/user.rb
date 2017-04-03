@@ -35,6 +35,15 @@ class User < ActiveRecord::Base
     self.last_name = self.last_name.capitalize
   end
 
+  def landing_page_feed
+    feed_user_ids = self.followings.pluck(:following_id) << self.id
+    feed_user_ids_string = feed_user_ids.reduce('(') { |final_string, id| final_string + id.to_s + ',' }.chop + ')'
+    all_tweets_ids = Tweet.where("user_id in #{feed_user_ids_string}").order(created_at: :desc).pluck(:tweet_id)
+    all_retweets_ids = User.retweets.pluck(:tweet_id)
+    all_tweets_ids - all_retweets_id
+    # Tweet
+  end
+
   def get_nested_objects(self_association_method, pluck_field_sym, class_name)
     nested_objects_ids = self_association_method.pluck(pluck_field_sym)
     nested_objects_ids_string = nested_objects_ids.reduce('(') { |final_string, id| final_string + id.to_s + ','}.chop + ')'
