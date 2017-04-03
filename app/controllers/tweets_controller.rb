@@ -1,3 +1,13 @@
+#TWEET
+post '/tweets/create' do
+  @tweet = Tweet.new(user: current_user, tweet: params[:tweet])
+  if @tweet.save
+    redirect "/"
+  else
+    @errors = @tweet.errors.full_messages
+    erb :'show'
+  end
+end
 
 
 #LIKE

@@ -8,13 +8,6 @@
 # update '/like' do
 
 
-#CREATE
-post '/tweets/create' do
-  Tweet.create(params[:tweet])
-  redirect '/'
-end
-
-
 # #REPLY
 # post '/tweets/:tweet_id/reply' do
 #   @tweet = Tweet.find(params[:tweet])
