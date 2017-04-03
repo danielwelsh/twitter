@@ -1,0 +1,15 @@
+
+<% @suggested_users.each do |suggested_user| %>
+
+  <div class="suggested_user-container">
+    <div class="create-tweet-profile-image"><img src="<%= suggested_user.profile_image_location %>" height="36px"></div>
+    <a id="tweet-user-name" href="<%="/#{suggested_user.handle}" %>"><%= "#{suggested_user.full_name}"  %></a>
+    <a class="" ="tweet-extra-info" href="<%="/#{suggested_user.handle}" %>"><%= "@#{suggested_user.handle}" %></a>
+
+    <form action="/<%= suggested_user.handle %>/follow" method="POST" >
+      <button type="submit">Follow</button>
+    </form>
+
+  </div>
+
+<% end %>
