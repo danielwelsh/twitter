@@ -29,7 +29,7 @@ User.all.each do |user|
 end
 
 #CREATING RETWEETS  #THE TWEET SECTIONS SHOULD REALLY BE HOLING AN OBJECT #FIXME
-Tweet.new(tweet: "hashtags galore #this #that #blessed #yomomma #up", user: tom, retweet_id: 1)
+Tweet.new(tweet: "hashtags galore #this #that #blessed #yomomma #up", user: tom)
 
 Following.new(user:tom, following_id: tom1.id).save
 # Following.new(user:tom, following_id:tom3.id).save
