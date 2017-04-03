@@ -1,6 +1,9 @@
 #TWEET
 post '/tweets/create' do
   @tweet = Tweet.new(user: current_user, tweet: params[:tweet])
+  @suggested_users = User.all
+  p '*' * 100
+  p @suggested_users
   if @tweet.save
     redirect "/"
   else
