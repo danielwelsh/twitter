@@ -2,9 +2,9 @@
   <div class="tweet-container">
       <div>
         <div class="tweet-info">
-          <a id="tweet-user-name" href="<%="/#{current_user.handle}" %>"><%= "#{current_user.full_name}"  %></a>
-          <a class="" ="tweet-extra-info" href="<%="/#{current_user.handle}" %>"><%= "#{current_user.handle}"  %></a>
-          <a class="" ="tweet-extra-info" href="<%= "/#{current_user.handle}" %>"><%= "#{tweet.date}"  %></a>
+          <a id="tweet-user-name" href="<%="/#{tweet.user.handle}" %>"><%= "#{tweet.user.full_name}"  %></a>
+          <a class="" ="tweet-extra-info" href="<%="/#{tweet.user.handle}" %>"><%= "@#{tweet.user.handle}" %></a>
+          <a class="" ="tweet-extra-info" href="<%= "/#{tweet.user.handle}" %>"><%= "#{tweet.date}"  %></a>
         </div>
 
         <div class="tweet-text">

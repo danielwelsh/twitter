@@ -16,8 +16,7 @@ end
 post '/tweets/:tweet_id/retweet' do
   #Create a new tweet and a retweet object
   original_tweet = Tweet.find(params[:tweet_id])
-  retweet = Tweet.create(user: current_user, tweet: original_tweet.tweet)
-  Retweet.create(user: current_user, tweet: retweet, original_tweet_id: original_tweet.id)
+  Retweet.create(user: current_user, tweet: original_tweet, original_tweet_id: original_tweet.id)
   redirect '/'
 
 end

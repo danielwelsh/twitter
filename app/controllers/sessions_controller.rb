@@ -1,6 +1,7 @@
 get '/' do
   if current_user
     @tweets = get_tweets_feed(current_user)
+    p @tweets.pluck(:user_id)
     erb :'show'
   else
     @user = User.new()
