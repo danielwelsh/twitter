@@ -11,6 +11,3 @@ class CreateTweets < ActiveRecord::Migration
   end
 end
 
-
-
-retweet_id
