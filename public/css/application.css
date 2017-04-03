@@ -197,3 +197,12 @@ input, button  {
 .hashtag-link:hover {
   text-decoration: underline;
 }
+
+.liked-heart{
+  color: red;
+}
+
+.retweeted-symbol {
+  color: green;
+
+}
