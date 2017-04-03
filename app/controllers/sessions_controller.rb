@@ -1,6 +1,9 @@
 get '/' do
   if current_user
     @tweets = get_tweets_feed(current_user)
+    @suggested_users = current_user.get_not_following_users
+    p '*' * 100
+    p @suggested_users
     erb :'show'
   else
     @user = User.new()
@@ -10,6 +13,26 @@ get '/' do
     erb :index
   end
 end
+
+
+
+
+#FOLLOW AND UNFOLLOW PEOPLE
+post '/:handle/follow' do
+  user_to_follow = User.find_by(handle: params[:handle])
+  Following.create(user: current_user, following_id: user_to_follow.id)
+  redirect '/'
+end
+
+delete '/:handle/follow'  do
+  user_to_unfollow = User.find_by(handle: params[:handle])
+  Following.find_by(user: current_user, following_id: user_to_unfollow.id).destroy
+  redirect '/'
+end
+
+
+
+
 
 post '/login' do
     @user = User.find_by(handle: params[:handle])
