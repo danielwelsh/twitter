@@ -11,15 +11,15 @@
     <ul>
       <li>
         <span>Tweets</span>
-        <span>1284</span>
+        <span><%= current_user.get_tweet_count %></span>
       </li>
       <li>
         <span>Following</span>
-        <span>98</span>
+        <span><%= current_user.get_followings_count %></span>
       </li>
       <li>
         <span>Followers</span>
-        <span>23K</span>
+        <span><%= current_user.get_followers_count %></span>
       </li>
     </ul>
   </div>
