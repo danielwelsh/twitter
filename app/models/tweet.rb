@@ -6,7 +6,7 @@ class Tweet < ActiveRecord::Base
   has_many :likes, through: :liked_tweets, source: :user # works; gives us the users who liked the tweet
   has_many :replied_tweets, foreign_key: :replied_to_tweet_id #works: gives replied tweet objects
   has_many :replies, through: :replied_tweets, source: :tweet #works: gives tweets that are replies to the tweets
-  has_many :retweets, foreign_key: :original_tweet_id
+  has_many :retweets, foreign_key: :original_tweet_id #Returns a collections of retweet objects
 
   validates :tweet, length: { maximum: 140, minimum: 1 }
   after_create :parse_tags
@@ -41,6 +41,29 @@ class Tweet < ActiveRecord::Base
 
   def get_retweets
     get_nested_objects(self.retweets, :tweet_id, Tweet)
+  end
+
+  def likes_count
+    self.likes.count
+  end
+
+  def liked?(user)
+    id = user.id
+    self.likes.where(id: id).count == 1
+  end
+
+  def retweeted?(user)
+    id = user.id
+    self.retweets.where(id: id).count == 1
+  end
+
+  def retweet?(user)
+    id = user.id
+    self.retweets.count
+  end
+
+  def retweets_count
+    self.retweets.count
   end
 
 end

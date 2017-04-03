@@ -10,3 +10,7 @@ class CreateTweets < ActiveRecord::Migration
     end
   end
 end
+
+
+
+retweet_id
