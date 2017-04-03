@@ -20,8 +20,9 @@
 <body>
   <nav>
     <div class="container nav">
-      <div id="logo"><img width="200px" src="/images/clutter.png" alt="Clutter"></div>
+      <div id="logo"><a href="/"><img width="200px" src="/images/clutter.png" alt="Clutter Logo"></a></div>
       <% if current_user %>
+        <div><%= "Welcome #{current_user.first_name} | @#{current_user.handle}" %></div>
         <div id="logout-form">
           <form action="/logout" method="POST">
             <button type="submit">Logout</button>
@@ -47,7 +48,7 @@
     <div id="signup-form">
       <h1>Sign Up</h1>
       <p>Join the epic world of tweets! Tweeting is seconds away.</p>
-      <form action="/signup" method="POST">
+      <form action="/signup" method="POST" enctype="multipart/form-data">
         <input type="text" name="user[first_name]" placeholder="First Name" value="<%= @user.first_name %>">
         <div class="form-errors"><%= "First name " + @signup_errors[:first_name][0] if @signup_errors && @signup_errors[:first_name] %></div>
         <input type="text" name="user[last_name]" placeholder="Last Name" value="<%= @user.last_name %>">
@@ -59,6 +60,8 @@
         <input type="password" name="user[password]" placeholder="Password">
         <div class="form-errors"><%= @signup_errors[:password][0] if @signup_errors && @signup_errors[:password] %></div>
         <input type="password" name="password-confirm" placeholder="Confirm Password">
+
+        <input type="file" name="profile_image" accept="image/*">
         <button type="submit">Sign Up</button>
       </form>
     </div>

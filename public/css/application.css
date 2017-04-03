@@ -161,6 +161,11 @@ input, button  {
 }
 .create-tweet-profile-image {
   margin-right: 15px;
+  width: 48px;
+  height: 48px;
+  overflow: hidden;
+  border-radius: 3px;
+  margin-left: 15px;
 }
 
 .create-tweet-form input {
