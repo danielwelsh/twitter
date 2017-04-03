@@ -196,3 +196,8 @@ input, button  {
 .liked-heart{
   color: red;
 }
+
+.retweeted-symbol {
+  color: green;
+
+}
