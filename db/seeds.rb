@@ -64,7 +64,7 @@ RepliedTweet.new(user: tom1, tweet: Tweet.create(tweet: Faker::Hacker.say_someth
 RepliedTweet.new(user: tom1, tweet: Tweet.create(tweet: Faker::Hacker.say_something_smart, user: tom1), replied_to_tweet_id: 9).save
 
 
-Retweet.new(user: tom, original_tweet_id: 25, tweet: Tweet.create(tweet: Tweet.find(25).tweet, user: tom)).save
-Retweet.new(user: tom1, original_tweet_id: 12, tweet: Tweet.create(tweet: Tweet.find(12).tweet, user: tom1)).save
+Retweet.new(user: tom, tweet: Tweet.find(25)).save
+Retweet.new(user: tom1, tweet: Tweet.find(12)).save
 
 
