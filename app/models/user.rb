@@ -78,6 +78,7 @@ class User < ActiveRecord::Base
     self.followers.count
   end
 
+  ## START -- FUNCTIONALITY FOR SUGGESTING USERS TO FOLLOW
   def get_following_ids_string
     following_ids = self.followings.pluck(:following_id) << self.id
     following_ids.reduce('(') { |final_string, id| final_string + id.to_s + ','}.chop + ')'
@@ -86,5 +87,6 @@ class User < ActiveRecord::Base
   def get_not_following_users
     User.all.where("id not in #{self.get_following_ids_string}")
   end
+  ## END -- FUNCTIONALITY FOR SUGGESTING USERS TO FOLLOW
 
 end
