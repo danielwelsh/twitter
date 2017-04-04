@@ -38,7 +38,7 @@ post '/signup' do
   else
     @user.save
     login_user
-    copy_file(params)
+    copy_file(params) if params[:profile_image]
     redirect '/'
   end
 end
