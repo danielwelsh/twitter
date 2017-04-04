@@ -35,60 +35,74 @@ class User < ActiveRecord::Base
     self.last_name = self.last_name.capitalize
   end
 
-  def landing_page_feed
-    # first thing we need is all the user's own tweets
-    my_own_tweets = self.tweets
-    followings = self.followings
+  # def landing_page_feed
+  #   # first thing we need is all the user's own tweets
+  #   my_own_tweets = self.tweets
+  #   followings = self.followings
 
-    # then we want all his followers tweets
-    my_followings_tweets = []
-    followings.each do |following|
-      my_followings_tweets << followings.tweets
-    end
+  #   # then we want all his followers tweets
+  #   my_followings_tweets = []
+  #   followings.each do |following|
+  #     my_followings_tweets << followings.tweets
+  #   end
 
-    # then we want all his follower tweets
-    followings_retweets = []
-    followings.each do |following|
-      all_retweets_of_following = Retweet.find_by(user_id: following.id)
-      all_retweets_of_following.each do |retweet|
-        followings_retweets << retweet
-      end
-    end
+  #   # then we want all his follower tweets
+  #   followings_retweets = []
+  #   followings.each do |following|
+  #     all_retweets_of_following = Retweet.find_by(user_id: following.id)
+  #     all_retweets_of_following.each do |retweet|
+  #       followings_retweets << retweet
+  #     end
+  #   end
 
-    # then we want to remove all retweets where user is already following with the original tweet owner
-    filtered_retweets = []
-    followings_user_ids = followings.pluck(:user_id)
-    followings_retweets.each do |followings_retweet|
-      catch :following_user do
-        original_tweet_owner_id = Tweet.find(followings_retweet.tweet_id).user.id
-        followings_user_ids.each do |followings_user_id|
-          if followings_user_id == original_tweet_owner_id
-            throw :following_user
-          else
-            filtered_retweets << followings_retweet
-          end
-        end
-      end
-    end
+  #   # then we want to remove all retweets where user is already following with the original tweet owner
+  #   filtered_retweets = []
+  #   followings_user_ids = followings.pluck(:user_id)
+  #   followings_retweets.each do |followings_retweet|
+  #     catch :following_user do
+  #       original_tweet_owner_id = Tweet.find(followings_retweet.tweet_id).user.id
+  #       followings_user_ids.each do |followings_user_id|
+  #         if followings_user_id == original_tweet_owner_id
+  #           throw :following_user
+  #         else
+  #           filtered_retweets << followings_retweet
+  #         end
+  #       end
+  #     end
+  #   end
 
-    # for each tweet package them for view in format [tweet, x]
-    retweet_package = []
-    filtered_retweets.each do |retweet|
-      Tweet.find(retweet.tweet_id)
-    end
-    # then we  get all his friends retweets where I do not follow the original_tweet's user. --> retweet objects
-    # Clean retweet objects so original tweets are unique. In dispute take first created.
-      # for each of those retweet objects create a array of two pairs ([tweet, retweet]) where the first is a retweet obj and the second is a original tweet
-    #
+  #   # for each tweet package them for view in format [tweet, x]
+  #   retweet_package = []
+  #   filtered_retweets.each do |retweet|
+  #     Tweet.find(retweet.tweet_id)
+  #   end
+  #   # then we  get all his friends retweets where I do not follow the original_tweet's user. --> retweet objects
+  #   # Clean retweet objects so original tweets are unique. In dispute take first created.
+  #     # for each of those retweet objects create a array of two pairs ([tweet, retweet]) where the first is a retweet obj and the second is a original tweet
+  #   #
 
-    feed_user_ids = self.followings.pluck(:following_id) << self.id
-    feed_user_ids_string = feed_user_ids.reduce('(') { |final_string, id| final_string + id.to_s + ',' }.chop + ')'
-    all_tweets_ids = Tweet.where("user_id in #{feed_user_ids_string}").order(created_at: :desc).pluck(:tweet_id)
-    all_retweets_ids = User.retweets.pluck(:tweet_id)
-    all_tweets_ids - all_retweets_id
-    # Tweet
+  #   feed_user_ids = self.followings.pluck(:following_id) << self.id
+  #   feed_user_ids_string = feed_user_ids.reduce('(') { |final_string, id| final_string + id.to_s + ',' }.chop + ')'
+  #   all_tweets_ids = Tweet.where("user_id in #{feed_user_ids_string}").order(created_at: :desc).pluck(:tweet_id)
+  #   all_retweets_ids = User.retweets.pluck(:tweet_id)
+  #   all_tweets_ids - all_retweets_id
+  #   # Tweet
+  # end
+
+  def landing_page_2
+    #get the user's tweets that are not retweets
+    own_tweets = self.tweets.where(original_tweet_id: nil)
+    #get the user's followings tweets
+
+    following_user_ids = self.followings.pluck(:following_id)
+    ids_string = following_user_ids.reduce('(') { |final_string, id| final_string + id.to_s + ','}.chop + ")"
+    followings_tweets = Tweet.where("user_id in #{ids_string}")
+
+    #remove all retweets where user is already following that person
+    ##working
+    followings_tweets.where("original_tweet_id is null or (original_tweet_id is not null and original_tweet_id not in #{ids_string})")
+
   end
-
   def profile_page_feed
     self.tweets
   end
