@@ -25,8 +25,8 @@ User.all.each do |user|
 end
 
 #RETWEETS
-Tweet.new(tweet: "RETWEET", original_tweet_id: 1, user: tom1).save
-Tweet.new(tweet: "RETWEET", original_tweet_id: 26, user: tom).save
+Tweet.new(tweet: "RETWEET", original_tweet_id: 1, original_tweet_user_id:1, user: tom1).save
+Tweet.new(tweet: "RETWEET", original_tweet_id: 26, original_tweet_user_id:2, user: tom).save
 
 Following.new(user:tom, following_id: tom1.id).save
 # Following.new(user:tom, following_id:tom3.id).save

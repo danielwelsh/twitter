@@ -29,21 +29,23 @@ delete '/tweets/:tweet_id/like' do
 end
 
 
-#RETWEET
+#RETWEET CREATE
 post '/tweets/:tweet_id/retweets' do
-  Tweet.create(user: current_user, original_tweet_id: params[:tweet_id], tweet: "RETWEET")
-  tweet = Tweet.find(params[:tweet_id])
-  tweet.retweet_count += 1
-  tweet.save
+  Tweet.create(
+    user: current_user,
+    original_tweet_id: params[:tweet_id],
+    original_tweet_user_id: params[:original_tweet_user_id],
+    tweet: "RETWEET"
+  )
+  Tweet.find(params[:tweet_id]).change_tweet_count(:+)
   redirect '/'
 end
 
+#RETWEET DELETE
                  #IMPORTANT
 delete '/tweets/:tweet_id/retweets' do
   Tweet.find_by(user: current_user, original_tweet_id: params[:tweet_id].to_i).destroy
-  tweet = Tweet.find(params[:tweet_id])
-  tweet.retweet_count -= 1
-  tweet.save
+  Tweet.find(params[:tweet_id]).change_tweet_count(:-)
   redirect '/'
 end
 
