@@ -27,6 +27,7 @@ end
 
 #RETWEET CREATE
 post '/tweets/:tweet_id/retweets' do
+  p params
   Tweet.create(
     user: current_user,
     original_tweet_id: params[:tweet_id],
