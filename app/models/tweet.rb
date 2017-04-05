@@ -69,12 +69,12 @@ class Tweet < ActiveRecord::Base
   end
 
   def change_retweet_count(operator)
-    self.retweet_count.send(operator, 1)
+    self.retweet_count = self.retweet_count.send(operator, 1)
     self.save
   end
 
   def change_likes_count(operator)
-    self.likes_count.send(operator, 1)
+    self.likes_count = self.likes_count.send(operator, 1)
     self.save
   end
 
