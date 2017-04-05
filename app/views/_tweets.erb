@@ -2,7 +2,7 @@
   <div class="tweet-container">
       <div>
         <% if tweet.retweet? %>
-          <% retweet_id = tweet.id; retweeter = tweet.user; tweet = tweet.get_original_tweet;  %>
+          <% retweet = tweet; retweet_id = tweet.id; retweeter = tweet.user; tweet = tweet.get_original_tweet;  %>
             <div class="retweet-info">
               <a id="tweet-user-name" href="<%="/#{retweeter.handle}" %>"><%= "#{retweeter.full_name}" %></a>Retweeted
             </div>
@@ -57,7 +57,8 @@
               </form>
             <% else %>
               <form action="<%= "/tweets/#{tweet.id}/retweets" %>" method="POST">
-                <input type="hidden" name="original_tweet_user_id">
+
+                <input type="hidden" name="original_tweet_user_id" value="<%= tweet.user_id %>">
                 <button type="submit" >&#9851;</button>
 
                 <span><a href=""><%= tweet.retweet_count %></a></span>

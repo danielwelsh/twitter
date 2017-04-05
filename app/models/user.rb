@@ -60,17 +60,7 @@ class User < ActiveRecord::Base
       ids_string = followings_user_ids.reduce('(') { |final_string, id| final_string + id.to_s + ','}.chop + ")"
       followings_tweets = Tweet.where("user_id in #{ids_string}")
 
-
-
-
-
-
-
-
-
-
-
-
+      # tweet_owned_by_user_that_you_follow
 
       # retweets = followings_tweets.where("original_tweet_id is not null")
 
@@ -81,31 +71,14 @@ class User < ActiveRecord::Base
 
       # user_ids_of_original_tweet
 
-      # tweet_owned_by_user_that_you_follow
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
       # filtered_followings_tweets = retweets.reject { |retweet| followings_user_ids.include?(retweet.user_id)  }
       # #Combines both arrays results in array of tweets where both where met
       # filtered_followings_tweets && followings_tweets
 
 
-
       #remove all retweets where user is already following that person ##working
       filtered_followings_tweets = followings_tweets.where(
-        "original_tweet_id is null or (original_tweet_id is not null and original_tweet_id not in #{ids_string})").order(id: :desc)
+        "original_tweet_id is null or (original_tweet_id is not null and original_tweet_user_id not in #{ids_string})").order(id: :desc)
     end
     own_tweets + filtered_followings_tweets
   end
