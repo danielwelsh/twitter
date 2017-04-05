@@ -13,26 +13,37 @@ end
 #LIKE
 post '/tweets/:tweet_id/like' do
   LikedTweet.create(user: current_user, tweet_id: params[:tweet_id])
+  #for query efficiency
+  Tweet.find(params[:tweet_id]).change_likes_count(:+)
   redirect '/'
 end
 
 delete '/tweets/:tweet_id/like' do
-  liked_tweet = LikedTweet.find_by(user: current_user, tweet_id: params[:tweet_id]).destroy
+  LikedTweet.find_by(user: current_user, tweet_id: params[:tweet_id]).destroy
+  Tweet.find(params[:tweet_id]).change_likes_count(:-)
   redirect '/'
 end
 
 
-#RETWEET
-post '/tweets/:tweet_id/retweet' do
-  #Create a new tweet and a retweet object
-  original_tweet = Tweet.find(params[:tweet_id])
-  Retweet.create(user: current_user, tweet: original_tweet, original_tweet_id: original_tweet.id)
+#RETWEET CREATE
+post '/tweets/:tweet_id/retweets' do
+  p params
+  Tweet.create(
+    user: current_user,
+    original_tweet_id: params[:tweet_id],
+    original_tweet_user_id: params[:original_tweet_user_id],
+    tweet: "RETWEET"
+  )
+  Tweet.find(params[:tweet_id]).change_retweet_count(:+)
   redirect '/'
-
 end
 
-delete '/tweets/:tweet_id/retweet' do
-  Retweet.find_by(user: current_user, tweet: Tweet.find(params[:tweet_id])).destroy
+#RETWEET DELETE
+                 #IMPORTANT
+delete '/tweets/:tweet_id/retweets' do
+  Tweet.find_by(user: current_user, original_tweet_id: params[:tweet_id].to_i).destroy
+  Tweet.find(params[:tweet_id]).change_retweet_count(:-)
+  redirect '/'
 end
 
 
