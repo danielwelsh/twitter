@@ -1,6 +1,7 @@
 get '/' do
   if current_user
-    @tweets = get_tweets_feed(current_user)
+    # @tweets = get_tweets_feed(current_user)
+    @tweets = current_user.get_landing_page_tweets
     @suggested_users = current_user.get_not_following_users
     p '*' * 100
     p @suggested_users
