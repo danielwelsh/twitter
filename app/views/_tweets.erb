@@ -57,7 +57,9 @@
               </form>
             <% else %>
               <form action="<%= "/tweets/#{tweet.id}/retweets" %>" method="POST">
+                <input type="hidden" name="original_tweet_user_id">
                 <button type="submit" >&#9851;</button>
+
                 <span><a href=""><%= tweet.retweet_count %></a></span>
               </form>
             <% end %>

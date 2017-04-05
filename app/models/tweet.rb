@@ -68,5 +68,11 @@ class Tweet < ActiveRecord::Base
     self.original_tweet_id != nil
   end
 
+  def change_tweet_count(operator)
+    self.retweet_count.send(operator, 1)
+    self.save
+  end
+
+
 
 end
