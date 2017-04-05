@@ -6,7 +6,7 @@ class Tweet < ActiveRecord::Base
   has_many :likes, through: :liked_tweets, source: :user # works; gives us the users who liked the tweet
   has_many :replied_tweets, foreign_key: :replied_to_tweet_id #works: gives replied tweet objects
   has_many :replies, through: :replied_tweets, source: :tweet #works: gives tweets that are replies to the tweets
-  has_many :retweets, foreign_key: :original_tweet_id #Returns a collections of retweet objects
+  has_many :retweets
 
   validates :tweet, length: { maximum: 140, minimum: 1 }
   after_create :parse_tags
