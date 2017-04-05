@@ -1,6 +1,12 @@
 <% @tweets.each do |tweet| %>
   <div class="tweet-container">
       <div>
+        <% if tweet.retweet? %>
+          <% retweet = tweet; retweet_id = tweet.id; retweeter = tweet.user; tweet = tweet.get_original_tweet;  %>
+            <div class="retweet-info">
+              <a id="tweet-user-name" href="<%="/#{retweeter.handle}" %>"><%= "#{retweeter.full_name}" %></a>Retweeted
+            </div>
+        <% end %>
         <div class="tweet-info">
           <a id="tweet-user-name" href="<%="/#{tweet.user.handle}" %>"><%= "#{tweet.user.full_name}"  %></a>
           <a class="" ="tweet-extra-info" href="<%="/#{tweet.user.handle}" %>"><%= "@#{tweet.user.handle}" %></a>
@@ -8,7 +14,7 @@
         </div>
 
         <div class="tweet-text">
-          <%= "#{parse_tweet_for_hashtags(tweet.tweet)}" %>
+          <%= "TWEET ID: #{tweet.id} #{parse_tweet_for_hashtags(tweet.tweet)}" %>
         </div>
 
 
@@ -37,20 +43,25 @@
           <% end %>
               <span><a href=""><%= tweet.likes_count %></a></span>
 <!-- likes functionality end-->
+
+
 <!-- retweet functionality start -->
           <% if tweet.own_tweet?(current_user) %>
-            <span>&#9851; <a href=""><%= tweet.retweets_count %></a></span>
+            <span>&#9851; <a href=""><%= tweet.retweet_count %></a></span>
           <% else %>
-            <% if tweet.retweeted?(current_user) %>
-              <form action="<%= "/tweets/#{tweet.id}/retweet" %>" method="POST">
+            <% if tweet.retweeted_by_self?(current_user) %>
+              <form action="<%= "/tweets/#{tweet.id}/retweets" %>" method="POST">
                 <input type="hidden" name="_method" value="delete">
                 <button class="retweeted-symbol" type="submit" >&#9851;</button>
-                <span><a href=""><%= tweet.retweets_count %></a></span>
+                <span><a href=""><%= tweet.retweet_count %></a></span>
               </form>
             <% else %>
-              <form action="<%= "/tweets/#{tweet.id}/retweet" %>" method="POST">
+              <form action="<%= "/tweets/#{tweet.id}/retweets" %>" method="POST">
+
+                <input type="hidden" name="original_tweet_user_id" value="<%= tweet.user_id %>">
                 <button type="submit" >&#9851;</button>
-                <span><a href=""><%= tweet.retweets_count %></a></span>
+
+                <span><a href=""><%= tweet.retweet_count %></a></span>
               </form>
             <% end %>
           <% end %>
