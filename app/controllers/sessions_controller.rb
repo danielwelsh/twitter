@@ -14,7 +14,7 @@ post '/login' do
     login_user # redirects inside helper
   else
     @errors = {login: "Incorrect handle/password"}
-    erb :index
+    erb :'users/new'
   end
 end
 
