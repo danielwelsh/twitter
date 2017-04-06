@@ -3,9 +3,9 @@ class User < ActiveRecord::Base
   include BCrypt
   has_many :tweets # works, doesn't include retweets
   has_many :follows
-  has_many :followings, :through => :follows, :source => :user
+  has_many :followings, :through => :follows, :source => :user #Returns user objects of who the user is following
   has_many :inverse_follows, :class_name => "Follow", :foreign_key => "follow_id"
-  has_many :followers, :through => :inverse_follows, :source => :user
+  has_many :followers, :through => :inverse_follows, :source => :user #Returns user objects of who the user follows
   has_many :liked_tweets #works and returned liked tweet objects
   has_many :replied_tweets #works and returns replied tweet objects
   # has_many :retweets, through: :tweets, foreign_key: :retweet_id #NEED TO CREATE A NEW TABLE, THEN TACKLE TAGS.
@@ -94,11 +94,7 @@ class User < ActiveRecord::Base
     nested_objects_ids_string = nested_objects_ids.reduce('(') { |final_string, id| final_string + id.to_s + ','}.chop + ')'
     class_name.where("id in #{nested_objects_ids_string}")
   end
-########
-  def get_followers
-    get_nested_objects(self.followers, :follower_id, User)
-  end
-########
+
   def get_liked_tweets
     get_nested_objects(self.liked_tweets, :tweet_id, Tweet)
   end
@@ -115,9 +111,6 @@ class User < ActiveRecord::Base
     self.tweets.count
   end
 
-
-
-########
   def get_followings_count
     self.followings.count
   end
@@ -125,7 +118,6 @@ class User < ActiveRecord::Base
   def get_followers_count
     self.followers.count
   end
-########
 
   ## START -- FUNCTIONALITY FOR SUGGESTING USERS TO FOLLOW
   def get_following_ids_string
@@ -138,6 +130,5 @@ class User < ActiveRecord::Base
   end
   ## END -- FUNCTIONALITY FOR SUGGESTING USERS TO FOLLOW
 
-#########
 
 end
