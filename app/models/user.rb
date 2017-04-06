@@ -6,8 +6,6 @@ class User < ActiveRecord::Base
   has_many :followers # works and returns followers objects
   has_many :liked_tweets #works and returned liked tweet objects
   has_many :replied_tweets #works and returns replied tweet objects
-  # has_many :retweets, through: :tweets, foreign_key: :retweet_id #NEED TO CREATE A NEW TABLE, THEN TACKLE TAGS.
-  has_many :retweets
 
   validates :first_name, :last_name, :handle, :email, :password_hash, presence:true
   validates :handle, :email, uniqueness: true
@@ -77,10 +75,6 @@ class User < ActiveRecord::Base
 
   def get_replied_tweets
     get_nested_objects(self.replied_tweets, :tweet_id, Tweet)
-  end
-
-  def get_retweets
-    get_nested_objects(self.retweets, :tweet_id, Tweet)
   end
 
   def get_tweets_count
