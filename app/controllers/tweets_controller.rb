@@ -1,14 +1,12 @@
-#TWEET
-post '/tweets/create' do
+post '/tweets/new' do
   @tweet = Tweet.new(user: current_user, tweet: params[:tweet])
   if @tweet.save
-    redirect "/"
+    redirect '/'
   else
     @errors = @tweet.errors.full_messages
-    erb :'show'
+    erb :'users/index'
   end
 end
-
 
 #LIKE
 post '/tweets/:tweet_id/like' do
@@ -45,16 +43,6 @@ delete '/tweets/:tweet_id/retweets' do
   Tweet.find(params[:tweet_id]).change_retweet_count(:-)
   redirect '/'
 end
-
-
-
-
-#LIKERS
-get 'tweets/:tweet_id/likers' do
-
-end
-
-
 
 #REPLY
 post 'tweets/:tweet_id/reply' do
