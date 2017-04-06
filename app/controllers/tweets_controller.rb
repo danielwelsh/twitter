@@ -3,7 +3,10 @@ post '/tweets/new' do
   if @tweet.save
     redirect '/'
   else
+    @tweets = current_user.get_landing_page_tweets
+    @suggested_users = current_user.get_suggested_users
     @errors = @tweet.errors.full_messages
+    @errors = @tweet.errors
     erb :'users/index'
   end
 end

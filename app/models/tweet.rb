@@ -9,7 +9,7 @@ class Tweet < ActiveRecord::Base
   # has_many :retweets
 
 
-  validates :tweet, length: { maximum: 140, minimum: 1 }
+  validates :tweet, length: { in: (2...140) }
   after_create :parse_tags
 
   # used on retweets to get the original tweet
@@ -43,10 +43,6 @@ class Tweet < ActiveRecord::Base
     nested_objects_ids_string = nested_objects_ids.reduce('(') { |final_string, id| final_string + id.to_s + ','}.chop + ')'
     class_name.where("id in #{nested_objects_ids_string}")
   end
-
-  # def get_retweets
-  #   get_nested_objects(self.retweets, :tweet_id, Tweet)
-  # end
 
   def liked?(user)
     id = user.id
