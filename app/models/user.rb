@@ -2,8 +2,10 @@ require 'bcrypt'
 class User < ActiveRecord::Base
   include BCrypt
   has_many :tweets # works, doesn't include retweets
-  has_many :followings # works
-  has_many :followers # works and returns followers objects
+  has_many :follows
+  has_many :followings, :through => :follows, :source => :user #Returns user objects of who the user is following
+  has_many :inverse_follows, :class_name => "Follow", :foreign_key => "follow_id"
+  has_many :followers, :through => :inverse_follows, :source => :user #Returns user objects of who the user follows
   has_many :liked_tweets #works and returned liked tweet objects
   has_many :replied_tweets #works and returns replied tweet objects
 
@@ -42,9 +44,9 @@ class User < ActiveRecord::Base
 
     #get the user's followings tweets
     filtered_followings_tweets = []
-    followings_user_ids = self.followings.pluck(:following_id)
-    if followings_user_ids.length > 0
+    followings_user_ids = self.followings.pluck(:follow_id)
 
+    if followings_user_ids.length > 0
       ids_string = followings_user_ids.reduce('(') { |final_string, id| final_string + id.to_s + ','}.chop + ")"
       followings_tweets = Tweet.where("user_id in #{ids_string}")
 
@@ -52,6 +54,8 @@ class User < ActiveRecord::Base
       filtered_followings_tweets = followings_tweets.where(
         "original_tweet_id is null or (original_tweet_id is not null and original_tweet_user_id not in #{ids_string})").order(id: :desc)
     end
+    p '*' * 50
+    p own_tweets + filtered_followings_tweets
     own_tweets + filtered_followings_tweets
   end
 
@@ -63,10 +67,6 @@ class User < ActiveRecord::Base
     nested_objects_ids = self_association_method.pluck(pluck_field_sym)
     nested_objects_ids_string = nested_objects_ids.reduce('(') { |final_string, id| final_string + id.to_s + ','}.chop + ')'
     class_name.where("id in #{nested_objects_ids_string}")
-  end
-
-  def get_followers
-    get_nested_objects(self.followers, :follower_id, User)
   end
 
   def get_liked_tweets
@@ -91,7 +91,7 @@ class User < ActiveRecord::Base
 
   ## START -- FUNCTIONALITY FOR SUGGESTING USERS TO FOLLOW
   def get_following_ids_string
-    following_ids = self.followings.pluck(:following_id) << self.id
+    following_ids = self.followings.pluck(:follow_id) << self.id
     following_ids.reduce('(') { |final_string, id| final_string + id.to_s + ','}.chop + ')'
   end
 
@@ -99,5 +99,6 @@ class User < ActiveRecord::Base
     User.all.where("id not in #{self.get_following_ids_string}")
   end
   ## END -- FUNCTIONALITY FOR SUGGESTING USERS TO FOLLOW
+
 
 end

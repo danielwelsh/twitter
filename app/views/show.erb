@@ -1,0 +1,33 @@
+
+<div class="col-12">
+  <div class="col-3 no-top-padding">
+    <%= erb :'side_profile' %>
+  </div>
+  <div id="middle-container" class="col-6">
+    <div class="create-tweet-form-container">
+      <%= erb :'_errors' %>
+      <%= erb :'_create_tweet' %>
+    </div>
+    <%= erb :'_tweets' %>
+  </div>
+  <div class="col-3"> <%= erb :'_who_to_follow' %></div>
+</div>
+
+<script>
+
+
+  function createLike(element) {
+    event.preventDefault();
+    var user_id = $(element).prev().val();
+
+    $.ajax({
+      method: "POST",
+      url: "/tweets/" + user_id + "/like"
+    })
+    .done(function(response) {
+
+      console.log(response)
+    })
+}
+</script>
+
