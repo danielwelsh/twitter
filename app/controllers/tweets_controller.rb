@@ -14,8 +14,9 @@ end
 post '/tweets/:tweet_id/like' do
   LikedTweet.create(user: current_user, tweet_id: params[:tweet_id])
   #for query efficiency
-  Tweet.find(params[:tweet_id]).change_likes_count(:+)
-  redirect '/'
+  tweet = Tweet.find(params[:tweet_id])
+  tweet.change_likes_count(:+)
+  # redirect '/'
 end
 
 delete '/tweets/:tweet_id/like' do
