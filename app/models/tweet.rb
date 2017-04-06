@@ -9,7 +9,7 @@ class Tweet < ActiveRecord::Base
   # has_many :retweets
 
 
-  validates :tweet, length: { maximum: 140, minimum: 1 }
+  validates :tweet, length: { in: (2...140) }
   after_create :parse_tags
 
   # used on retweets to get the original tweet
@@ -44,10 +44,6 @@ class Tweet < ActiveRecord::Base
     class_name.where("id in #{nested_objects_ids_string}")
   end
 
-  # def get_retweets
-  #   get_nested_objects(self.retweets, :tweet_id, Tweet)
-  # end
-
   def liked?(user)
     id = user.id
     self.likes.where(id: id).count == 1
@@ -71,11 +67,13 @@ class Tweet < ActiveRecord::Base
   def change_retweet_count(operator)
     self.retweet_count = self.retweet_count.send(operator, 1)
     self.save
+    self.retweet_count
   end
 
   def change_likes_count(operator)
     self.likes_count = self.likes_count.send(operator, 1)
     self.save
+    self.likes_count
   end
 
 

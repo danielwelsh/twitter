@@ -1,21 +1,25 @@
-#TWEET
-post '/tweets/create' do
+# ADD A TOTAL_TWEETS AND TOTAL_FOLLOWERS AND TOTAL_FOLLOWINGS for a user
+
+post '/tweets/new' do
   @tweet = Tweet.new(user: current_user, tweet: params[:tweet])
   if @tweet.save
-    redirect "/"
+    redirect '/'
   else
+    @tweets = current_user.get_landing_page_tweets
+    @suggested_users = current_user.get_suggested_users
     @errors = @tweet.errors.full_messages
-    erb :'show'
+    @errors = @tweet.errors
+    erb :'users/index'
   end
 end
-
 
 #LIKE
 post '/tweets/:tweet_id/like' do
   LikedTweet.create(user: current_user, tweet_id: params[:tweet_id])
   #for query efficiency
-  Tweet.find(params[:tweet_id]).change_likes_count(:+)
-  redirect '/'
+  tweet = Tweet.find(params[:tweet_id])
+  tweet.change_likes_count(:+)
+  # redirect '/'
 end
 
 delete '/tweets/:tweet_id/like' do
@@ -46,33 +50,20 @@ delete '/tweets/:tweet_id/retweets' do
   redirect '/'
 end
 
-
-
-
-#LIKERS
-get 'tweets/:tweet_id/likers' do
-
-end
-
-
-
 #REPLY
 post 'tweets/:tweet_id/reply' do
-
 end
 
 #FOLLOW AND UNFOLLOW PEOPLE
 post '/:handle/follow' do
   user_to_follow = User.find_by(handle: params[:handle])
-  Following.create(user: current_user, following_id: user_to_follow.id)
-  Follower.create(user: user_to_follow, follower_id: current_user.id)
+  Follow.create(user_id: current_user.id, follow_id: user_to_follow.id)
   redirect '/'
 end
 
 delete '/:handle/follow'  do
   user_to_unfollow = User.find_by(handle: params[:handle])
-  Following.find_by(user: current_user, following_id: user_to_unfollow.id).destroy
-  Follower.find_by(user: user_to_follow, follower_id: current_user.id).destroy
+  Follow.find_by(user_id: current_user.id, follow_id: user_to_unfollow.id).destroy
   redirect '/'
 end
 
