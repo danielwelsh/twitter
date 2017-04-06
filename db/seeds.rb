@@ -61,21 +61,21 @@
 
 
 
-jimmy = User.create(handle: "dan", first_name: "dan", last_name: "welsh", email: "dan@dan.com", password: "hello")
+# jimmy = User.create(handle: "dan", first_name: "dan", last_name: "welsh", email: "dan@dan.com", password: "hello")
 
 
-bobby = User.create(handle: "joe", first_name: "joe", last_name: "welsh", email: "joe@joe.com", password: "hello")
-bobby = User.create(handle: "moe", first_name: "moe", last_name: "welsh", email: "moe@moe.com", password: "hello")
+# bobby = User.create(handle: "joe", first_name: "joe", last_name: "welsh", email: "joe@joe.com", password: "hello")
+# bobby = User.create(handle: "moe", first_name: "moe", last_name: "welsh", email: "moe@moe.com", password: "hello")
 
 
-#jimmy follows bobby
-Follow.create(user_id: jimmy.id, follow_id: bobby.id)
+# #jimmy follows bobby
+# Follow.create(user_id: jimmy.id, follow_id: bobby.id)
 
-#moe follows id 2
-Follow.create(user_id: 3, follow_id: 2)
+# #moe follows id 2
+# Follow.create(user_id: 3, follow_id: 2)
 
-# 2 follows 1
-Follow.create(user_id: 2, follow_id: 1)
+# # 2 follows 1
+# Follow.create(user_id: 2, follow_id: 1)
 
 
 
