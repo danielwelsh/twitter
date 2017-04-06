@@ -42,39 +42,13 @@ class User < ActiveRecord::Base
       own_tweets = self.tweets.where(original_tweet_id: nil).order(id: :desc)
     end
 
-
-
-
-
-
-
-    filtered_followings_tweets = []
-
-
-
-
     #get the user's followings tweets
+    filtered_followings_tweets = []
     followings_user_ids = self.followings.pluck(:following_id)
     if followings_user_ids.length > 0
 
       ids_string = followings_user_ids.reduce('(') { |final_string, id| final_string + id.to_s + ','}.chop + ")"
       followings_tweets = Tweet.where("user_id in #{ids_string}")
-
-      # tweet_owned_by_user_that_you_follow
-
-      # retweets = followings_tweets.where("original_tweet_id is not null")
-
-      # user_ids_of_original_tweet = []
-      # retweets.each do |retweet|
-      #   user_ids_of_original_tweet << retweet.get_original_tweet.user_id
-      # end
-
-      # user_ids_of_original_tweet
-
-      # filtered_followings_tweets = retweets.reject { |retweet| followings_user_ids.include?(retweet.user_id)  }
-      # #Combines both arrays results in array of tweets where both where met
-      # filtered_followings_tweets && followings_tweets
-
 
       #remove all retweets where user is already following that person ##working
       filtered_followings_tweets = followings_tweets.where(
@@ -127,7 +101,7 @@ class User < ActiveRecord::Base
     following_ids.reduce('(') { |final_string, id| final_string + id.to_s + ','}.chop + ')'
   end
 
-  def get_not_following_users
+  def get_suggested_users
     User.all.where("id not in #{self.get_following_ids_string}")
   end
   ## END -- FUNCTIONALITY FOR SUGGESTING USERS TO FOLLOW

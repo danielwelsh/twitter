@@ -1,79 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <!--
-    normalize.css removes cross-browser differences in defaults, e.g.,
-    differences in how form elements appear between Firefox and IE
-    See: http://necolas.github.com/normalize.css/
-  -->
-  <link rel="stylesheet" href="/css/normalize.css">
-  <!--
-    application.css is where you put your styles
-  -->
-  <link rel="stylesheet" href="/css/application.css">
-
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script src="/js/application.js"></script>
-
-  <title>Twitter Clone</title>
-</head>
-<body>
-  <nav>
-    <div class="container nav">
-      <div id="logo"><a href="/"><img width="200px" src="/images/clutter.png" alt="Clutter Logo"></a></div>
-      <% if current_user %>
+  <head>
+    <title>Twitter Clone</title>
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/application.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="/js/application.js"></script>
+  </head>
+  <body>
+    <nav>
+      <div class="container nav">
+        <div id="logo">
+          <a href="/">
+            <img width="200px" src="/images/clutter.png" alt="Clutter Logo">
+          </a>
+        </div>
+        <% if current_user %>
         <div><%= "Welcome #{current_user.first_name} | @#{current_user.handle}" %></div>
         <div id="logout-form">
           <form action="/logout" method="POST">
             <button type="submit">Logout</button>
           </form>
         </div>
-      <% else %>
+        <% else %>
         <div id="login-form">
           <form action="/login" method="POST">
-            <div class="form-errors"><%= @login_error if @login_error %></div>
+            <div class="form-errors"><%= @errors[:login] if @errors %></div>
             <input type="text" name="handle" placeholder="Handle">
             <input type="password" name="password" placeholder="Password">
             <button type="submit">Login</button>
           </form>
         </div>
-      <% end %>
-    </div>
-  </nav>
-  <% if current_user %>
+        <% end %>
+      </div>
+    </nav>
     <%= yield %>
-  <% else %>
-    <section id="sign-up" class="container">
-    <div id="mockup"><img width="400px" src="/images/ios.png"></div>
-    <div id="signup-form">
-      <h1>Sign Up</h1>
-      <p>Join the epic world of tweets! Tweeting is seconds away.</p>
-      <form action="/signup" method="POST" enctype="multipart/form-data">
-        <input type="text" name="user[first_name]" placeholder="First Name" value="<%= @user.first_name %>">
-        <div class="form-errors"><%= "First name " + @signup_errors[:first_name][0] if @signup_errors && @signup_errors[:first_name] %></div>
-
-        <input type="text" name="user[last_name]" placeholder="Last Name" value="<%= @user.last_name %>">
-        <div class="form-errors"><%= "Last name " + @signup_errors[:last_name][0] if @signup_errors && @signup_errors[:last_name] %></div>
-
-        <input type="text" name="user[email]" placeholder="Email" value="<%= @user.email %>">
-        <div class="form-errors"><%= "Email " + @signup_errors[:email][0] if @signup_errors && @signup_errors[:email] %></div>
-
-        <input type="text" name="user[handle]" placeholder="Handle" value="<%= @user.handle %>">
-        <div class="form-errors"><%= "Handle " + @signup_errors[:handle][0] if @signup_errors && @signup_errors[:handle] %></div>
-
-        <input type="password" name="user[password]" placeholder="Password">
-        <div class="form-errors"><%= @signup_errors[:password][0] if @signup_errors && @signup_errors[:password] %></div>
-
-        <input type="password" name="confirm_password" placeholder="Confirm Password">
-
-        <input type="file" name="profile_image" accept="image/*">
-        <div class="form-errors"><%= @signup_errors[:profile_image][0] if @signup_errors && @signup_errors[:profile_image] %></div>
-
-        <button type="submit">Sign Up</button>
-
-      </form>
-    </div>
-    </section>
-  <% end %>
-</body>
+  </body>
 </html>
