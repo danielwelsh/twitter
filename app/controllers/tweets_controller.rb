@@ -5,7 +5,11 @@ require 'json'
 post '/tweets/new' do
   @tweet = Tweet.new(user: current_user, tweet: params[:tweet])
   if @tweet.save
+    if request.xhr?
+      erb :'/tweets/new', layout: false
+    else
     redirect '/'
+    end
   else
     @tweets = current_user.get_landing_page_tweets
     @suggested_users = current_user.get_suggested_users
@@ -13,6 +17,7 @@ post '/tweets/new' do
     @errors = @tweet.errors
     erb :'users/index'
   end
+
 end
 
 #LIKE
