@@ -1,0 +1,5 @@
+<form class="retweet-form" action="<%= "/tweets/#{tweet.id}/retweets" %>" method="POST">
+  <input type="hidden" name="original_tweet_user_id" value="<%= tweet.user_id %>">
+  <button type="submit" >&#9851;</button>
+  <a href=""><%= tweet.retweet_count %></a>
+</form>

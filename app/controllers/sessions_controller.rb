@@ -27,7 +27,7 @@ post '/signup' do
     @errors = @user.errors.messages if @user.errors.messages.length > 0
     @errors = @errors.merge(password_input_validation) if password_input_validation
     @errors = @errors.merge(profile_image_input_validation) if profile_image_input_validation
-    erb :'index'
+    erb :'/users/index'
   else
     @user.save
     upload_file(params, @user) if params[:profile_image]
