@@ -3,10 +3,10 @@
 <!-- DO NOT REMOVE -->
 
 <div class="col-12">
-  <div class="col-3 no-top-padding"><%= erb :'/users/_side_profile' %></div>
-  <div id="middle-container" class="col-6">
-    <div class="create-tweet-form-container"><%= erb :'/tweets/new' %></div>
-    <div class="tweets-container"><%= erb :'/tweets/show' %></div>
+  <div class="col-3"><%= erb :'/users/_side_profile' %></div>
+  <div class="col-6">
+    <%= erb :'/tweets/new' %>
+    <%= erb :'/tweets/show' %>
   </div>
   <div class="col-3"><%= erb :'/users/_suggested_users' %></div>
 </div>

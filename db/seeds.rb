@@ -61,11 +61,11 @@
 
 
 
-jimmy = User.create(handle: "dan", first_name: "dan", last_name: "welsh", email: "dan@dan.com", password: "hello")
+jimmy = User.create(handle: "dan", first_name: "dan", last_name: "welsh", email: "dan@dan.com", password: "123456")
 
 
-bobby = User.create(handle: "joe", first_name: "joe", last_name: "welsh", email: "joe@joe.com", password: "hello")
-moe = User.create(handle: "moe", first_name: "moe", last_name: "welsh", email: "moe@moe.com", password: "hello")
+bobby = User.create(handle: "joe", first_name: "joe", last_name: "welsh", email: "joe@joe.com", password: "123456")
+moe = User.create(handle: "moe", first_name: "moe", last_name: "welsh", email: "moe@moe.com", password: "123456")
 
 
 #jimmy follows bobby
