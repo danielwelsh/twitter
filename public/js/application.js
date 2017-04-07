@@ -6,7 +6,7 @@ $(document).ready(function() {
   // See: http://docs.jquery.com/Tutorials:Introducing_$(document).ready()
 
   $('.tweets-container').on('submit', '.like-form', likeListener)
-
+  $('.tweets-container').on('submit', '.retweet-form', retweetListener)
 
 
   function likeListener (e) {
@@ -29,6 +29,11 @@ $(document).ready(function() {
     request.fail(function () {
       console.log("This did not work out as expected.")
     })
+    }
+
+    function retweetListener (e) {
+      e.preventDefault();
+      var type = $this.attr('method')
     }
 
 
