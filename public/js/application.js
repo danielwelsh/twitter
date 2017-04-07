@@ -11,23 +11,20 @@ $(document).ready(function() {
 
   function likeListener (e) {
     e.preventDefault();
+    var type = $(this).attr('method')
     var URL = $(this)[0].action
+    // Only passing the tweet id
     var data = $(this).serialize()
-    var insertLocation =
+    var insertLocation = $(this).parent()
     debugger
-    console.log(data)
-    console.log(URL)
-
     var request = $.ajax({
-      type: 'POST',
+      type: type,
       data: data,
       url: URL
     })
     request.done(function(response) {
-      console.log(response)
-      debugger
-      var data = JSON.parse(response)
-
+      // console.log(response)
+      insertLocation.replaceWith(response)
     })
     request.fail(function () {
       console.log("This did not work out as expected.")
