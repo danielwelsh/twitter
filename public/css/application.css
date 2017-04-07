@@ -127,7 +127,27 @@ input, button  {
 .tweet-info {
   margin-bottom: 10px;
   padding: 5px;
+  position: relative;
 }
+
+.hover-profile {
+  position: absolute;
+  bottom: 40px;
+  background: white;
+  visibility: hidden;
+  transition: .4s
+}
+
+a.tweet-user-name:hover + div.hover-profile {
+  bottom: 50px;
+  visibility: visible;
+}
+
+.hover-profile-shadow {
+  box-shadow: 10px 10px 5px #888888;
+}
+
+.tweet-text-name
 
 .tweet-text {
   padding: 20px 0;
@@ -138,7 +158,7 @@ input, button  {
   font-size: 15px;
 }
 
-#tweet-user-name {
+.tweet-user-name {
   font-size:  20px;
   font-weight: bold;
   color: #55ACEE;

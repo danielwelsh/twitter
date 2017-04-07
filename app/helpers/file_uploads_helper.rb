@@ -4,7 +4,7 @@ helpers do
     File.size?(file) <= 1024*1024*3
   end
 
-  def uploads_file(params, user)
+  def upload_file(params, user)
     filename = params[:profile_image][:filename]
     temp_file = params[:profile_image][:tempfile]
 
