@@ -39,6 +39,10 @@ input, button  {
   margin: 15px 0;
 }
 
+.disable-link {
+  pointer-events: none;
+}
+
 .container {
   display: flex;
   width: 1120px;
