@@ -10,7 +10,7 @@ $(document).ready(function() {
 
   function likeListener (e) {
     e.preventDefault();
-
+    $(this).addClass('disable-link')
     var URL = $(this)[0].action
     // Passing: tweet_id, _method
     var data = $(this).serialize()
@@ -38,6 +38,7 @@ $(document).ready(function() {
 
     function retweetListener (e) {
       e.preventDefault();
+      $(this).addClass('disable-link')
 
       // Getting the tweet id
       var data = $(this).serialize()
@@ -58,6 +59,26 @@ $(document).ready(function() {
       })
     }
 
+    $('.create-tweet-form-container').on('submit', '#create-tweet-form',createTweet)
+
+    function createTweet (e) {
+      e.preventDefault();
+      var data = $(this).serialize()
+      var URL = $(this)[0].action
+      debugger
+
+      var request = $.ajax({
+        type: "POST",
+        data: data,
+        url: URL
+      })
+      request.done(function () {
+
+      })
+      request.fail(fucntion () {
+
+      })
+    }
 
 });
 
