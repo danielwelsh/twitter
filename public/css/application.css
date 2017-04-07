@@ -1,6 +1,6 @@
-/** {
+* {
   border: 1px solid blue;
-}*/
+}
 
 body {
   margin-top: 150px;
@@ -136,12 +136,18 @@ input, button  {
 
 .tweet-extra-info {
   font-size: 15px;
+  color: #a19c9c;
 }
 
-#tweet-user-name {
+.tweet-extra-info:hover {
+  color: #326ada;
+  text-decoration: underline;
+}
+
+.tweet-user-name {
   font-size:  20px;
   font-weight: bold;
-  color: #55ACEE;
+  color: #326ada;
 }
 
 .tweet-interaction {
@@ -278,4 +284,8 @@ input, button  {
   color: #990000;
   font-size: 18px;
   font-weight: bold;
+}
+
+.suggested-user-container {
+
 }
