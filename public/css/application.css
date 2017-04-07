@@ -1,11 +1,12 @@
-/** {
-  border: 1px solid blue;
-}*/
+* {
+  /*border: 1px solid blue;*/
+  box-sizing: border-box;
+}
 
 body {
   margin-top: 150px;
   margin: 150px auto 0 auto;
-  width: 1120px;
+  width: 1190px;
   background: #f5f8fa
 }
 nav {
@@ -36,6 +37,10 @@ button {
 input, button  {
   height: 50px;
   margin: 15px 0;
+}
+
+.disable-link {
+  pointer-events: none;
 }
 
 .container {
@@ -100,14 +105,15 @@ input, button  {
   font-weight: bold;
 }
 
-.section-borders, #middle-container {
+.section-borders {
   border: 1px solid #e6ecf0;
   border-radius: 3px;
-  padding: 0;
 }
 
 .tweet-container {
+  border-left: 1px solid #e6ecf0;
   border-bottom: 1px solid #e6ecf0;
+  border-right: 1px solid #e6ecf0;
   padding: 10px;
   background: white;
 }
@@ -156,12 +162,18 @@ a.tweet-user-name:hover + div.hover-profile {
 
 .tweet-extra-info {
   font-size: 15px;
+  color: #a19c9c;
+}
+
+.tweet-extra-info:hover {
+  color: #326ada;
+  text-decoration: underline;
 }
 
 .tweet-user-name {
   font-size:  20px;
   font-weight: bold;
-  color: #55ACEE;
+  color: #326ada;
 }
 
 .tweet-interaction {
@@ -172,22 +184,42 @@ a.tweet-user-name:hover + div.hover-profile {
 .create-tweet-form-container {
   display: flex;
   align-items: center;
-  border-bottom: 1px solid #e6ecf0;
 }
 
 #create-tweet-form {
   display: flex;
   flex-grow: 1;
 }
-.create-tweet-profile-image {
+
+.profile-image {
   margin-right: 15px;
-  width: 48px;
-  height: 48px;
   overflow: hidden;
   border-radius: 3px;
   margin-left: 15px;
 }
 
+.profile-image.suggested-user, .profile-image.create-tweet {
+  width: 48px;
+  height: 48px;
+}
+
+.suggested-user-photo, .create-tweet-user-photo {
+  height: 48px;
+  position: relative;
+  left: -30%;
+}
+
+.side-profile-photo {
+  height: 72px;
+  position: relative;
+  left: -35%;
+}
+
+
+.create-tweet-profile-image img {
+  position: relative;
+  left: -30%;
+}
 .create-tweet-form input {
   flex-grow: 1
 }
@@ -210,9 +242,10 @@ a.tweet-user-name:hover + div.hover-profile {
 .col-11 {width: 91.66%;}
 .col-12 {width: 100%;}
 
+
 [class*="col-"] {
   float: left;
-  padding: 15px;
+  padding: 7.5px;
 }
 .hashtag-link:hover {
   text-decoration: underline;
@@ -234,13 +267,18 @@ a.tweet-user-name:hover + div.hover-profile {
 .side-profile-user-background {
   overflow: hidden;
 }
+.side-profile-user-background img {
+  overflow: hidden;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
 .side-profile-user-info {
   position: relative;
   display: flex;
 }
-.side-profile-profile-photo {
-  width: 76px;
-  height: 76px;
+.side-profile-photo-container {
+  width: 72px;
+  height: 72px;
   overflow: hidden;
   border: 3px solid white;
   position: relative;
@@ -298,4 +336,53 @@ a.tweet-user-name:hover + div.hover-profile {
   color: #990000;
   font-size: 18px;
   font-weight: bold;
+}
+
+.suggested-users-container {
+  overflow: hidden;
+}
+
+.suggested-user-container {
+  display: flex;
+  margin: 15px;
+  width: 300px;
+
+}
+
+
+.suggested-user-name {
+  color: #326ada;
+}
+
+.suggested-extra-info {
+  color: #a19c9c;
+}
+
+.suggested-extra-info:hover {
+  color: #326ada;
+  text-decoration: underline;
+}
+
+.follow-button {
+  color: #14171a;
+  font-size: 13px;
+  font-weight: bold;
+  height: 30px;
+  margin-top: 3px;
+  margin-right: 9px;
+  padding: 3px 11px 5px;
+  background-color: #f5f8fa;
+  background-image: linear-gradient(#fff,#f5f8fa);
+  border: 1px solid #e6ecf0;
+  border-radius: 4px;
+}
+
+.follow-button:hover {
+  text-decoration: none;
+  background-color: #e6ecf0;
+  background-image: linear-gradient(#fff,#e6ecf0);
+  border-color: #e6ecf0;
+}
+
+.follow-info {
 }
