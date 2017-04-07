@@ -3,10 +3,10 @@ require 'json'
 
 
 post '/tweets/new' do
-  @tweet = Tweet.new(user: current_user, tweet: params[:tweet])
-  if @tweet.save
+  tweet = Tweet.new(user: current_user, tweet: params[:tweet])
+  if tweet.save
     if request.xhr?
-      erb :'/tweets/new', layout: false
+      erb :'/tweets/_tweet_create', layout: false, locals: { tweet: tweet}
     else
     redirect '/'
     end
@@ -15,11 +15,17 @@ post '/tweets/new' do
     @suggested_users = current_user.get_suggested_users
     @errors = @tweet.errors.full_messages
     @errors = @tweet.errors
+    # FIXME This should probably redirect to route instead
     erb :'users/index'
   end
 
 end
 
+
+
+
+
+#FIX ME AND REFACTOR INTO PARTIALS
 #LIKE
 post '/tweets/:tweet_id/like' do
   LikedTweet.create(user: current_user, tweet_id: params[:tweet_id])
