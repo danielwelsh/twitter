@@ -50,30 +50,28 @@
         <span>&#9851; <a href=""><%= tweet.retweet_count %></a></span>
       <% else %>
 
-        <div class="sub-retweet-functionality">
-          <% if tweet.retweeted_by_self?(current_user) %>
+        <% if tweet.retweeted_by_self?(current_user) %>
 
-          <form class="retweet-form" action="<%= "/tweets/#{tweet.id}/retweets" %>" method="POST">
-            <input type="hidden" name="_method" value="DELETE">
-            <button class="retweeted-symbol" type="submit" >&#9851;</button>
-            <a href=""><%= tweet.retweet_count %></a>
-          </form>
-
-
-          <% else %>
+        <form class="retweet-form" action="<%= "/tweets/#{tweet.id}/retweets" %>" method="POST">
+          <input type="hidden" name="_method" value="DELETE">
+          <button class="retweeted-symbol" type="submit" >&#9851;</button>
+          <a href=""><%= tweet.retweet_count %></a>
+        </form>
 
 
-
-          <form class="retweet-form" action="<%= "/tweets/#{tweet.id}/retweets" %>" method="POST">
-            <input type="hidden" name="original_tweet_user_id" value="<%= tweet.original_tweet_user_id %>">
-            <button type="submit" >&#9851;</button>
-            <a href=""><%= tweet.retweet_count %></a>
-          </form>
+        <% else %>
 
 
 
-          <% end %>
-        </div>
+        <form class="retweet-form" action="<%= "/tweets/#{tweet.id}/retweets" %>" method="POST">
+          <input type="hidden" name="original_tweet_user_id" value="<%= tweet.user_id %>">
+          <button type="submit" >&#9851;</button>
+          <a href=""><%= tweet.retweet_count %></a>
+        </form>
+
+
+
+        <% end %>
       <% end %>
       </div>
 
