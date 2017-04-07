@@ -33,7 +33,23 @@ $(document).ready(function() {
 
     function retweetListener (e) {
       e.preventDefault();
-      var type = $this.attr('method')
+      var type = $(this).attr('method')
+      var URL = $(this)[0].action
+
+      // Getting the tweet id
+      var data = $(this).serialize()
+      var insertLocation = $(this).parent()
+      var request = $.ajax({
+        type: type,
+        data: data,
+        url: URL
+      })
+      request.done(function(response) {
+
+      })
+      request.fail(function(response) {
+        console.log("Something has gone very wrong.")
+      })
     }
 
 
