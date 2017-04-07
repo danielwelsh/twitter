@@ -65,14 +65,14 @@ $(document).ready(function() {
       e.preventDefault();
       var data = $(this).serialize()
       var URL = $(this)[0].action
-
       var request = $.ajax({
         type: "POST",
         data: data,
         url: URL
       })
       request.done(function (response) {
-        $('tweet-container').prepend(response)
+        $('.tweets-container').prepend(response)
+        $('#create-tweet-form')[0].reset()
       })
       request.fail(function () {
         console.log("Something really bad has happened here.")
