@@ -22,12 +22,14 @@
     </div>
     <div class="like-function">
       <% if tweet.liked?(current_user) %>
-      <form action="<%= "/tweets/#{tweet.id}/like" %>" method="POST">
+      <form id="<%= tweet.id %>" class="like-form" action="<%= "/tweets/#{tweet.id}/like" %>" method="POST">
         <input type="hidden" name="_method" value="delete">
+        <input type="hidden" name="tweet_id" value="<%= tweet.id %>">
         <button class="liked-heart" type="submit">&#x2764;</button>
       </form>
       <% else %>
-      <form action="<%= "/tweets/#{tweet.id}/like" %>" method="POST">
+      <form id="<%= tweet.id %>" class="like-form" action="<%= "/tweets/#{tweet.id}/like" %>" method="POST">
+      <input type="hidden" name="tweet_id" value="<%= tweet.id %>">
         <button type="submit">&#x2764;</button>
       </form>
       <% end %>

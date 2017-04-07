@@ -1,4 +1,6 @@
 # ADD A TOTAL_TWEETS AND TOTAL_FOLLOWERS AND TOTAL_FOLLOWINGS for a user
+require 'json'
+
 
 post '/tweets/new' do
   @tweet = Tweet.new(user: current_user, tweet: params[:tweet])
@@ -15,9 +17,16 @@ end
 
 #LIKE
 post '/tweets/:tweet_id/like' do
+
   LikedTweet.create(user: current_user, tweet_id: params[:tweet_id])
-  Tweet.find(params[:tweet_id]).change_likes_count(:+)
-  redirect '/'
+  likes = Tweet.find(params[:tweet_id]).change_likes_count(:+)
+  json_package = {likes_count: likes, tweet_id: params[:tweet_id]}
+
+  if request.xhr?
+    json_package.to_json
+  else
+    redirect '/'
+  end
 end
 
 delete '/tweets/:tweet_id/like' do
@@ -29,7 +38,6 @@ end
 
 #RETWEET CREATE
 post '/tweets/:tweet_id/retweets' do
-  p params
   Tweet.create(
     user: current_user,
     original_tweet_id: params[:tweet_id],
