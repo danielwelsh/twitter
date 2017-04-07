@@ -16,7 +16,6 @@ $(document).ready(function() {
     // Only passing the tweet id
     var data = $(this).serialize()
     var insertLocation = $(this).parent()
-    debugger
     var request = $.ajax({
       type: type,
       data: data,
@@ -33,8 +32,15 @@ $(document).ready(function() {
 
     function retweetListener (e) {
       e.preventDefault();
-      var type = $(this).attr('method')
+      var data = $(this).serialize()
+      var type = "POST"
+      console.log(data['_method'])
+      if (data['_method']) {
+        type = "DELETE"
+      }
       var URL = $(this)[0].action
+
+
 
       // Getting the tweet id
       var data = $(this).serialize()
@@ -45,7 +51,7 @@ $(document).ready(function() {
         url: URL
       })
       request.done(function(response) {
-
+        insertLocation.replaceWith(response)
       })
       request.fail(function(response) {
         console.log("Something has gone very wrong.")

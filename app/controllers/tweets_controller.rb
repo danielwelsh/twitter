@@ -25,7 +25,7 @@ post '/tweets/:tweet_id/like' do
   if request.xhr?
     # Passing back the whole delete form
     %Q(<div class="like-functionality">
-        <form id=" tweet.id " class="like-form" action="/tweets/#{tweet.id}/like" method="POST">
+        <form  class="like-form" action="/tweets/#{tweet.id}/like" method="POST">
           <input type="hidden" name="_method" value="delete">
           <button class="liked-heart" type="submit">&#x2764;</button>
         </form>
@@ -45,7 +45,7 @@ delete '/tweets/:tweet_id/like' do
   if request.xhr?
     # Passing back the whole delete form
     %Q(<div class="like-functionality">
-        <form id=" tweet.id " class="like-form" action=/tweets/#{tweet.id}/like" method="POST">
+        <form class="like-form" action="/tweets/#{tweet.id}/like" method="POST">
         <button type="submit">&#x2764;</button>
         </form>
         <a id="likes-count" href="">#{likes} </a>
@@ -57,24 +57,69 @@ delete '/tweets/:tweet_id/like' do
 end
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 #RETWEET CREATE
 post '/tweets/:tweet_id/retweets' do
+  p params
+  p '*' * 100
+
   Tweet.create(
     user: current_user,
     original_tweet_id: params[:tweet_id],
     original_tweet_user_id: params[:original_tweet_user_id],
     tweet: "RETWEET"
   )
-  Tweet.find(params[:tweet_id]).change_retweet_count(:+)
-  redirect '/'
+  original_tweet = Tweet.find(params[:tweet_id])
+  original_tweet.change_retweet_count(:+)
+
+  if request.xhr?
+    %Q(<form class="retweet-form" action="/tweets/#{params[:tweet_id]}/retweets" method="POST">
+          <input type="hidden" name="_method" value="DELETE">
+          <button class="retweeted-symbol" type="submit" >&#9851;</button>
+          <a href="">#{original_tweet.retweet_count}</a>
+        </form>)
+  else
+    redirect '/'
+  end
 end
 
 #RETWEET DELETE
 delete '/tweets/:tweet_id/retweets' do
-  Tweet.find_by(user: current_user, original_tweet_id: params[:tweet_id].to_i).destroy
+  original_tweet = Tweet.find(params[:tweet_id])
+  original_tweet_user_id = original_tweet.user_id
+  Tweet.find_by(user: current_user, original_tweet_id: params[:tweet_id]).destroy
   Tweet.find(params[:tweet_id]).change_retweet_count(:-)
-  redirect '/'
+  if request.xhr?
+    %Q(<form class="retweet-form" action="/tweets/#{params[:tweet_id]}/retweets" method="POST">
+          <button type="submit" >&#9851;</button>
+          <input type="hidden" name="original_tweet_user_id" value="#{original_tweet_user_id}">
+          <a href="">#{original_tweet.retweet_count}</a>
+        </form>)
+  else
+    redirect '/'
+  end
 end
+
+
+
+
+
+
+
+
+
 
 #REPLY
 post 'tweets/:tweet_id/reply' do
