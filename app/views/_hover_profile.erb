@@ -1,0 +1,28 @@
+<div class="hover-profile">
+  <div class="section-borders hover-profile-shadow">
+    <div class="side-profile-user-background"><img src="<%= current_user.profile_background_image_location %>" height="96px"></div>
+    <div class="side-profile-user-info">
+      <div class="side-profile-profile-photo"><img src="<%= current_user.profile_image_location %>" height="72px"></div>
+      <div class="side-profile-general-details">
+        <span class="side-profile-user-full-name"><%= current_user.full_name %></span>
+        <span class="side-profile-user-handle">@<%= current_user.handle %></span>
+      </div>
+    </div>
+    <div class="side-profile-profile-stats">
+      <ul>
+        <li>
+          <span>Tweets</span>
+          <span><%= current_user.get_tweets_count %></span>
+        </li>
+        <li>
+          <span>Following</span>
+          <span><%= current_user.get_followings_count %></span>
+        </li>
+        <li>
+          <span>Followers</span>
+          <span><%= current_user.get_followers_count %></span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
