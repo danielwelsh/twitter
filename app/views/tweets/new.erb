@@ -1,5 +1,5 @@
 <div class="create-tweet-form-container section-borders">
-  <div class="create-tweet-profile-image"><img src="<%= current_user.profile_image_location %>"" height="48px"></div>
+  <div class="profile-image create-tweet"><img class="create-tweet-user-photo" src="<%= current_user.profile_image_location %>"" height="48px"></div>
   <form id="create-tweet-form" action="/tweets/new" method="POST">
     <input type="text" name="tweet" placeholder="What's happening?">
     <div class="form-errors"><%= "Tweets " + @errors[:tweet][0] if @errors && @errors[:tweet] %></div>
