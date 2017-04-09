@@ -122,41 +122,23 @@ end
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 #REPLY
 post 'tweets/:tweet_id/reply' do
 end
 
+
+
+
 #FOLLOW AND UNFOLLOW PEOPLE
 post '/:handle/follow' do
   user_to_follow = User.find_by(handle: params[:handle])
-  Follow.create(user_id: current_user.id, follow_id: user_to_follow.id)
+  p '*' * 100
+  p user_to_follow
+  p current_user
+  p user_to_follow.id
+  p current_user.id
+  p '*' * 100
+  current_user.follows.create(follow_id: user_to_follow.id)
   redirect '/'
 end
 
@@ -165,5 +147,29 @@ delete '/:handle/follow'  do
   Follow.find_by(user_id: current_user.id, follow_id: user_to_unfollow.id).destroy
   redirect '/'
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
