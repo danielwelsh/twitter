@@ -77,12 +77,75 @@ $(document).ready(function() {
     })
   }
 
+
+  function displayUsers (e) {
+    e.preventDefault();
+    var URL = $(this).attr('href')
+    var insertLocation = $(this)
+    debugger
+    var request = $.ajax({
+      type: 'get',
+      url: URL
+    })
+    request.done(function (response) {
+      insertLocation.after(response);
+    })
+    request.fail(function () {
+      console.log("Something wrong has happened here.")
+    })
+  }
+
   $('.tweets-container').on('mouseenter', '.tweet-user-name', displayHoverProfile);
   $('.tweets-container').on('submit', '.like-form', likeListener)
   $('.tweets-container').on('submit', '.retweet-form', retweetListener)
   $('.create-tweet-form-container').on('submit', '#create-tweet-form',createTweet)
-
+  $('div.col-12').on('click', 'user-stats', displayUsers)
 
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
