@@ -15,9 +15,6 @@ post '/hover/:handle' do
 end
 
 
-
-
-
 #ROUTE THAT TAKES USER TO HOME PROFILE PAGE
 
 
