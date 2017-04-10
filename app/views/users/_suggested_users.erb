@@ -7,7 +7,7 @@
         <a class="suggested-user-name" href="<%="/#{suggested_user.handle}" %>"><%= "#{suggested_user.full_name}"  %></a>
         <a class="suggested-extra-info" href="<%="/#{suggested_user.handle}" %>"><%= "@#{suggested_user.handle}" %></a>
 
-        <form action="/<%= suggested_user.handle %>/follow" method="POST" >
+        <form action="<%="/#{suggested_user.handle}/follow"%>" method="POST" >
           <button class="follow-button" type="submit">Follow</button>
         </form>
       </div>

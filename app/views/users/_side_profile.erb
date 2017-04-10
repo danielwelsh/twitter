@@ -11,15 +11,15 @@
     <ul>
       <li>
         <span>Tweets</span>
-        <span><%= current_user.get_tweets_count %></span>
+        <a href=""><%= current_user.get_tweets_count %></a>
       </li>
       <li>
         <span>Following</span>
-        <span><%= current_user.get_followings_count %></span>
+        <a href="<%= "/#{current_user.handle}/followings" %>"><%= current_user.get_followings_count %></a>
       </li>
       <li>
         <span>Followers</span>
-        <span><%= current_user.get_followers_count %></span>
+        <a href="<%= "/#{current_user.handle}/followers" %>"><%= current_user.get_followers_count %></a>
       </li>
     </ul>
   </div>
