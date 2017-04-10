@@ -2,8 +2,6 @@ require 'bcrypt'
 class User < ActiveRecord::Base
   include BCrypt
   #Notes on self referential relationships http://nithinbekal.com/posts/complex-has-many-through/ https://www.youtube.com/watch?v=5sfufoY59Ek
-
-
   has_many :tweets # works, doesn't include retweets
   has_many :follows, foreign_key: :follower_id, inverse_of: :follower
   has_many :followed_users, through: :follows, source: :followed_user #Who you are following
@@ -61,7 +59,7 @@ class User < ActiveRecord::Base
     own_tweets + filtered_followings_tweets
   end
 
-  def profile_page_feed
+  def get_profile_page_tweets
     self.tweets
   end
 
