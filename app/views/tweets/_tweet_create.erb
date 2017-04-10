@@ -33,7 +33,7 @@
       <input type="hidden" name="tweet_id" value="<%= tweet.id %>">
         <button type="submit">&#x2764;</button>
       </form>
-      <a id="likes-count" href=""><%= tweet.likes_count %></a>
+      <a id="likes-count" href="<%= "/tweets/#{tweet.id}/likes" %>"><%= tweet.likes_count %></a>
       <% end %>
     </div>
     <div class="retweet-functionality">
