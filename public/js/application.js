@@ -80,18 +80,24 @@ $(document).ready(function() {
   function displayUsers (e) {
     e.preventDefault();
     var URL = $(this).attr('href')
-    var insertLocation = $(this)
+    var insertLocation = $('body')
     debugger
     var request = $.ajax({
       type: 'get',
       url: URL
     })
     request.done(function (response) {
-      insertLocation.after(response);
+      // $(insertLocation).append($(response));
+      ($(response)).insertAfter($(insertLocation));
     })
     request.fail(function () {
       console.log("Something wrong has happened here.")
     })
+  }
+
+
+  function closePopUp () {
+    $(this).parent().parent().parent().remove();
   }
 
   $('.tweets-container').on('mouseenter', '.tweet-user-name', displayHoverProfile);
@@ -99,6 +105,9 @@ $(document).ready(function() {
   $('.tweets-container').on('submit', '.retweet-form', retweetListener)
   $('.create-tweet-form-container').on('submit', '#create-tweet-form',createTweet)
   $('div.col-12').on('click', 'li a', displayUsers)
+  $('.tweets-container').on('click', '#likes-count', displayUsers)
+  $('.tweets-container').on('click', '#retweet-count', displayUsers)
+  $('html').on('click', 'button.popup-close', closePopUp)
 
 });
 
