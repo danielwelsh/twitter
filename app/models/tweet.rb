@@ -76,5 +76,41 @@ class Tweet < ActiveRecord::Base
     self.likes_count
   end
 
+  def retweeted_by
+    @tweets = Tweet.all.where(original_tweet_id: self.id)
+    @users = []
+    @tweets.each do |tweet|
+      @users << tweet.user
+    end
+    @users
+  end
+
 
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
