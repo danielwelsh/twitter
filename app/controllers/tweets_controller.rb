@@ -132,19 +132,13 @@ end
 #FOLLOW AND UNFOLLOW PEOPLE
 post '/:handle/follow' do
   user_to_follow = User.find_by(handle: params[:handle])
-  p '*' * 100
-  p user_to_follow
-  p current_user
-  p user_to_follow.id
-  p current_user.id
-  p '*' * 100
-  current_user.follows.create(follow_id: user_to_follow.id)
+  Follow.create(follower: current_user, followed_user: user_to_follow)
   redirect '/'
 end
 
 delete '/:handle/follow'  do
   user_to_unfollow = User.find_by(handle: params[:handle])
-  Follow.find_by(user_id: current_user.id, follow_id: user_to_unfollow.id).destroy
+  Follow.find_by(follower: current_user, followed_user: user_to_unfollow).destroy
   redirect '/'
 end
 

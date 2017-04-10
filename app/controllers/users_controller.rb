@@ -19,7 +19,7 @@ end
 
 
 get '/:handle/followers' do
-  @users = User.find(current_user.id).followers
+  @users = User.find(current_user.id).following_users
   p '*' * 100
   p @users
   p '*' * 100
@@ -35,7 +35,7 @@ end
 
 
 get '/:handle/followings' do
-  @users = User.find(current_user.id).followings
+  @users = User.find(current_user.id).followed_users
   p '*' * 100
   p @users
   p '*' * 100
