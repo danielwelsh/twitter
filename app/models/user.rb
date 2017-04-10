@@ -1,11 +1,15 @@
 require 'bcrypt'
 class User < ActiveRecord::Base
   include BCrypt
+  #Notes on self referential relationships http://nithinbekal.com/posts/complex-has-many-through/ https://www.youtube.com/watch?v=5sfufoY59Ek
+
+
   has_many :tweets # works, doesn't include retweets
-  has_many :follows
-  has_many :followings, :through => :follows, :source => :user #Returns user objects of who the user is following
-  has_many :inverse_follows, :class_name => "Follow", :foreign_key => "follow_id"
-  has_many :followers, :through => :inverse_follows, :source => :user #Returns user objects of who the user follows
+  has_many :follows, foreign_key: :follower_id, inverse_of: :follower
+  has_many :followed_users, through: :follows, source: :followed_user #Who you are following
+  has_many :following, class_name: "Follow", foreign_key: :followed_user_id, inverse_of: :followed_user
+  has_many :following_users, through: :following, source: :follower #Who is following you
+  has_many :followed_tweets, through: :followed_users #Not fully tested for functionality
   has_many :liked_tweets #works and returned liked tweet objects
   has_many :replied_tweets #works and returns replied tweet objects
 
@@ -44,7 +48,7 @@ class User < ActiveRecord::Base
 
     #get the user's followings tweets
     filtered_followings_tweets = []
-    followings_user_ids = self.followings.pluck(:follow_id)
+    followings_user_ids = self.followed_users.pluck(:id)
 
     if followings_user_ids.length > 0
       ids_string = followings_user_ids.reduce('(') { |final_string, id| final_string + id.to_s + ','}.chop + ")"
@@ -54,8 +58,6 @@ class User < ActiveRecord::Base
       filtered_followings_tweets = followings_tweets.where(
         "original_tweet_id is null or (original_tweet_id is not null and original_tweet_user_id not in #{ids_string})").order(id: :desc)
     end
-    p '*' * 50
-    p own_tweets + filtered_followings_tweets
     own_tweets + filtered_followings_tweets
   end
 
@@ -82,16 +84,16 @@ class User < ActiveRecord::Base
   end
 
   def get_followings_count
-    self.followings.count
+    self.followed_users.count
   end
 
   def get_followers_count
-    self.followers.count
+    self.following_users.count
   end
 
   ## START -- FUNCTIONALITY FOR SUGGESTING USERS TO FOLLOW
   def get_following_ids_string
-    following_ids = self.followings.pluck(:follow_id) << self.id
+    following_ids = self.followed_users.pluck(:id) << self.id
     following_ids.reduce('(') { |final_string, id| final_string + id.to_s + ','}.chop + ')'
   end
 
