@@ -96,7 +96,7 @@ $(document).ready(function() {
 
 
   function closePopUp () {
-    debugger
+    $(this).parent().parent().parent().remove();
   }
 
   $('.tweets-container').on('mouseenter', '.tweet-user-name', displayHoverProfile);
