@@ -15,6 +15,7 @@ post '/hover/:handle' do
 end
 
 
+
 #ROUTE THAT TAKES USER TO HOME PROFILE PAGE
 
 
@@ -35,6 +36,22 @@ get '/:handle/followings' do
   else
     erb :'/users/_list_users'
   end
+end
+
+
+
+
+#FOLLOW AND UNFOLLOW PEOPLE
+post '/:handle/follow' do
+  user_to_follow = User.find_by(handle: params[:handle])
+  Follow.create(follower: current_user, followed_user: user_to_follow)
+  redirect '/'
+end
+
+delete '/:handle/follow'  do
+  user_to_unfollow = User.find_by(handle: params[:handle])
+  Follow.find_by(follower: current_user, followed_user: user_to_unfollow).destroy
+  redirect '/'
 end
 
 

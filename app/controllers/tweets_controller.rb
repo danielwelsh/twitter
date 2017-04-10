@@ -71,15 +71,6 @@ end
 
 
 
-
-
-
-
-
-
-
-
-
 #RETWEET CREATE
 post '/tweets/:tweet_id/retweets' do
 
@@ -118,29 +109,32 @@ delete '/tweets/:tweet_id/retweets' do
   end
 end
 
+#Get users who have liked a tweet
+get '/tweets/:tweet_id/likes' do
+  @users = Tweet.find(params[:tweet_id]).likes
+  if request.xhr?
+    erb :'/users/_list_users', layout: false
+  else
+    erb :'/users/_list_users'
+  end
+end
 
-
-
+#Get users who have retweeted a tweet
+get '/tweets/:tweet_id/retweets' do
+  @users = Tweet.find(params[:tweet_id]).retweeted_by
+  p @users
+  if request.xhr?
+    erb :'users/_list_users', layout: false
+  else
+    erb :'/users/_list_users'
+  end
+end
 
 #REPLY
 post 'tweets/:tweet_id/reply' do
 end
 
 
-
-
-#FOLLOW AND UNFOLLOW PEOPLE
-post '/:handle/follow' do
-  user_to_follow = User.find_by(handle: params[:handle])
-  Follow.create(follower: current_user, followed_user: user_to_follow)
-  redirect '/'
-end
-
-delete '/:handle/follow'  do
-  user_to_unfollow = User.find_by(handle: params[:handle])
-  Follow.find_by(follower: current_user, followed_user: user_to_unfollow).destroy
-  redirect '/'
-end
 
 
 
