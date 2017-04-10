@@ -30,13 +30,13 @@
           <input type="hidden" name="_method" value="delete">
           <button class="liked-heart" type="submit">&#x2764;</button>
         </form>
-        <a id="likes-count" href=""><%= tweet.likes_count %></a>
+        <a id="likes-count" href="<%= "/tweets/#{tweet.id}/likes" %>"><%= tweet.likes_count %></a>
         <% else %>
         <form id="<%= tweet.id %>" class="like-form" action="<%= "/tweets/#{tweet.id}/like" %>" method="POST">
         <input type="hidden" name="tweet_id" value="<%= tweet.id %>">
           <button type="submit">&#x2764;</button>
         </form>
-        <a id="likes-count" href=""><%= tweet.likes_count %></a>
+        <a id="likes-count" href="<%= "/tweets/#{tweet.id}/likes" %>"><%= tweet.likes_count %></a>
         <% end %>
 
       </div>
@@ -56,8 +56,8 @@
         <form class="retweet-form" action="<%= "/tweets/#{tweet.id}/retweets" %>" method="POST">
           <input type="hidden" name="_method" value="DELETE">
           <button class="retweeted-symbol" type="submit" >&#9851;</button>
-          <a href=""><%= tweet.retweet_count %></a>
         </form>
+          <a id="retweet-count" href="<%= "/tweets/#{tweet.id}/retweets" %>"><%= tweet.retweet_count %></a>
 
 
         <% else %>
@@ -67,8 +67,8 @@
         <form class="retweet-form" action="<%= "/tweets/#{tweet.id}/retweets" %>" method="POST">
           <input type="hidden" name="original_tweet_user_id" value="<%= tweet.user_id %>">
           <button type="submit" >&#9851;</button>
-          <a href=""><%= tweet.retweet_count %></a>
         </form>
+         <a id="retweet-count" href="<%= "/tweets/#{tweet.id}/retweets" %>"><%= tweet.retweet_count %></a>
 
 
         <% end %>
