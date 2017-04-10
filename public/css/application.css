@@ -1,5 +1,5 @@
 * {
-  /*border: 1px solid blue;*/
+  border: 1px solid blue;
   box-sizing: border-box;
 }
 
@@ -386,3 +386,57 @@ a.tweet-user-name:hover + div.hover-profile {
 
 .follow-info {
 }
+
+.popup-position {
+  position: absolute;
+  margin: auto;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.7);
+}
+
+.popup-wrapper {
+  width: 600px;
+  margin: 100px auto;
+  text-align: left;
+}
+
+.popup-container {
+  background-color: #FFF;
+  padding: 20px;
+  text-align: left;
+}
+
+.popup-close {
+  text-align: right;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
