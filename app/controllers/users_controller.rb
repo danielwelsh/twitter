@@ -20,30 +20,71 @@ end
 
 get '/:handle/followers' do
   @users = User.find(current_user.id).following_users
-  p '*' * 100
-  p @users
-  p '*' * 100
   if request.xhr?
-
+    erb :'/users/_list_users', layout: false
   else
     erb :'/users/_list_users'
   end
 end
-
-
-
 
 
 get '/:handle/followings' do
   @users = User.find(current_user.id).followed_users
-  p '*' * 100
-  p @users
-  p '*' * 100
   if request.xhr?
-
+    erb :'/users/_list_users', layout: false
   else
     erb :'/users/_list_users'
   end
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
