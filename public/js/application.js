@@ -7,7 +7,6 @@ $(document).ready(function() {
   function displayHoverProfile() {
     var insertLocation = $(this)
     var URL = '/hover' + $(this).attr('href');
-    console.log('here')
     var request = $.ajax({
       method: 'POST',
       url: URL
@@ -99,7 +98,7 @@ $(document).ready(function() {
   $('.tweets-container').on('submit', '.like-form', likeListener)
   $('.tweets-container').on('submit', '.retweet-form', retweetListener)
   $('.create-tweet-form-container').on('submit', '#create-tweet-form',createTweet)
-  $('div.col-12').on('click', 'user-stats', displayUsers)
+  $('div.col-12').on('click', 'li a', displayUsers)
 
 });
 
