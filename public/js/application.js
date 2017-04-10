@@ -81,6 +81,7 @@ $(document).ready(function() {
     e.preventDefault();
     var URL = $(this).attr('href')
     var insertLocation = $('body')
+    debugger
     var request = $.ajax({
       type: 'get',
       url: URL
@@ -104,7 +105,10 @@ $(document).ready(function() {
   $('.tweets-container').on('submit', '.retweet-form', retweetListener)
   $('.create-tweet-form-container').on('submit', '#create-tweet-form',createTweet)
   $('div.col-12').on('click', 'li a', displayUsers)
+  $('.tweets-container').on('click', '#likes-count', displayUsers)
+  $('.tweets-container').on('click', '#retweet-count', displayUsers)
   $('html').on('click', 'button.popup-close', closePopUp)
+
 });
 
 
