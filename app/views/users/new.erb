@@ -1,6 +1,6 @@
-<section id="sign-up" class="container">
-    <div id="mockup"><img width="400px" src="/images/ios.png"></div>
-    <div id="signup-form">
+<section id="landing-page-hero-section">
+    <div class="col-6"><img width="400px" src="/images/ios.png"></div>
+    <div id="signup-form" class="col-6">
         <h1>Sign Up</h1>
         <p>Join the epic world of tweets! Tweeting is seconds away.</p>
         <form action="/signup" method="POST" enctype="multipart/form-data">
@@ -17,7 +17,7 @@
             <input type="password" name="confirm_password" placeholder="Confirm Password">
             <input type="file" name="profile_image" accept="image/*">
             <div class="form-errors"><%= @errors[:profile_image][0] if @errors && @errors[:profile_image] %></div>
-            <button type="submit">Sign Up</button>
+            <button id="sign-up-button" type="submit">Sign Up</button>
         </form>
     </div>
 </section>

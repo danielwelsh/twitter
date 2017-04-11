@@ -12,8 +12,8 @@ body {
   width: 1190px;
   background: #f5f8fa
 }
-nav {
-  /*margin-top: 5px;*/
+
+header {
   position: fixed;
   width: 100%;
   top: 0;
@@ -21,14 +21,76 @@ nav {
   background-color: white;
   color: black;
   height: 46px;
-  display: flex;
-  align-items: center;
   border-bottom: 2px solid #c4c4c4;
+}
+
+nav {
+  display: flex;
+  width: 1190px;
+  margin: auto;
+  height: 46px;
 }
 
 a {
   text-decoration: none;
   color: #1b95e0;
+}
+#popup {
+  top:0;
+  left:0;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,.5)
+}
+#popup-content {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  background-color: white;
+  width: 500px;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+#x-button {
+  color: white;
+  font-size: 32px;
+  position: absolute;
+  right: -60px;
+  top: -60px;
+  cursor: pointer;
+}
+
+#login-form-header {
+  text-align: center;
+  padding: 15px 0;
+  border-bottom: 1px solid gray;
+  width: 100%;
+  margin-bottom: 45px;
+}
+
+#login-form {
+  display: block;
+  color: black;
+}
+
+#login-form input {
+  width: 100%;
+}
+
+#login-button {
+  background-color: #00aced;
+  color: white;
+  padding: 7px 20px;
+  border-radius: 3px;
+}
+
+#login-button:hover {
+  background-color: #0084b4;
 }
 
 button {
@@ -37,7 +99,7 @@ button {
   margin: 0;
 }
 
-input, button  {
+input  {
   height: 50px;
   margin: 15px 0;
 }
@@ -48,12 +110,6 @@ input, button  {
 
 .disable-link {
   pointer-events: none;
-}
-
-.container {
-  display: flex;
-  width: 1190px;
-  margin: auto;
 }
 
 .container.nav {
@@ -67,6 +123,11 @@ input, button  {
   justify-content: flex-end;
   align-items: center;
   padding-right: 0;
+}
+#middle-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #left-nav {
@@ -88,16 +149,19 @@ input, button  {
   display: relative;
   top: 2px;
 }
+
+.hidden {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
 #logo {
   display: flex;
   align-items: center;
-  font-size: 18px;
   color: black;
-}
-#login-form {
-  display: flex;
-  color: black;
-  align-items: center;
 }
 #logout-form button {
   font-size:12px;
@@ -116,14 +180,29 @@ input, button  {
   margin-right: 15px;
 }
 
-#sign-up {
+#landing-page-hero-section {
   display: flex;
+  align-items: center
 }
 
-#mockup {
+button {
+  border-radius: 3px;
+  color: white;
+}
+
+#sign-up-button, #login-form-button {
+  padding: 15px 0 ;
+  background-color: #00aced;
+  width: 100%;
+}
+
+#login-form-button {
+  margin: 45px 0;
+}
+
+
+#sign-up {
   display: flex;
-  align-items: center;
-  width: 50%;
 }
 
 #signup-form {
@@ -135,6 +214,21 @@ input, button  {
 #signup-form form {
   display: flex;
   flex-direction: column;
+}
+
+#signup-form input, #login-form input{
+  border: none;
+  border-bottom: 2px solid #00aced;
+  background-color: transparent;
+  padding: 10px;
+}
+
+#signup-form input:focus, #login-form input:focus {
+  background-color: white;
+}
+
+#signup-form input[type="file"] {
+  border: 0px;
 }
 
 .form-errors {
