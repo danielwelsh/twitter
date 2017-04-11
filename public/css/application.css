@@ -12,7 +12,8 @@ body {
   width: 1190px;
   background: #f5f8fa
 }
-nav {
+
+header {
   /*margin-top: 5px;*/
   position: fixed;
   width: 100%;
@@ -21,14 +22,30 @@ nav {
   background-color: white;
   color: black;
   height: 46px;
-  display: flex;
-  align-items: center;
   border-bottom: 2px solid #c4c4c4;
+}
+
+nav {
+  display: flex;
+  width: 1190px;
+  margin: auto;
+  height: 46px;
 }
 
 a {
   text-decoration: none;
   color: #1b95e0;
+}
+
+#login-button {
+  background-color: #00aced;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 3px;
+}
+
+#login-button:hover {
+  background-color: #0084b4;
 }
 
 button {
@@ -37,7 +54,7 @@ button {
   margin: 0;
 }
 
-input, button  {
+input  {
   height: 50px;
   margin: 15px 0;
 }
@@ -91,7 +108,6 @@ input, button  {
 #logo {
   display: flex;
   align-items: center;
-  font-size: 18px;
   color: black;
 }
 #login-form {
