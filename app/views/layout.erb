@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="/css/application.css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="/js/application.js"></script>
+    <script src="/js/login.js"></script>
   </head>
   <body>
     <header>
@@ -13,7 +14,9 @@
       <% if current_user %>
       <%= erb :'users/_current_user_nav' %>
       <% else %>
+
       <%= erb :'users/_unknown_user_nav' %>
+      <%= erb :'users/_login' %>
       <% end %>
       </nav>
     </header>
