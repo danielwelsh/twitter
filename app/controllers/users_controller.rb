@@ -1,3 +1,9 @@
+get '/popup' do
+  erb :'users/_login'
+end
+
+
+
 get '/:handle' do
   @user = User.find_by(handle: params[:handle])
   @tweets = @user.get_profile_page_tweets
