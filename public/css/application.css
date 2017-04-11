@@ -62,7 +62,7 @@ a {
   position: absolute;
   right: -60px;
   top: -60px;
-
+  cursor: pointer;
 }
 
 #login-form-header {
@@ -149,6 +149,15 @@ input  {
   display: relative;
   top: 2px;
 }
+
+.hidden {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
 #logo {
   display: flex;
   align-items: center;
