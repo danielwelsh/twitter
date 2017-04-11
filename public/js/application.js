@@ -77,7 +77,7 @@ $(document).ready(function() {
   }
 
 
-  function displayUsers (e) {
+  function displayUsersPopUp (e) {
     e.preventDefault();
     var URL = $(this).attr('href')
     var insertLocation = $('body')
@@ -94,24 +94,24 @@ $(document).ready(function() {
     })
   }
 
-
-  function closePopUp () {
-    $(this).parent().parent().parent().remove();
+  function deleteUsersPopUp (e) {
+    e.preventDefault();
+    var toRemove = $(this).parent().parent();
+    toRemove.remove();
   }
+
 
   $('.tweets-container').on('mouseenter', '.tweet-user-name', displayHoverProfile);
   $('.tweets-container').on('submit', '.like-form', likeListener)
   $('.tweets-container').on('submit', '.retweet-form', retweetListener)
   $('.create-tweet-form-container').on('submit', '#create-tweet-form',createTweet)
-  $('div.col-12').on('click', 'li a', displayUsers)
-  $('.tweets-container').on('click', '#likes-count', displayUsers)
-  $('.tweets-container').on('click', '#retweet-count', displayUsers)
-  $('html').on('click', 'button.popup-close', closePopUp)
+
+  $('div.col-12').on('click', 'ul a', displayUsersPopUp)
+  $('.tweets-container').on('click', '#likes-count', displayUsersPopUp)
+  $('.tweets-container').on('click', '#retweet-count', displayUsersPopUp)
+  $(document).on('click', '#x-button', deleteUsersPopUp)
 
 });
-
-
-
 
 
 
