@@ -428,16 +428,16 @@ a.tweet-user-name:hover + div.hover-profile {
   margin-top: 3px;
   margin-right: 9px;
   padding: 3px 11px 5px;
-  background-color: #f5f8fa;
-  background-image: linear-gradient(#fff,#f5f8fa);
+  background-color: #00aced;
+  /*background-image: linear-gradient(#fff,#f5f8fa);*/
   border: 1px solid #e6ecf0;
   border-radius: 4px;
 }
 
 .unfollow-button:hover {
   text-decoration: none;
-  background-color: #e6ecf0;
-  background-image: linear-gradient(#fff,#e6ecf0);
+  background-color: #0084b4;
+  /*background-image: linear-gradient(#fff,#e6ecf0);*/
   border-color: #e6ecf0;
 }
 
