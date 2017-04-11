@@ -1,7 +1,6 @@
 # ADD A TOTAL_TWEETS AND TOTAL_FOLLOWERS AND TOTAL_FOLLOWINGS for a user
 require 'json'
 
-
 post '/tweets/new' do
   tweet = Tweet.new(user: current_user, tweet: params[:tweet])
   if tweet.save
@@ -22,27 +21,14 @@ post '/tweets/new' do
 end
 
 
-
-
-
-#FIX ME AND REFACTOR INTO PARTIALS
 #LIKE
 post '/tweets/:tweet_id/like' do
   LikedTweet.create(user: current_user, tweet_id: params[:tweet_id])
-  tweet = Tweet.find(params[:tweet_id])
-  likes = tweet.change_likes_count(:+)
+  @tweet = Tweet.find(params[:tweet_id])
+  @likes = @tweet.change_likes_count(:+)
 
   if request.xhr?
-    erb :'__delete_tweet_like'
-    # Passing back the whole delete form
-    %Q(<div class="like-functionality">
-        <form  class="like-form" action="/tweets/#{tweet.id}/like" method="POST">
-          <input type="hidden" name="_method" value="delete">
-          <button class="liked-heart" type="submit">&#x2764;</button>
-        </form>
-        <a id="likes-count" href="">#{likes} </a>
-      </div>
-    )
+    erb :'tweets/_delete_tweet_like'
   else
     redirect '/'
   end
@@ -50,26 +36,27 @@ end
 
 delete '/tweets/:tweet_id/like' do
   LikedTweet.find_by(user: current_user, tweet_id: params[:tweet_id]).destroy
-  tweet = Tweet.find(params[:tweet_id])
-  likes = tweet.change_likes_count(:-)
+  @tweet = Tweet.find(params[:tweet_id])
+  @likes = @tweet.change_likes_count(:-)
 
   if request.xhr?
-    # Passing back the whole delete form
-    %Q(<div class="like-functionality">
-        <form class="like-form" action="/tweets/#{tweet.id}/like" method="POST">
-        <button type="submit">&#x2764;</button>
-        </form>
-        <a id="likes-count" href="">#{likes} </a>
-      </div>
-    )
+    erb :'tweets/_create_tweet_like'
   else
     redirect '/'
   end
 end
 
 
-
-
+#GET users who have retweeted a tweet
+get '/tweets/:tweet_id/retweets' do
+  @users = Tweet.find(params[:tweet_id]).retweeted_by
+  p @users
+  if request.xhr?
+    erb :'users/_list_users', layout: false
+  else
+    erb :'/users/_list_users'
+  end
+end
 
 
 #RETWEET CREATE
@@ -110,6 +97,8 @@ delete '/tweets/:tweet_id/retweets' do
   end
 end
 
+
+
 #Get users who have liked a tweet
 get '/tweets/:tweet_id/likes' do
   @users = Tweet.find(params[:tweet_id]).likes
@@ -120,16 +109,8 @@ get '/tweets/:tweet_id/likes' do
   end
 end
 
-#Get users who have retweeted a tweet
-get '/tweets/:tweet_id/retweets' do
-  @users = Tweet.find(params[:tweet_id]).retweeted_by
-  p @users
-  if request.xhr?
-    erb :'users/_list_users', layout: false
-  else
-    erb :'/users/_list_users'
-  end
-end
+
+
 
 #REPLY
 post 'tweets/:tweet_id/reply' do
