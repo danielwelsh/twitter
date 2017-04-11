@@ -1,0 +1,8 @@
+<div id="login-form">
+  <form action="/login" method="POST">
+    <div class="form-errors"><%= @errors[:login] if @errors %></div>
+    <input type="text" name="handle" placeholder="Handle">
+    <input type="password" name="password" placeholder="Password">
+    <button type="submit">Login</button>
+  </form>
+</div>
