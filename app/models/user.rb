@@ -89,6 +89,10 @@ class User < ActiveRecord::Base
     self.following_users.count
   end
 
+  def user_followed?(user)
+    self.followed_users.pluck(:id).include?(user.id)
+  end
+
   ## START -- FUNCTIONALITY FOR SUGGESTING USERS TO FOLLOW
   def get_following_ids_string
     following_ids = self.followed_users.pluck(:id) << self.id

@@ -81,7 +81,6 @@ $(document).ready(function() {
     e.preventDefault();
     var URL = $(this).attr('href')
     var insertLocation = $('body')
-    debugger
     var request = $.ajax({
       type: 'get',
       url: URL
