@@ -8,6 +8,11 @@ get '/' do
   end
 end
 
+
+get '/login' do
+  erb :'users/_login'
+end
+
 post '/login' do
   @user = User.find_by(handle: params[:handle])
   if @user && @user.authenticate(params[:password])
@@ -21,6 +26,7 @@ end
 post '/signup' do
   @user = User.new(params[:user])
   @user.valid?
+  @errors = {}
   password_input_validation = password_input_validation(params[:user][:password], params[:confirm_password])
   profile_image_input_validation = profile_image_input_validation(params)
   if @user.errors.messages.length > 0 || password_input_validation || profile_image_input_validation

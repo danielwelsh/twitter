@@ -1,6 +1,6 @@
 <div class="like-functionality">
-  <form class="like-form" action="<%="/tweets/#{@tweet.id}/like"%>" method="POST">
+  <form class="like-form" action="/tweets/<%= tweet.id %>/like" method="POST">
     <button type="submit">&#x2764;</button>
   </form>
-  <a id="likes-count" href=""><%= @likes %></a>
+  <a id="likes-count" href="">#{likes} </a>
 </div>
