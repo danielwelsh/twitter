@@ -33,6 +33,7 @@ post '/tweets/:tweet_id/like' do
   likes = tweet.change_likes_count(:+)
 
   if request.xhr?
+    erb :'__delete_tweet_like'
     # Passing back the whole delete form
     %Q(<div class="like-functionality">
         <form  class="like-form" action="/tweets/#{tweet.id}/like" method="POST">

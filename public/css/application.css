@@ -14,7 +14,6 @@ body {
 }
 
 header {
-  /*margin-top: 5px;*/
   position: fixed;
   width: 100%;
   top: 0;
@@ -36,11 +35,57 @@ a {
   text-decoration: none;
   color: #1b95e0;
 }
+#popup {
+  top:0;
+  left:0;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,.5)
+}
+#popup-content {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  background-color: white;
+  width: 500px;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+#x-button {
+  color: white;
+  font-size: 32px;
+  position: absolute;
+  right: -60px;
+  top: -60px;
+
+}
+
+#login-form-header {
+  text-align: center;
+  padding: 15px 0;
+  border-bottom: 1px solid gray;
+  width: 100%;
+  margin-bottom: 45px;
+}
+
+#login-form {
+  display: block;
+  color: black;
+}
+
+#login-form input {
+  width: 100%;
+}
 
 #login-button {
   background-color: #00aced;
   color: white;
-  padding: 10px 20px;
+  padding: 7px 20px;
   border-radius: 3px;
 }
 
@@ -67,12 +112,6 @@ input  {
   pointer-events: none;
 }
 
-.container {
-  display: flex;
-  width: 1190px;
-  margin: auto;
-}
-
 .container.nav {
   justify-content: space-between;
   align-items: center;
@@ -84,6 +123,11 @@ input  {
   justify-content: flex-end;
   align-items: center;
   padding-right: 0;
+}
+#middle-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #left-nav {
@@ -110,11 +154,6 @@ input  {
   align-items: center;
   color: black;
 }
-#login-form {
-  display: flex;
-  color: black;
-  align-items: center;
-}
 #logout-form button {
   font-size:12px;
   font-weight: bold;
@@ -132,14 +171,29 @@ input  {
   margin-right: 15px;
 }
 
-#sign-up {
+#landing-page-hero-section {
   display: flex;
+  align-items: center
 }
 
-#mockup {
+button {
+  border-radius: 3px;
+  color: white;
+}
+
+#sign-up-button, #login-form-button {
+  padding: 15px 0 ;
+  background-color: #00aced;
+  width: 100%;
+}
+
+#login-form-button {
+  margin: 45px 0;
+}
+
+
+#sign-up {
   display: flex;
-  align-items: center;
-  width: 50%;
 }
 
 #signup-form {
@@ -151,6 +205,21 @@ input  {
 #signup-form form {
   display: flex;
   flex-direction: column;
+}
+
+#signup-form input, #login-form input{
+  border: none;
+  border-bottom: 2px solid #00aced;
+  background-color: transparent;
+  padding: 10px;
+}
+
+#signup-form input:focus, #login-form input:focus {
+  background-color: white;
+}
+
+#signup-form input[type="file"] {
+  border: 0px;
 }
 
 .form-errors {

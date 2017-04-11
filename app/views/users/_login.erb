@@ -1,8 +1,14 @@
-<div id="login-form">
-  <form action="/login" method="POST">
-    <div class="form-errors"><%= @errors[:login] if @errors %></div>
-    <input type="text" name="handle" placeholder="Handle">
-    <input type="password" name="password" placeholder="Password">
-    <button type="submit">Login</button>
-  </form>
+<div id="popup">
+  <div id="popup-content">
+    <div id="x-button">X</div>
+
+      <div id="login-form-header">Welcome back to Clutter</div>
+      <img height="30px" src="/images/clutter_bird-01.png" alt="Clutter Logo">
+      <form id="login-form"action="/login" method="POST">
+        <div class="form-errors"><%= @errors[:login] if @errors %></div>
+        <input type="text" name="handle" placeholder="Handle">
+        <input type="password" name="password" placeholder="Password">
+        <button id="login-form-button" type="submit">Login</button>
+      </form>
+  </div>
 </div>
