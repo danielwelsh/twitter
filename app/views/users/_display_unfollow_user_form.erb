@@ -1,0 +1,9 @@
+<div class="profile-image suggested-user"><img class="suggested-user-photo" src="<%= user.profile_image_location %>" height="48px"></div>
+<div class="follow-info">
+  <a class="suggested-user-name" href="<%="/#{user.handle}" %>"><%= "#{user.full_name}"  %></a>
+  <a class="suggested-extra-info" href="<%="/#{user.handle}" %>"><%= "@#{user.handle}" %></a>
+  <form action="<%="/#{user.handle}/follow"%>" method="POST" >
+    <input type="hidden" name="_method" value="DELETE">
+    <button class="unfollow-button" type="submit">Unfollow</button>
+  </form>
+</div>

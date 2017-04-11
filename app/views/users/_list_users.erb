@@ -4,18 +4,22 @@
 
       <div class="popup-container">
         <button class="popup-close">X</button>
-      <% @users.each do |user| %>
+
+
+
+        <% @users.each do |user| %>
+
         <div class="popup-user-container">
-          <div class="profile-image suggested-user"><img class="suggested-user-photo" src="<%= user.profile_image_location %>" height="48px"></div>
-          <div class="follow-info">
-            <a class="suggested-user-name" href="<%="/#{user.handle}" %>"><%= "#{user.full_name}"  %></a>
-            <a class="suggested-extra-info" href="<%="/#{user.handle}" %>"><%= "@#{user.handle}" %></a>
-            <form action="<%="/#{user.handle}/follow"%>" method="POST" >
-              <button class="follow-button" type="submit">Follow</button>
-            </form>
-          </div>
+          <% if current_user.user_followed?(user) %>
+            <%= erb :'users/_display_unfollow_user_form', layout: false, locals: {user: user} %>
+          <% else %>
+            <%= erb :'users/_display_follow_user_form', layout: false, locals: {user: user} %>
+          <% end %>
         </div>
-      <% end %>
+
+        <% end %>
+
+
       </div>
 
 
