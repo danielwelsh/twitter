@@ -109,7 +109,7 @@ $(document).ready(function() {
   $('div.col-12').on('click', 'ul a', displayUsersPopUp)
   $('.tweets-container').on('click', '#likes-count', displayUsersPopUp)
   $('.tweets-container').on('click', '#retweet-count', displayUsersPopUp)
-  $(document).on('click', '#x-button', deleteUsersPopUp)
+  $(document).on('click', '.x-button', deleteUsersPopUp)
 
 });
 
