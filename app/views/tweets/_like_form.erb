@@ -1,0 +1,12 @@
+<div class="like-functionality">
+  <form  class="like-form" action="<%="/tweets/#{tweet.id}/like"%>" method="POST">
+    <% if tweet.liked?(current_user) %>
+      <input type="hidden" name="_method" value="delete">
+      <button class="red" type="submit">&#x2764;</button>
+    <% else %>
+      <button type="submit">&#x2764;</button>
+    <% end %>
+  </form>
+  <a id="likes-count" href="<%= "/tweets/#{tweet.id}/likes" %>"><%= tweet.likes_count %></a>
+</div>
+

@@ -1,67 +1,22 @@
-<div class="tweets-container">
-  <% @tweets.each do |tweet| %>
-  <div class="tweet-container">
-    <% if tweet.retweet? %>
-    <% retweet = tweet; retweet_id = tweet.id; retweeter = tweet.user; tweet = tweet.get_original_tweet;  %>
-    <% retweeter_name = 'You' if retweeter.full_name == current_user.full_name %>
-    <div class="retweet-info">
-      <a id="tweet-user-name" href="<%="/#{retweeter.handle}" %>"><%= retweeter_name ? retweeter_name : retweeter.full_name %></a> Retweeted
-    </div>
-    <% end %>
-    <div class="tweet-info">
-      <a class="tweet-user-name" href="/<%= tweet.user.handle %>"><%= tweet.user.full_name %></a>
-      <a class="tweet-extra-info" href="/<%= tweet.user.handle %>">@<%= tweet.user.handle %></a>
-      <a class="tweet-extra-info" href="/<%= tweet.user.handle %>"><%= tweet.date %></a>
-    </div>
-    <div class="tweet-text"><%= "TWEET ID: #{tweet.id} #{parse_tweet_for_hashtags(tweet.tweet)}" %></div>
-    <div class="tweet-interaction">
-      <div class="reply-section">
-        <!-- NEED TO FIX ENTIRE REPLY SECTION AND LOGIC -->
-        <form action="<%= "/tweets/#{tweet.id}/retweet" %>" method="POST">
-          <input type="hidden" name="_method" value="put">
-          <button type="submit">&#8617; Reply</button>
-        </form>
-      </div>
-
-      <% if tweet.liked?(current_user) %>
-        <%= erb :'/tweets/_delete_tweet_like', layout:false, locals: {tweet: tweet} %>
-      <% else %>
-        <%= erb :'/tweets/_create_tweet_like', layout:false, locals: {tweet: tweet} %>
-      <% end %>
-
-
-      <div class="retweet-functionality">
-      <% if tweet.own_tweet?(current_user) %>
-          <button disabled class="retweeted-symbol">&#9851;</button>
-          <a id="retweet-count" href="<%= "/tweets/#{tweet.id}/retweets" %>"><%= tweet.retweet_count %></a>
-      <% else %>
-
-        <% if tweet.retweeted_by_self?(current_user) %>
-
-        <form class="retweet-form" action="<%= "/tweets/#{tweet.id}/retweets" %>" method="POST">
-          <input type="hidden" name="_method" value="DELETE">
-          <button class="retweeted-symbol" type="submit" >&#9851;</button>
-        </form>
-          <a id="retweet-count" href="<%= "/tweets/#{tweet.id}/retweets" %>"><%= tweet.retweet_count %></a>
-
-
-        <% else %>
-
-
-
-        <form class="retweet-form" action="<%= "/tweets/#{tweet.id}/retweets" %>" method="POST">
-          <input type="hidden" name="original_tweet_user_id" value="<%= tweet.user_id %>">
-          <button type="submit" >&#9851;</button>
-        </form>
-         <a id="retweet-count" href="<%= "/tweets/#{tweet.id}/retweets" %>"><%= tweet.retweet_count %></a>
-
-
-        <% end %>
-      <% end %>
-      </div>
-
-
-    </div>
+<div class="tweet-container">
+  <% if tweet.retweet? %>
+  <% retweet = tweet; retweet_id = tweet.id; retweeter = tweet.user; tweet = tweet.get_original_tweet;  %>
+  <% retweeter_name = 'You' if retweeter.full_name == current_user.full_name %>
+  <div class="retweet-info">
+    <a id="tweet-user-name" href="<%="/#{retweeter.handle}" %>"><%= retweeter_name ? retweeter_name : retweeter.full_name %></a> Retweeted
   </div>
   <% end %>
+  <div class="tweet-info">
+    <a class="tweet-user-name" href="/<%= tweet.user.handle %>"><%= tweet.user.full_name %></a>
+    <a class="tweet-extra-info" href="/<%= tweet.user.handle %>">@<%= tweet.user.handle %></a>
+    <a class="tweet-extra-info" href="/<%= tweet.user.handle %>"><%= tweet.date %></a>
+  </div>
+  <div class="tweet-text"><%= "TWEET ID: #{tweet.id} #{parse_tweet_for_hashtags(tweet.tweet)}" %></div>
+
+
+  <div class="tweet-interaction">
+    <%= erb :'/tweets/_reply_form', layout: false, locals: {tweet: tweet} %>
+    <%= erb :'/tweets/_like_form', layout: false, locals: {tweet: tweet} %>
+    <%= erb :'/tweets/_retweet_form', layout: false, locals: {tweet: tweet} %>
+  </div>
 </div>

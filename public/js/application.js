@@ -51,7 +51,7 @@ $(document).ready(function() {
       url: URL
     })
     request.done(function(response) {
-      insertLocation.html(response)
+      insertLocation.replaceWith(response)
     })
     request.fail(function(response) {
       console.log("Something has gone very wrong.")

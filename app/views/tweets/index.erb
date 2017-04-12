@@ -1,0 +1,5 @@
+<div class="tweets-container">
+  <% @tweets.each do |tweet| %>
+    <%= erb :'/tweets/show', layout:false, locals: {tweet: tweet} %>
+  <% end %>
+</div>

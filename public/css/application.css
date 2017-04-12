@@ -269,8 +269,12 @@ input  {
   color: #aab8c2;
 }
 
-.tweet-container button.liked-heart{
+.tweet-container button.red {
   color: red;
+}
+
+.tweet-container button.green {
+  color: green;
 }
 
 
@@ -407,11 +411,6 @@ a.tweet-user-name:hover + div.hover-profile {
 }
 .hashtag-link:hover {
   text-decoration: underline;
-}
-
-
-.retweeted-symbol {
-  color: green;
 }
 
 /* SIDE PROFILE SECTION CSS */

@@ -1,0 +1,7 @@
+<div class="reply-section">
+  <!-- NEED TO FIX ENTIRE REPLY SECTION AND LOGIC -->
+  <form action="<%= "/tweets/#{tweet.id}/retweet" %>" method="POST">
+    <input type="hidden" name="_method" value="put">
+    <button type="submit">&#8617; Reply</button>
+  </form>
+</div>
