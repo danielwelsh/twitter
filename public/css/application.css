@@ -35,7 +35,7 @@ a {
   text-decoration: none;
   color: #1b95e0;
 }
-#popup {
+.popup {
   top:0;
   left:0;
   position: fixed;
@@ -43,7 +43,7 @@ a {
   height: 100%;
   background-color: rgba(0,0,0,.5)
 }
-#popup-content {
+.popup-content {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -56,7 +56,16 @@ a {
   flex-direction: column;
 }
 
-#x-button {
+.popup-content.max-height {
+  height: 500px;
+}
+
+.scrollable {
+  padding: 20px 15px;
+  overflow: auto;
+}
+
+.x-button {
   color: white;
   font-size: 32px;
   position: absolute;
@@ -95,8 +104,10 @@ a {
 
 button {
   border: none;
-  background: inherit;
+  background-color: #1b95e0;
   margin: 0;
+  border-radius: 3px;
+  color: white;
 }
 
 input  {
@@ -185,10 +196,6 @@ input  {
   align-items: center
 }
 
-button {
-  border-radius: 3px;
-  color: white;
-}
 
 #sign-up-button, #login-form-button {
   padding: 15px 0 ;
@@ -259,7 +266,13 @@ button {
   background: inherit;
   padding: 0;
   margin:0 15px;
+  color: #aab8c2;
 }
+
+.tweet-container button.liked-heart{
+  color: red;
+}
+
 
 .tweet-info {
   margin-bottom: 10px;
@@ -309,8 +322,22 @@ a.tweet-user-name:hover + div.hover-profile {
 
 .tweet-interaction {
   display: flex;
-  justify-content: space-around;
+  justify-content: right;
+  border: 1px solid black;
 }
+
+.retweet-functionality {
+  border: 1px solid black;
+}
+
+.like-functionality {
+  border: 1px solid black;
+}
+
+.reply-functionality {
+  border: 1px solid black;
+}
+
 
 .create-tweet-form-container {
   display: flex;
@@ -382,9 +409,6 @@ a.tweet-user-name:hover + div.hover-profile {
   text-decoration: underline;
 }
 
-.liked-heart{
-  color: red;
-}
 
 .retweeted-symbol {
   color: green;
@@ -473,10 +497,12 @@ a.tweet-user-name:hover + div.hover-profile {
   overflow: hidden;
 }
 
-.suggested-user-container {
+.suggested-user-container, .user-container {
+  overflow: hidden;
   display: flex;
   margin: 15px;
   width: 300px;
+  flex-shrink: 0;
 }
 
 
@@ -534,55 +560,6 @@ a.tweet-user-name:hover + div.hover-profile {
   /*background-image: linear-gradient(#fff,#e6ecf0);*/
   border-color: #e6ecf0;
 }
-
-
-
-.popup-position {
-  position: absolute;
-  margin: auto;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.7);
-}
-
-.popup-wrapper {
-  width: 600px;
-  margin: 100px auto;
-  text-align: left;
-}
-
-.popup-container {
-  background-color: #FFF;
-  padding: 20px;
-  text-align: left;
-  border: 1px solid #e6ecf0;
-  border-radius: 3px;
-}
-
-.popup-close {
-  text-align: right;
-}
-
-
-.popup-user-container {
-  padding-top: 7px;
-  display: flex;
-  margin: 15px;
-  width: 400px;
-  margin: 10px auto;
-  border-top: 1px solid #e6ecf0;
-  border-bottom: 1px solid #e6ecf0;
-}
-
-button.popup-user {
-
-}
-
-
-
-
-
-
 
 
 

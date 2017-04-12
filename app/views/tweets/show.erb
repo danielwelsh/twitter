@@ -23,32 +23,17 @@
         </form>
       </div>
 
-
-      <div class="like-functionality">
-        <% if tweet.liked?(current_user) %>
-        <form id="<%= tweet.id %>" class="like-form" action="<%= "/tweets/#{tweet.id}/like" %>" method="POST">
-          <input type="hidden" name="_method" value="delete">
-          <button class="liked-heart" type="submit">&#x2764;</button>
-        </form>
-        <a id="likes-count" href="<%= "/tweets/#{tweet.id}/likes" %>"><%= tweet.likes_count %></a>
-        <% else %>
-        <form id="<%= tweet.id %>" class="like-form" action="<%= "/tweets/#{tweet.id}/like" %>" method="POST">
-        <input type="hidden" name="tweet_id" value="<%= tweet.id %>">
-          <button type="submit">&#x2764;</button>
-        </form>
-        <a id="likes-count" href="<%= "/tweets/#{tweet.id}/likes" %>"><%= tweet.likes_count %></a>
-        <% end %>
-
-      </div>
-
-
-
-
+      <% if tweet.liked?(current_user) %>
+        <%= erb :'/tweets/_delete_tweet_like', layout:false, locals: {tweet: tweet} %>
+      <% else %>
+        <%= erb :'/tweets/_create_tweet_like', layout:false, locals: {tweet: tweet} %>
+      <% end %>
 
 
       <div class="retweet-functionality">
       <% if tweet.own_tweet?(current_user) %>
-        <span>&#9851; <a href=""><%= tweet.retweet_count %></a></span>
+          <button disabled class="retweeted-symbol">&#9851;</button>
+          <a id="retweet-count" href="<%= "/tweets/#{tweet.id}/retweets" %>"><%= tweet.retweet_count %></a>
       <% else %>
 
         <% if tweet.retweeted_by_self?(current_user) %>

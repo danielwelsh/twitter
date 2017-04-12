@@ -2,12 +2,12 @@ $(document).ready(function() {
 
   $('#login-button').on('click', function(event) {
     event.preventDefault();
-    $('#popup').removeClass().addClass('show');
+    $('.popup').addClass('show');
   });
 
-  $('#x-button').on('click', function(event) {
+  $('.x-button').on('click', function(event) {
     event.preventDefault();
-    $('#popup').removeClass().addClass('hidden');
+    $('.popup').removeClass('show').addClass('hidden');
   })
 
 })
