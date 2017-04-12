@@ -1,22 +1,27 @@
 <div class="tweet-container">
-  <% if tweet.retweet? %>
-  <% retweet = tweet; retweet_id = tweet.id; retweeter = tweet.user; tweet = tweet.get_original_tweet;  %>
+<% if tweet.retweet? %>
+  <% retweet = tweet; retweet_id = tweet.id; retweeter = tweet.user; tweet = tweet.get_original_tweet; %>
   <% retweeter_name = 'You' if retweeter.full_name == current_user.full_name %>
   <div class="retweet-info">
     <a id="tweet-user-name" href="<%="/#{retweeter.handle}" %>"><%= retweeter_name ? retweeter_name : retweeter.full_name %></a> Retweeted
   </div>
-  <% end %>
+<% end %>
+
   <div class="tweet-info">
     <a class="tweet-user-name" href="/<%= tweet.user.handle %>"><%= tweet.user.full_name %></a>
     <a class="tweet-extra-info" href="/<%= tweet.user.handle %>">@<%= tweet.user.handle %></a>
     <a class="tweet-extra-info" href="/<%= tweet.user.handle %>"><%= tweet.date %></a>
   </div>
-  <div class="tweet-text"><%= "TWEET ID: #{tweet.id} #{parse_tweet_for_hashtags(tweet.tweet)}" %></div>
+
+  <div class="tweet-text">
+    <%= "TWEET ID: #{tweet.id} #{parse_tweet_for_hashtags(tweet.tweet)}" %>
+  </div>
 
 
-  <div class="tweet-interaction">
+  <div class="col-6 tweet-interaction">
     <%= erb :'/tweets/_reply_form', layout: false, locals: {tweet: tweet} %>
     <%= erb :'/tweets/_like_form', layout: false, locals: {tweet: tweet} %>
     <%= erb :'/tweets/_retweet_form', layout: false, locals: {tweet: tweet} %>
   </div>
+  <div style="clear:both"></dir>
 </div>
