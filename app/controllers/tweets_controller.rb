@@ -25,10 +25,10 @@ end
 post '/tweets/:tweet_id/like' do
   LikedTweet.create(user: current_user, tweet_id: params[:tweet_id])
   @tweet = Tweet.find(params[:tweet_id])
-  @likes = @tweet.change_likes_count(:+)
+  @tweet.change_likes_count(:+)
 
   if request.xhr?
-    erb :'tweets/_delete_tweet_like'
+    erb :'tweets/_delete_tweet_like', layout: false, locals: {tweet: @tweet}
   else
     redirect '/'
   end
@@ -37,10 +37,10 @@ end
 delete '/tweets/:tweet_id/like' do
   LikedTweet.find_by(user: current_user, tweet_id: params[:tweet_id]).destroy
   @tweet = Tweet.find(params[:tweet_id])
-  @likes = @tweet.change_likes_count(:-)
+  @tweet.change_likes_count(:-)
 
   if request.xhr?
-    erb :'tweets/_create_tweet_like'
+    erb :'tweets/_create_tweet_like', layout: false,  locals: {tweet: @tweet}
   else
     redirect '/'
   end
