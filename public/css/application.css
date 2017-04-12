@@ -464,16 +464,28 @@ a.tweet-user-name:hover + div.hover-profile {
   flex-direction: column;
 }
 
-.side-profile-user-full-name {
+.side-profile-user-full-name a {
   font-size: 18px;
   font-weight: bold;
-  padding: 5px 0;
+  padding: 6px 0;
+  color: black;
 }
 
-.side-profile-user-handle {
+.side-profile-user-full-name a:hover {
+  text-decoration: underline;
+}
+
+.side-profile-user-handle, .side-profile-user-handle * {
+  padding-top: 3px;
   font-size: 13px;
   color: #657786;
 }
+
+.side-profile-user-handle a:hover {
+  text-decoration: underline;
+}
+
+
 
 .side-profile-profile-stats {
   position: relative;
@@ -502,10 +514,9 @@ a.tweet-user-name:hover + div.hover-profile {
   font-size: 10px;
 }
 
-.side-profile-profile-stats li span:last-child {
+.side-profile-profile-stats li a {
   color: #990000;
   font-size: 18px;
-  font-weight: bold;
 }
 
 .suggested-users-container {
