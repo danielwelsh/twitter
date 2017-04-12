@@ -326,31 +326,42 @@ a.tweet-user-name:hover + div.hover-profile {
 
 .tweet-interaction {
   display: flex;
-  justify-content: right;
-  border: 1px solid black;
+  justify-content: space-between;
 }
 
-.retweet-functionality {
-  border: 1px solid black;
-}
-
-.like-functionality {
-  border: 1px solid black;
-}
-
-.reply-functionality {
-  border: 1px solid black;
+.retweet-functionality, .like-functionality, .reply-functionality {
+  display: flex;
+  align-items: center;
 }
 
 
 .create-tweet-form-container {
   display: flex;
   align-items: center;
+  background-color: #F4E5E5;
+  height: 60px;
 }
 
 #create-tweet-form {
   display: flex;
-  flex-grow: 1;
+  width: 100%;
+  align-items: center;
+}
+
+#create-tweet-form input[name="tweet"] {
+  height: 32px;
+  font-size: 14px;
+  padding: 8px 10px;
+  border: 1px solid #D69999;
+  border-radius: 3px;
+  width: 100%;
+}
+
+#create-tweet-form button {
+  margin: 0 15px;
+  height: 32px;
+  padding: 0 15px;
+
 }
 
 .profile-image {
@@ -360,12 +371,17 @@ a.tweet-user-name:hover + div.hover-profile {
   margin-left: 15px;
 }
 
-.profile-image.suggested-user, .profile-image.create-tweet {
+.profile-image.suggested-user {
   width: 48px;
   height: 48px;
 }
 
-.suggested-user-photo, .create-tweet-user-photo {
+.profile-image.create-tweet {
+  width: 32px;
+  height: 32px;
+}
+
+.suggested-user-photo {
   height: 48px;
   position: relative;
   left: -30%;
