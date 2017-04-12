@@ -106,7 +106,7 @@ $(document).ready(function() {
   $('.tweets-container').on('submit', '.retweet-form', retweetListener)
   $('.create-tweet-form-container').on('submit', '#create-tweet-form',createTweet)
 
-  $('div.col-12').on('click', 'ul a', displayUsersPopUp)
+  $('.side-profile-profile-stats').on('click', 'ul a', displayUsersPopUp)
   $('.tweets-container').on('click', '#likes-count', displayUsersPopUp)
   $('.tweets-container').on('click', '#retweet-count', displayUsersPopUp)
   $(document).on('click', '.x-button', deleteUsersPopUp)
