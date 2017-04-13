@@ -62,32 +62,46 @@ require 'faker'
 
 
 
-tweets = ['We are on a mission #mission', 'The swag level is too high in this building #swag', 'How are we doing this right now #mission', 'Who is donald trump #potus', 'The sun is out today #sunny', 'The Edmonton Oilers are a great hockey team #oilers', 'The edmonton oilers will win game 2 #oilers', 'The wall is gonna be uuuge #wall #potus', 'I am writing this tweet from DBC ATM #DBC', 'May likes cats a lot #cats', 'Is anyone looking for a cat delivery service? #cats', 'Drake is the greatest of all time #greatest #drake', 'My Pokemon bring all the boys to the yard #pokemon', 'Superman is my favorite super hero #superman', 'I am hacking the internet #hackers', 'Quick, modify the code #hackers', 'Swordfish is the greatest movie of all time #hackers', 'We need to make it to the moon #moon #flying', 'Uber has gotten itself in some trouble #app #bad #sad', 'Expo markers are the best until the run out of ink #sad', 'My jet is not gassed up today #sad', 'Who wants to go for a coffee run right now! #coffee', 'I love food a lot #food #coffee', 'I will be running for president in 2020 #sad #wall']
+tweet_strings = ['We are on a mission #mission', 'The swag level is too high in this building #swag', 'How are we doing this right now #mission', 'Who is donald trump #potus', 'The sun is out today #sunny', 'The Edmonton Oilers are a great hockey team #oilers', 'The edmonton oilers will win game 2 #oilers', 'The wall is gonna be uuuge #wall #potus', 'I am writing this tweet from DBC ATM #DBC', 'May likes cats a lot #cats', 'Is anyone looking for a cat delivery service? #cats', 'Drake is the greatest of all time #greatest #drake', 'My Pokemon bring all the boys to the yard #pokemon', 'Superman is my favorite super hero #superman', 'I am hacking the internet #hackers', 'Quick, modify the code #hackers', 'Swordfish is the greatest movie of all time #hackers', 'We need to make it to the moon #moon #flying', 'Uber has gotten itself in some trouble #app #bad #sad', 'Expo markers are the best until the run out of ink #sad', 'My jet is not gassed up today #sad', 'Who wants to go for a coffee run right now! #coffee', 'I love food a lot #food #coffee', 'I will be running for president in 2020 #sad #wall']
 
 #Creating users
+users = []
+200.times do |index|
+  first_name = Faker::Name.first_name
+  last_name = Faker::Name.last_name
+  users << User.create(first_name: first_name, last_name: last_name, handle: first_name, password: 123456, email: "#{first_name}@#{first_name}.com")
+end
 
 
-jimmy = User.create(handle: "jimmy", first_name: "jimmy", last_name: "welsh", email: "jimmy@jimmy.com", password: "123456")
+tweets = []
+#Creating Tweets that belong to users
+2000.times do |index|
+  tweets << Tweet.create(user: users.sample, tweet: tweet_strings.sample)
+end
 
 
-bobby = User.create(handle: "bobby", first_name: "bobby", last_name: "welsh", email: "bobby@bobby.com", password: "123456")
-moe = User.create(handle: "moe", first_name: "moe", last_name: "welsh", email: "moe@moe.com", password: "123456")
-
-#Tweet create
-Tweet.create(user: jimmy, tweet: "This is a tweet #swag #winning")
-Tweet.create(user: jimmy, tweet: "This is a tweet that has #swag")
-Tweet.create(user: jimmy, tweet: "This is another tweet with the same hastags #swag #winning")
-Tweet.create(user: bobby, tweet: "Tweet made by another person #winning")
-Tweet.create(user: bobby, tweet: "Tweet made by another person #swag")
+retweets = []
+#Creating Retweets
+500.times do |index|
+  user_who_retweeted = users.sample
+  tweet_to_be_retweeted = tweets.sample
+  Tweet.create(original_tweet_id: tweet_to_be_retweeted.id, original_tweet_user_id: tweet_to_be_retweeted.user_id, user: user_who_retweeted)
+end
 
 
 
-#moe follows id 2
-Follow.create(follower: jimmy, followed_user: bobby)
-Follow.create(follower: jimmy, followed_user: moe)
+#Creating likes
+1000.times do |index|
+  user_who_liked = users.sample
+  tweet_to_be_liked = tweets.sample
+  LikedTweet.create(user: user_who_liked, tweet: tweet_to_be_liked)
+end
 
-# 2 follows 1
-Follow.create(follower: moe, followed_user: jimmy)
 
+
+#Creating following relationships
+2000.times do |index|
+  Follow.create(follower: users.sample, followed_user: users.sample)
+end
 
 
