@@ -67,6 +67,14 @@ jimmy = User.create(handle: "jimmy", first_name: "jimmy", last_name: "welsh", em
 bobby = User.create(handle: "bobby", first_name: "bobby", last_name: "welsh", email: "bobby@bobby.com", password: "123456")
 moe = User.create(handle: "moe", first_name: "moe", last_name: "welsh", email: "moe@moe.com", password: "123456")
 
+#Tweet create
+Tweet.create(user: jimmy, tweet: "This is a tweet #swag #winning")
+Tweet.create(user: jimmy, tweet: "This is a tweet that has #swag")
+Tweet.create(user: jimmy, tweet: "This is another tweet with the same hastags #swag #winning")
+Tweet.create(user: bobby, tweet: "Tweet made by another person #winning")
+Tweet.create(user: bobby, tweet: "Tweet made by another person #swag")
+
+
 
 #moe follows id 2
 Follow.create(follower: jimmy, followed_user: bobby)
