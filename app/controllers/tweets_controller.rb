@@ -1,13 +1,13 @@
 # ADD A TOTAL_TWEETS AND TOTAL_FOLLOWERS AND TOTAL_FOLLOWINGS for a user
 require 'json'
 
-post '/tweets/new' do
-  tweet = Tweet.new(user: current_user, tweet: params[:tweet])
-  if tweet.save
+post '/tweets' do
+  @tweet = Tweet.new(user: current_user, tweet: params[:tweet])
+  if @tweet.save
     if request.xhr?
-      erb :'/tweets/_tweet_create', layout: false, locals: { tweet: tweet}
+      erb :'/tweets/show', layout: false, locals: { tweet: @tweet}
     else
-    redirect '/'
+      redirect '/'
     end
   else
     @tweets = current_user.get_landing_page_tweets
@@ -25,10 +25,10 @@ end
 post '/tweets/:tweet_id/like' do
   LikedTweet.create(user: current_user, tweet_id: params[:tweet_id])
   @tweet = Tweet.find(params[:tweet_id])
-  @likes = @tweet.change_likes_count(:+)
+  @tweet.change_likes_count(:+)
 
   if request.xhr?
-    erb :'tweets/_delete_tweet_like'
+    erb :'tweets/_like_form', layout: false, locals: {tweet: @tweet}
   else
     redirect '/'
   end
@@ -37,10 +37,10 @@ end
 delete '/tweets/:tweet_id/like' do
   LikedTweet.find_by(user: current_user, tweet_id: params[:tweet_id]).destroy
   @tweet = Tweet.find(params[:tweet_id])
-  @likes = @tweet.change_likes_count(:-)
+  @tweet.change_likes_count(:-)
 
   if request.xhr?
-    erb :'tweets/_create_tweet_like'
+    erb :'tweets/_like_form', layout: false,  locals: {tweet: @tweet}
   else
     redirect '/'
   end
@@ -73,7 +73,7 @@ post '/tweets/:tweet_id/retweets' do
   original_tweet.change_retweet_count(:+)
 
   if request.xhr?
-    erb :'tweets/_retweet_destroy', layout:false, locals: { tweet: original_tweet }
+    erb :'tweets/_retweet_form', layout:false, locals: { tweet: original_tweet }
   else
     redirect '/'
   end
@@ -91,7 +91,7 @@ delete '/tweets/:tweet_id/retweets' do
   original_tweet = Tweet.find(params[:tweet_id])
 
   if request.xhr?
-    erb :'tweets/_retweet_create', layout:false, locals: { tweet: original_tweet }
+    erb :'tweets/_retweet_form', layout:false, locals: { tweet: original_tweet }
   else
     redirect '/'
   end

@@ -1,28 +1,16 @@
-<div class="pop-up-users-container">
-  <div class="popup-position">
-    <div class="popup-wrapper">
-
-      <div class="popup-container">
-        <button class="popup-close">X</button>
-
-
-
-        <% @users.each do |user| %>
-
-        <div class="popup-user-container">
-          <% if current_user.user_followed?(user) %>
-            <%= erb :'users/_display_unfollow_user_form', layout: false, locals: {user: user} %>
-          <% else %>
-            <%= erb :'users/_display_follow_user_form', layout: false, locals: {user: user} %>
-          <% end %>
-        </div>
-
+<div class="popup">
+  <div class="popup-content max-height">
+    <div class="x-button">X</div>
+    <div class="scrollable">
+      <% @users.each do |user| %>
+      <div class="suggested-user-container">
+        <% if current_user.user_followed?(user) %>
+        <%= erb :'users/_display_unfollow_user_form', layout: false, locals: {user: user} %>
+        <% else %>
+        <%= erb :'users/_display_follow_user_form', layout: false, locals: {user: user} %>
         <% end %>
-
-
       </div>
-
-
+    <% end %>
     </div>
   </div>
 </div>

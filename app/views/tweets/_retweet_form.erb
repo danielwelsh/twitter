@@ -1,0 +1,17 @@
+<div class="retweet-functionality">
+<% if tweet.own_tweet?(current_user) %>
+  <button disabled>&#9851;</button>
+  <a id="retweet-count" href="<%= "/tweets/#{tweet.id}/retweets" %>"><%= tweet.retweet_count %></a>
+<% else %>
+  <form class="retweet-form" action="<%= "/tweets/#{tweet.id}/retweets" %>" method="POST">
+  <% if tweet.retweeted_by_self?(current_user) %>
+    <input type="hidden" name="_method" value="DELETE">
+    <button class="green" type="submit" >&#9851;</button>
+  <% else %>
+    <input type="hidden" name="original_tweet_user_id" value="<%= tweet.user_id %>">
+    <button type="submit" >&#9851;</button>
+  <% end %>
+  </form>
+    <a id="retweet-count" href="<%= "/tweets/#{tweet.id}/retweets" %>"><%= tweet.retweet_count %></a>
+<% end %>
+</div>
