@@ -296,6 +296,7 @@ input  {
 
 .tweet-top-half {
   display: flex;
+  padding-right: 15px;
 }
 
 .left-col {
@@ -332,7 +333,7 @@ a.tweet-user-name:hover + div.hover-profile {
 }
 
 .tweet-text {
-  font-size: 20px;
+  font-size: 16px;
   margin-bottom: 10px;
 }
 
@@ -351,7 +352,7 @@ a.tweet-user-name:hover + div.hover-profile {
 }
 
 .tweet-user-name {
-  font-size:  20px;
+  font-size:  16px;
   font-weight: bold;
   color: #326ada;
 }
@@ -367,8 +368,9 @@ a.tweet-user-name:hover + div.hover-profile {
 }
 
 .gif-container img {
-  border: 2px solid rgba(0,0,0,0.5);
+  border: 1px solid rgba(0,0,0,0.2);
   border-radius: 8px;
+  width: 100%
 }
 
 .outer-shrinking-container {
@@ -877,10 +879,12 @@ a.tweet-user-name:hover + div.hover-profile {
 #gif-results {
   margin-right: 15px;
   margin-bottom: 20px;
-  width: 100%;
 }
 
-
+embed {
+  width: 100%;
+  border-radius: 8px;
+}
 
 
 

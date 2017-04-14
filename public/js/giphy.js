@@ -3,6 +3,7 @@ var gifCategories;
 
 //CALLED WHEN WANTING TO SHOW GIFS WHEN SEARCHING
 function searchGIPHY(e) {
+  console.log('searching')
   e.preventDefault();
   var userSearch = $("[name='gif-search']").val()
   if (userSearch == "") {
@@ -20,7 +21,9 @@ function searchGIPHY(e) {
     for (var i = 0; i < response.pagination.count; i++) {
       var gifURL = response.data[i].images.fixed_width.url
       var embedURL = response.data[i].embed_url
-      $('#gif-categories').append(`<div class="gif-category"><button style="background-image:url('${gifURL}')" data-gif-embed-url="${embedURL}"></button></div>`)
+      var gifID = response.data[i].id
+      var hotlinkURL = `https://media.giphy.com/media/${gifID}/giphy.gif`
+      $('#gif-categories').append(`<div class="gif-category"><button style="background-image:url('${gifURL}')" data-gif-embed-url="${embedURL}" data-hotlink-url="${hotlinkURL}"></button></div>`)
     }
   })
 
@@ -57,6 +60,8 @@ function showGIFsInCategory(e) {
 }
 
 function addGIFToForm(e) {
+  console.log("i think I made it here DAN MY MAN")
+  debugger;
   e.preventDefault();
   var embedURL = this.dataset.gifEmbedUrl
   var hotlinkURL = this.dataset.hotlinkUrl
