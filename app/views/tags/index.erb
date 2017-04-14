@@ -1,0 +1,5 @@
+<div class="trending-container">
+  <% @trending_tags.each do |tag_data| %>
+    <%= erb :'/tags/show', layout: false, locals: {tag_data: tag_data} %>
+  <% end %>
+</div>
