@@ -12,12 +12,12 @@ end
 get '/tags/:tag_id' do
   num = params[:num_tweets].to_i
   @tag = Tag.find(params[:tag_id])
-  @tweets = @tag.tweets
+  @tweets = @tag.tweets[num...(num + 10)]
 
   #XHR needs to be implemented
   if request.xhr?
     content_type :html
-    erb :'/tags/show', layout: false
+    erb :'/tweets/index', layout: false
   else
     erb :'/tags/show'
   end
