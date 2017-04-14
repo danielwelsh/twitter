@@ -1,6 +1,10 @@
 # ADD A TOTAL_TWEETS AND TOTAL_FOLLOWERS AND TOTAL_FOLLOWINGS for a user
 require 'json'
 
+get '/tweets' do
+  @tweets = current_user.get_landing_page_tweets
+end
+
 post '/tweets' do
   @tweet = Tweet.new(user: current_user, tweet: params[:tweet])
   if @tweet.save
