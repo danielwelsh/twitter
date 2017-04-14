@@ -1,4 +1,5 @@
 <div class="suggested-users-container section-borders">
+  <h1 id="suggested-users">Suggested Users</h1>
   <% @suggested_users.each do |suggested_user| %>
     <%= erb :'/users/_display_suggested_user', locals: { suggested_user: suggested_user } %>
   <% end %>

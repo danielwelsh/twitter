@@ -276,10 +276,41 @@ input  {
   color: green;
 }
 
+.retweet-info {
+  margin-left: 40px;
+  color: #657786;
+}
+
+.retweet-info a {
+  color: #657786;
+}
+
+.retweet-info a:hover {
+  color: #1b95e0;;
+}
+
+.retweet-info button.green {
+  margin: 0;
+  color: green;
+}
+
+.tweet-top-half {
+  display: flex;
+}
+
+.left-col {
+  flex-shrink: 0;
+  margin-top: 8px;
+}
+
+.right-col {
+  margin-left: 5px;
+}
+
 
 .tweet-info {
   margin-bottom: 10px;
-  padding: 5px;
+  padding: 5px 0;
   position: relative;
 }
 
@@ -300,11 +331,9 @@ a.tweet-user-name:hover + div.hover-profile {
   box-shadow: 10px 10px 5px #888888;
 }
 
-.tweet-text-name
-
 .tweet-text {
-  padding: 20px 0;
   font-size: 20px;
+  margin-bottom: 10px;
 }
 
 .tweet-extra-info {
@@ -317,6 +346,10 @@ a.tweet-user-name:hover + div.hover-profile {
   text-decoration: underline;
 }
 
+.tweet-container button.reply-button {
+  margin-left: 0
+}
+
 .tweet-user-name {
   font-size:  20px;
   font-weight: bold;
@@ -326,12 +359,30 @@ a.tweet-user-name:hover + div.hover-profile {
 .tweet-interaction {
   display: flex;
   justify-content: space-between;
+  margin-top: 10px;
+}
+
+.col-6.tweet-interaction {
+  padding-left: 0;
+}
+
+.gif-container img {
+  border: 2px solid rgba(0,0,0,0.5);
+  border-radius: 8px;
+}
+
+.outer-shrinking-container {
+  margin-top: 20px;
+  display: flex;
 }
 
 .retweet-functionality, .like-functionality, .reply-functionality {
   display: flex;
   align-items: center;
 }
+
+
+
 
 
 .create-tweet-form-container {
@@ -612,6 +663,15 @@ a.tweet-user-name:hover + div.hover-profile {
   padding-left: 10px;
 }
 
+#suggested-users {
+  color: #66757f;
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 22px;
+  padding-left: 15px;
+  margin-bottom: 20px;
+}
+
 .trending-container {
   margin-top: 7.5px;
 }
@@ -621,11 +681,13 @@ a.tweet-user-name:hover + div.hover-profile {
   padding: 1px 10px;
   font-size: 18px;
   margin-bottom: 10px;
+  margin-left: 10px;
 }
 
 .tag-container a {
   padding: 0;
   margin: 0;
+  color: #990000;
 }
 
 .tag-container p {
@@ -648,12 +710,37 @@ a.tweet-user-name:hover + div.hover-profile {
   color: #657786;
 }
 
+#tag-title {
+  font-size: 48px;
+  font-weight: bold;
+  color: #657786;
+}
+
 #loader-container {
   border-top: none;
   padding: 15px 0;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+
+.user-info-profile-page {
+ margin: auto;
+ width: 800px;
+}
+
+.user-profile-page-background img {
+  margin: auto;
+}
+
+.user-profile-tweets {
+  margin: auto;
+  width: 50%;
+}
+
+.user-info-profile-page {
+  margin-bottom: 20px;
 }
 
 
