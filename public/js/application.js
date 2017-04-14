@@ -130,7 +130,17 @@ $(document).ready(function() {
 
   function deleteSuggestedUser (e) {
     e.preventDefault();
-    debugger
+    $(this).parent().parent().remove()
+    $.ajax({
+      url: url,
+      type: 'get'
+    })
+    .response(function () {
+
+    })
+    .done(function () {
+
+    })
   }
 
   $('.suggested-users-container').on('click', '.delete-suggested-user-button', deleteSuggestedUser);
