@@ -60,6 +60,11 @@ delete '/:handle/follow'  do
 end
 
 
+#Gets a single suggested user
+get '/suggested_users' do
+    @suggested_users = current_user.get_suggested_users.sample
+
+end
 
 
 
