@@ -2,7 +2,17 @@
 require 'json'
 
 get '/tweets' do
-  @tweets = current_user.get_landing_page_tweets
+  num = params[:tweets]
+  if request.xhr?
+    @tweets = current_user.get_landing_page_tweets[num...(num + 25)]
+    response = ''
+    @tweets.each do |tweet|
+      response += erb :'/tweets/show', layout: false, locals: { tweet: tweet}
+    end
+    response
+  else
+    redirect '/'
+  end
 end
 
 post '/tweets' do
