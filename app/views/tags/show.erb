@@ -1,6 +1,8 @@
-<div class="tag-container">
-  <a href="<%= "/tags/#{tag_data[0].id}" %>"><%= "#{tag_data[0].tag}" %></a>
-  <p><%= tag_data[1] %> Tweets</p>
-</div>
-
-
+  <div class="col-3">
+  </div>
+  <div class="col-6">
+    <h2 id="title">Trending: <%= @tag.tag %></h2>
+    <%= erb :'/tweets/index' %>
+  </div>
+  <div class="col-3">
+  </div>

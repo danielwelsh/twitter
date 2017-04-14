@@ -1,6 +1,10 @@
 <div class="trending-container section-borders">
   <h1 id="trends">Trends</h1>
   <% @trending_tags.each do |tag_data| %>
-    <%= erb :'/tags/show', layout: false, locals: {tag_data: tag_data} %>
+  <div class="tag-container">
+    <a href="<%= "/tags/#{tag_data[0].id}" %>"><%= "#{tag_data[0].tag}" %></a>
+    <p><%= tag_data[1] %> Tweets</p>
+  </div>
   <% end %>
 </div>
+
