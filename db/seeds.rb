@@ -86,6 +86,7 @@ retweets = []
   user_who_retweeted = users.sample
   tweet_to_be_retweeted = tweets.sample
   Tweet.create(original_tweet_id: tweet_to_be_retweeted.id, original_tweet_user_id: tweet_to_be_retweeted.user_id, user: user_who_retweeted)
+  tweet_to_be_retweeted.change_retweet_count(:+)
 end
 
 
@@ -95,6 +96,7 @@ end
   user_who_liked = users.sample
   tweet_to_be_liked = tweets.sample
   LikedTweet.create(user: user_who_liked, tweet: tweet_to_be_liked)
+  tweet_to_be_liked.change_likes_count(:+)
 end
 
 
