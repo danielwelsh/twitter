@@ -100,7 +100,119 @@ $(document).ready(function() {
     toRemove.remove();
   }
 
+  function howManyTweets () {
+    return $('.tweet-container').length
+  }
 
+  function atBottom () {
+    return window.innerHeight + document.body.scrollTop >= document.body.scrollHeight - 1
+  }
+
+  function getMoreTweets (e) {
+    load = false
+    var data = { num_tweets: howManyTweets() }
+
+    $.ajax({
+      url: '/tweets',
+      type: 'get',
+      data: data
+    })
+    .done(function(response) {
+      $('#loader-container').remove()
+      $('.tweets-container').append(response)
+      load = true
+    })
+    .fail(function() {
+      console.log("Cry, something wrong happened")
+    })
+  }
+
+
+  function deleteSuggestedUser (e) {
+    e.preventDefault();
+    $(this).parent().parent().remove()
+
+    $.ajax({
+      url: '/suggested_user',
+      type: 'get'
+    })
+    .done(function (response) {
+      $('.suggested-users-container').append(response)
+
+    })
+    .done(function () {
+
+    })
+  }
+
+  function followUser (e) {
+    e.preventDefault();
+    var data = $(this).serialize();
+    var url = $(this)[0].action;
+    var type = $(this)[0].method;
+    var insertLocation = $(this);
+    $.ajax({
+      url: url,
+      type: type,
+      data: data
+    })
+    .done(function (response) {
+      insertLocation.replaceWith(response);   
+    })
+    .fail(function () {
+      console.log("Something has failed here")
+    }) 
+  }
+
+
+  function loginUser (e) {
+    e.preventDefault();
+    var data = $(this).serialize();
+    var url = $(this)[0].action;
+    var type = $(this)[0].method;
+    var insertLocation = $(this).children()[0]
+    $.ajax({
+      url: url,
+      type: type,
+      data: data
+    })
+    .done(function (response) {
+      console.log(response)
+      debugger
+      response = JSON.parse(response)
+      if (response.error) {
+        $(insertLocation).html(response.error)
+      } else {
+        window.location.replace("/");
+      }
+    })
+    .fail(function () {
+      console.log("Something has failed here")
+    })
+  }
+
+  $(document).on('submit', '#login-form', loginUser)
+
+  $(document).on('submit', '.unfollow-form', followUser)
+  $(document).on('submit', '.follow-form', followUser)
+  
+
+  $('.suggested-users-container').on('click', '.delete-suggested-user-button', deleteSuggestedUser);
+  // Applies the listener scrolling
+  $(document).on('scroll', function(e) {
+    console.log(atBottom())
+    if (load) {
+      if (atBottom()) {
+        console.log("ho shit we made it")
+          $('.tweets-container').append(`
+      <div id="loader-container" class="section-borders">
+        <img src="/images/loader.gif" alt="">
+      </div>
+        `)
+        getMoreTweets();
+      }
+    }
+  });
   $('.tweets-container').on('mouseenter', '.tweet-user-name', displayHoverProfile);
   $('.tweets-container').on('submit', '.like-form', likeListener)
   $('.tweets-container').on('submit', '.retweet-form', retweetListener)
@@ -113,7 +225,7 @@ $(document).ready(function() {
 
 });
 
-
+var load = true
 
 
 

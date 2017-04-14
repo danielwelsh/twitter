@@ -1,7 +1,8 @@
 get '/' do
   if current_user
-    @tweets = current_user.get_landing_page_tweets
-    @suggested_users = current_user.get_suggested_users
+    @tweets = current_user.get_landing_page_tweets[0...10]
+    @suggested_users = current_user.get_suggested_users[0...4]
+    @trending_tags = Tag.get_trending_tags
     erb :'users/index'
   else
     erb :'users/new'
@@ -15,11 +16,13 @@ end
 
 post '/login' do
   @user = User.find_by(handle: params[:handle])
-  if @user && @user.authenticate(params[:password])
-    login_user # redirects inside helper
-  else
-    @errors = {login: "Incorrect handle/password"}
-    erb :'users/new'
+  if request.xhr?
+    if @user && @user.authenticate(params[:password])
+      login_user
+      {valid: true}.to_json
+    else
+      {error: "Incorrect handle/password"}.to_json
+    end
   end
 end
 
@@ -43,4 +46,5 @@ end
 
 post '/logout' do
   logout_user
+  redirect '/'
 end
