@@ -12,7 +12,7 @@ get '/tweets' do
 end
 
 post '/tweets' do
-  @tweet = Tweet.new(user: current_user, tweet: params[:tweet])
+  @tweet = Tweet.new(user: current_user, tweet: params[:tweet], gif_url: params[:gif_url])
   if @tweet.save
     if request.xhr?
       erb :'/tweets/show', layout: false, locals: { tweet: @tweet}
