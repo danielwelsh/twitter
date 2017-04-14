@@ -104,6 +104,10 @@ $(document).ready(function() {
     return $('.tweet-container').length
   }
 
+  function atBottom () {
+    return window.innerHeight + document.body.scrollTop >= document.body.scrollHeight - 50
+  }
+
   function getMoreTweets (e) {
     var data = { tweets: howManyTweets() }
 
@@ -113,17 +117,13 @@ $(document).ready(function() {
       data: data
     })
     .done(function(response) {
-
+      $('.tweets-container').append(response)
     })
     .fail(function() {
-
+      console.log("Cry, something wrong happened")
     })
   }
 
-
-  function atBottom () {
-    return window.innerHeight + document.body.scrollTop >= document.body.scrollHeight - 50
-  }
 
   // Applies the listener scrolling
   $(document).on('scroll', function(e) {
