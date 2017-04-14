@@ -1,9 +1,5 @@
 $(document).ready(function() {
-  // This is called after the document has loaded in its entirety
-  // This guarantees that any elements we bind to will exist on the page
-  // when we try to bind to them
 
-  // See: http://docs.jquery.com/Tutorials:Introducing_$(document).ready()
   function displayHoverProfile() {
     var insertLocation = $(this)
     var URL = '/hover' + $(this).attr('href');
@@ -108,6 +104,7 @@ $(document).ready(function() {
     return window.innerHeight + document.body.scrollTop >= document.body.scrollHeight - 1
   }
 
+  // Refactor this method to handle profile tweets and tags tweets
   function getMoreTweets (e) {
     load = false
     var data = { num_tweets: howManyTweets() }
@@ -127,6 +124,25 @@ $(document).ready(function() {
     })
   }
 
+
+  function getMoreTweetsForTag (e) {
+    load = false
+    var data = { num_tweets: howManyTweets() }
+
+    $.ajax({
+      url: '/tweets',
+      type: 'get',
+      data: data
+    })
+    .done(function(response) {
+      $('#loader-container').remove()
+      $('.tweets-container').append(response)
+      load = true
+    })
+    .fail(function() {
+      console.log("Cry, something wrong happened")
+    })
+  }
 
   function deleteSuggestedUser (e) {
     e.preventDefault();
@@ -184,6 +200,8 @@ $(document).ready(function() {
       }
     }
   });
+
+
   $('.tweets-container').on('mouseenter', '.tweet-user-name', displayHoverProfile);
   $('.tweets-container').on('submit', '.like-form', likeListener)
   $('.tweets-container').on('submit', '.retweet-form', retweetListener)
