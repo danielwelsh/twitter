@@ -6,12 +6,11 @@ helpers do
 
   def login_user
     session[:user_id] = @user.id
-    redirect '/'
   end
 
   def logout_user
     session[:user_id] = nil
-    redirect '/'
+
   end
 
   def password_input_validation(password, password_confirmation)
