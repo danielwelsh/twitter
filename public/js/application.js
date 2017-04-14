@@ -131,11 +131,13 @@ $(document).ready(function() {
   function deleteSuggestedUser (e) {
     e.preventDefault();
     $(this).parent().parent().remove()
+
     $.ajax({
-      url: url,
+      url: '/suggested_user',
       type: 'get'
     })
-    .response(function () {
+    .done(function (response) {
+      $('.suggested-users-container').append(response)
 
     })
     .done(function () {

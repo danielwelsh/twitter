@@ -64,7 +64,7 @@ class User < ActiveRecord::Base
   end
 
   def get_profile_page_tweets
-    self.tweets
+    self.tweets.order(id: :desc)
   end
 
   def get_nested_objects(self_association_method, pluck_field_sym, class_name)
