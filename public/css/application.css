@@ -710,6 +710,12 @@ a.tweet-user-name:hover + div.hover-profile {
   color: #657786;
 }
 
+#tag-title {
+  font-size: 48px;
+  font-weight: bold;
+  color: #657786;
+}
+
 #loader-container {
   border-top: none;
   padding: 15px 0;
