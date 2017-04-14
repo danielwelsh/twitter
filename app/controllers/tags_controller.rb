@@ -9,5 +9,7 @@ end
 
 #Show for a given tag
 get '/tags/:tag_id' do
+  @tag = Tag.find(params[:tag_id])
+  @tweets = Tag.find(params[:tag_id]).tweets
   erb :'/tags/show'
 end

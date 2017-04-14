@@ -23,6 +23,7 @@ header {
   color: black;
   height: 46px;
   border-bottom: 2px solid #c4c4c4;
+  z-index: 10;
 }
 
 nav {
@@ -614,7 +615,7 @@ a.tweet-user-name:hover + div.hover-profile {
 }
 
 .tag-container p {
-  padding-left: 5px;
+  padding: 2px 5px;
   margin: 0;
   font-size: 14px;
   color: #657786;
@@ -626,6 +627,12 @@ a.tweet-user-name:hover + div.hover-profile {
   text-decoration: underline;
 }
 
+
+#title {
+  font-size: 48px;
+  font-weight: bold;
+  color: #657786;
+}
 
 
 

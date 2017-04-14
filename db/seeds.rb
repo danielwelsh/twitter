@@ -69,14 +69,18 @@ users = []
 200.times do |index|
   first_name = Faker::Name.first_name
   last_name = Faker::Name.last_name
-  users << User.create(first_name: first_name, last_name: last_name, handle: first_name, password: 123456, email: "#{first_name}@#{first_name}.com")
+  user = User.new(first_name: first_name, last_name: last_name, handle: first_name, password: 123456, email: "#{first_name}@#{first_name}.com")
+
+  users << user if user.save
 end
 
 
 tweets = []
 #Creating Tweets that belong to users
 2000.times do |index|
-  tweets << Tweet.create(user: users.sample, tweet: tweet_strings.sample)
+  user = users.sample
+  tweet = tweet_strings.sample
+  tweets << Tweet.create!(user: user, tweet: tweet)
 end
 
 
@@ -85,7 +89,7 @@ retweets = []
 500.times do |index|
   user_who_retweeted = users.sample
   tweet_to_be_retweeted = tweets.sample
-  Tweet.create(original_tweet_id: tweet_to_be_retweeted.id, original_tweet_user_id: tweet_to_be_retweeted.user_id, user: user_who_retweeted)
+  Tweet.create!(tweet: "RETWEET", original_tweet_id: tweet_to_be_retweeted.id, original_tweet_user_id: tweet_to_be_retweeted.user_id, user: user_who_retweeted)
   tweet_to_be_retweeted.change_retweet_count(:+)
 end
 
