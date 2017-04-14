@@ -165,6 +165,13 @@ $(document).ready(function() {
   }
 
 
+  function loginUser (e) {
+    e.preventDefault();
+    debugger
+  }
+
+  $(document).on('submit', '#login-form', loginUser)
+
   $(document).on('submit', '.unfollow-form', followUser)
   $(document).on('submit', '.follow-form', followUser)
   

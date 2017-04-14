@@ -56,11 +56,9 @@ a {
   display: flex;
   align-items: center;
   flex-direction: column;
+  max-height: 500px;
 }
 
-.popup-content.max-height {
-  height: 500px;
-}
 
 .scrollable {
   padding: 20px 15px;
