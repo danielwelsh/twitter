@@ -286,12 +286,13 @@ input  {
 }
 
 .right-col {
+  margin-left: 5px;
 }
 
 
 .tweet-info {
   margin-bottom: 10px;
-  padding: 5px;
+  padding: 5px 0;
   position: relative;
 }
 
@@ -312,10 +313,7 @@ a.tweet-user-name:hover + div.hover-profile {
   box-shadow: 10px 10px 5px #888888;
 }
 
-.tweet-text-name
-
 .tweet-text {
-  padding: 20px 0;
   font-size: 20px;
 }
 
@@ -329,6 +327,10 @@ a.tweet-user-name:hover + div.hover-profile {
   text-decoration: underline;
 }
 
+.tweet-container button.reply-button {
+  margin-left: 0
+}
+
 .tweet-user-name {
   font-size:  20px;
   font-weight: bold;
@@ -338,6 +340,11 @@ a.tweet-user-name:hover + div.hover-profile {
 .tweet-interaction {
   display: flex;
   justify-content: space-between;
+  margin-top: 10px;
+}
+
+.col-6.tweet-interaction {
+  padding-left: 0;
 }
 
 .retweet-functionality, .like-functionality, .reply-functionality {

@@ -22,13 +22,12 @@
       <div class="tweet-text">
         <%= "ACTUAL TWEET ID: #{actual_tweet_id}, ACTUAL CREATED AT: #{actual_created_at}, #{parse_tweet_for_hashtags(tweet.tweet)}" %>
       </div>
+      <div class="col-6 tweet-interaction">
+        <%= erb :'/tweets/_reply_form', layout: false, locals: {tweet: tweet} %>
+        <%= erb :'/tweets/_like_form', layout: false, locals: {tweet: tweet} %>
+        <%= erb :'/tweets/_retweet_form', layout: false, locals: {tweet: tweet} %>
+      </div>
     </div>
-  </div>
-
-  <div class="col-6 tweet-interaction">
-    <%= erb :'/tweets/_reply_form', layout: false, locals: {tweet: tweet} %>
-    <%= erb :'/tweets/_like_form', layout: false, locals: {tweet: tweet} %>
-    <%= erb :'/tweets/_retweet_form', layout: false, locals: {tweet: tweet} %>
   </div>
   <div style="clear:both"></div>
 </div>
