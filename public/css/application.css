@@ -532,6 +532,7 @@ a.tweet-user-name:hover + div.hover-profile {
   margin: 15px;
   width: 300px;
   flex-shrink: 0;
+  margin-bottom: 2px;
 }
 
 
@@ -592,10 +593,10 @@ a.tweet-user-name:hover + div.hover-profile {
 
 #trends {
   color: #66757f;
-  font-size: 18px;
+  font-size: 24px;
   font-weight: 300;
   line-height: 22px;
-  padding-left: 5px;
+  padding-left: 10px;
 }
 
 .trending-container {
