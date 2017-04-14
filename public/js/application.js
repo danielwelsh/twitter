@@ -167,7 +167,28 @@ $(document).ready(function() {
 
   function loginUser (e) {
     e.preventDefault();
-    debugger
+    var data = $(this).serialize();
+    var url = $(this)[0].action;
+    var type = $(this)[0].method;
+    var insertLocation = $(this).children()[0]
+    $.ajax({
+      url: url,
+      type: type,
+      data: data
+    })
+    .done(function (response) {
+      console.log(response)
+      debugger
+      response = JSON.parse(response)
+      if (response.error) {
+        $(insertLocation).html(response.error)
+      } else {
+        window.location.replace("/");
+      }
+    })
+    .fail(function () {
+      console.log("Something has failed here")
+    })
   }
 
   $(document).on('submit', '#login-form', loginUser)

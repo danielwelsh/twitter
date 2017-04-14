@@ -18,13 +18,11 @@ post '/login' do
   @user = User.find_by(handle: params[:handle])
   if request.xhr?
     if @user && @user.authenticate(params[:password])
-      login_user # redirects inside helper
+      login_user
+      {valid: true}.to_json
     else
-      @errors = {login: "Incorrect handle/password"}
-      erb :'users/new'
+      {error: "Incorrect handle/password"}.to_json
     end
-  else
-    redirect '/'
   end
 end
 
@@ -48,4 +46,5 @@ end
 
 post '/logout' do
   logout_user
+  redirect '/'
 end
