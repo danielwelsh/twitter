@@ -105,19 +105,25 @@ $(document).ready(function() {
   }
 
   function getMoreTweets (e) {
+    var data = { tweets: howManyTweets() }
 
+    $.ajax({
+      url: '/tweets',
+      type: 'get',
+      data: data
+    })
+    .done(function(response) {
+
+    })
+    .fail(function() {
+
+    })
   }
 
-
-  function scrollingListener (e) {
-
-  };
 
   function atBottom () {
     return window.innerHeight + document.body.scrollTop >= document.body.scrollHeight - 50
   }
-
-
 
   // Applies the listener scrolling
   $(document).on('scroll', function(e) {
