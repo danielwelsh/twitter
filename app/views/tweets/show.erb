@@ -3,6 +3,7 @@
   <% actual_tweet_id = tweet.id; actual_created_at = tweet.created_at; retweet = tweet; retweet_id = tweet.id; retweeter = tweet.user; tweet = tweet.get_original_tweet; %>
   <% retweeter_name = 'You' if retweeter.full_name == current_user.full_name %>
   <div class="retweet-info">
+    <button class="green" disabled>&#9851;</button>
     <a id="tweet-user-name" href="<%="/#{retweeter.handle}" %>"><%= retweeter_name ? retweeter_name : retweeter.full_name %></a> Retweeted
   </div>
 <% end %>
