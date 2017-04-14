@@ -344,16 +344,26 @@ a.tweet-user-name:hover + div.hover-profile {
 #create-tweet-form {
   display: flex;
   width: 100%;
+  align-content: start;
   align-items: center;
 }
 
-#create-tweet-form input[name="tweet"] {
+#create-tweet-form input[name="tweet"], #create-tweet-form textarea {
   height: 32px;
   font-size: 14px;
   padding: 8px 10px;
   border: 1px solid #D69999;
   border-radius: 3px;
   width: 100%;
+  margin-right: 15px;
+}
+
+.create-tweet-form-container.taller {
+  height: 150px;
+}
+
+#create-tweet-form.taller textarea {
+  height: 60px;
 }
 
 #create-tweet-form button {
@@ -654,6 +664,77 @@ a.tweet-user-name:hover + div.hover-profile {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+#gif-module {
+  display: flex;
+  flex-direction: column;
+  width: 445px;
+}
+
+#gif-module form {
+  display: flex;
+  width: 100%;
+}
+
+.gif-category {
+  position: relative;
+  margin: 2.5px;
+  height: 113px;
+  width: 200px;
+}
+
+#gif-categories {
+  border: 5px solid pink;
+  display:flex;
+  flex-wrap:wrap;
+  overflow: auto;
+  max-height: 400px;
+}
+
+#gif-categories button {
+    border: none;
+    padding: 0;
+    margin: 5px;
+    background: none;
+    box-shadow: none;
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.overlay {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: absolute;
+  background: rgba(0,0,0,0.45);
+  margin: 5px;
+  cursor: pointer;
+}
+
+.overlayed-gif-text {
+  font-size: 18px;
+  font-weight: bold;
+  text-shadow: 5px 5px 5px black;
+  position: absolute;
+  color:white;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+#gif-module form input::before {
+  content: "⚲";
+  /*transform: rotate(45deg);*/
+
+}
+
+#magnifying-glass {
+  transform: rotate(45deg);
 }
 
 
