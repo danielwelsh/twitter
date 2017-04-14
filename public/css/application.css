@@ -799,7 +799,11 @@ a.tweet-user-name:hover + div.hover-profile {
   transform: rotate(45deg);
 }
 
-
+#gif-results {
+  margin-right: 15px;
+  margin-bottom: 20px;
+  width: 100%;
+}
 
 
 
