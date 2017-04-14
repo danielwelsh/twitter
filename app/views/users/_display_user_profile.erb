@@ -1,0 +1,26 @@
+<div class="section-borders">
+  <div class="side-profile-user-background"><img src="<%= @user.profile_background_image_location %>" width="100%"></div>
+  <div class="side-profile-user-info">
+    <div class="side-profile-photo-container"><img class="side-profile-photo"src="<%= @user.profile_image_location %>" height="72px"></div>
+    <div class="side-profile-general-details">
+      <span class="side-profile-user-full-name"><a href="/<%= @user.handle %>"><%= @user.full_name %></a></span>
+      <span class="side-profile-user-handle">@<a href="/<%= @user.handle %>"><%= @user.handle %></a></span>
+    </div>
+  </div>
+  <div class="side-profile-profile-stats">
+    <ul>
+      <li>
+        <span>Tweets</span>
+        <a href=""><%= @user.get_tweets_count %></a>
+      </li>
+      <li>
+        <span>Following</span>
+        <a href="<%= "/#{@user.handle}/followings" %>"><%= @user.get_followings_count %></a>
+      </li>
+      <li>
+        <span>Followers</span>
+        <a href="<%= "/#{@user.handle}/followers" %>"><%= @user.get_followers_count %></a>
+      </li>
+    </ul>
+  </div>
+</div>
