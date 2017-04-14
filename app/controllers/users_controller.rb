@@ -1,3 +1,15 @@
+
+#Gets a single suggested user
+get '/suggested_user' do
+  if request.xhr?
+    suggested_user = current_user.get_suggested_users.sample
+    content_type :html
+    erb :'/users/_display_suggested_user', layout: false, locals: { suggested_user: suggested_user}
+  else
+    redirect '/'
+  end
+end
+
 get '/popup' do
   erb :'users/_login'
 end
@@ -59,12 +71,6 @@ delete '/:handle/follow'  do
   redirect '/'
 end
 
-
-#Gets a single suggested user
-get '/suggested_users' do
-    @suggested_users = current_user.get_suggested_users.sample
-
-end
 
 
 
