@@ -37,6 +37,8 @@ a {
   text-decoration: none;
   color: #1b95e0;
 }
+
+
 .popup {
   top:0;
   left:0;
@@ -115,9 +117,6 @@ input  {
   margin: 15px 0;
 }
 
-#logout-form button {
-  margin: 0;
-}
 
 .disable-link {
   pointer-events: none;
@@ -175,16 +174,15 @@ input  {
   color: black;
 }
 #logout-form button {
-  font-size:12px;
-  font-weight: bold;
-  padding: 0 25px;
+  font-size:14px;
+  line-height: 14px;
+  padding: 10px 25px;
   margin: 0;
   height: auto;
-  /*text-transform: uppercase;*/
 }
 
 #logout-form button:hover {
-  text-decoration: underline;
+  background-color: #0084b4;
 }
 
 #login-form input {
@@ -361,8 +359,12 @@ a.tweet-user-name:hover + div.hover-profile {
 #create-tweet-form button {
   margin: 0 15px;
   height: 32px;
-  padding: 0 15px;
+  padding: 5px 15px;
+  font-size: 14px;
+}
 
+#create-tweet-form button:hover {
+  background-color: #0084b4;
 }
 
 .profile-image {
@@ -582,7 +584,7 @@ a.tweet-user-name:hover + div.hover-profile {
 }
 
 .unfollow-button {
-  color: #14171a;
+  color: white;
   font-size: 13px;
   font-weight: bold;
   height: 30px;
