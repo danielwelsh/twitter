@@ -16,11 +16,15 @@ end
 
 post '/login' do
   @user = User.find_by(handle: params[:handle])
-  if @user && @user.authenticate(params[:password])
-    login_user # redirects inside helper
+  if request.xhr?
+    if @user && @user.authenticate(params[:password])
+      login_user # redirects inside helper
+    else
+      @errors = {login: "Incorrect handle/password"}
+      erb :'users/new'
+    end
   else
-    @errors = {login: "Incorrect handle/password"}
-    erb :'users/new'
+    redirect '/'
   end
 end
 
