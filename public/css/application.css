@@ -315,6 +315,7 @@ a.tweet-user-name:hover + div.hover-profile {
 
 .tweet-text {
   font-size: 20px;
+  margin-bottom: 10px;
 }
 
 .tweet-extra-info {
@@ -345,6 +346,16 @@ a.tweet-user-name:hover + div.hover-profile {
 
 .col-6.tweet-interaction {
   padding-left: 0;
+}
+
+.gif-container img {
+  border: 2px solid rgba(0,0,0,0.8);
+  border-radius: 8px;
+}
+
+.outer-shrinking-container {
+  margin-top: 20px;
+  display: flex;
 }
 
 .retweet-functionality, .like-functionality, .reply-functionality {

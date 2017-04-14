@@ -20,8 +20,16 @@
       </div>
 
       <div class="tweet-text">
-        <%= "ACTUAL TWEET ID: #{actual_tweet_id}, ACTUAL CREATED AT: #{actual_created_at}, #{parse_tweet_for_hashtags(tweet.tweet)}" %>
+        <%= "#{parse_tweet_for_hashtags(tweet.tweet)}" %>
       </div>
+
+      <% if tweet.gif_url %>
+        <div class="outer-shrinking-container">
+          <div class="gif-container">
+            <img src=" <%= tweet.gif_url %> " >
+          </div>
+        </div>
+      <% end %>
       <div class="col-6 tweet-interaction">
         <%= erb :'/tweets/_reply_form', layout: false, locals: {tweet: tweet} %>
         <%= erb :'/tweets/_like_form', layout: false, locals: {tweet: tweet} %>
