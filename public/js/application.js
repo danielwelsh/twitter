@@ -145,18 +145,28 @@ $(document).ready(function() {
     })
   }
 
-  function unfollowUser (e) {
-    e.preventDefault();
-    debugger
-  }
-
   function followUser (e) {
     e.preventDefault();
-    debugger
+    var data = $(this).serialize();
+    var url = $(this)[0].action;
+    var type = $(this)[0].method;
+    var insertLocation = $(this);
+    $.ajax({
+      url: url,
+      type: type,
+      data: data
+    })
+    .done(function (response) {
+      insertLocation.replaceWith(response);   
+    })
+    .fail(function () {
+      console.log("Something has failed here")
+    }) 
   }
 
-  $('body').on('submit', '.unfollow-form', unfollowUser)
-  $('body').on('submit', '.follow-form', followUser)
+
+  $(document).on('submit', '.unfollow-form', followUser)
+  $(document).on('submit', '.follow-form', followUser)
   
 
   $('.suggested-users-container').on('click', '.delete-suggested-user-button', deleteSuggestedUser);
