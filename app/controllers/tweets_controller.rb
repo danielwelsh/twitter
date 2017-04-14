@@ -1,7 +1,7 @@
 # ADD A TOTAL_TWEETS AND TOTAL_FOLLOWERS AND TOTAL_FOLLOWINGS for a user
 
 get '/tweets' do
-  num = params[:tweets].to_i
+  num = params[:num_tweets].to_i
   if request.xhr?
     @tweets = current_user.get_landing_page_tweets[num...(num + 25)]
     content_type :html

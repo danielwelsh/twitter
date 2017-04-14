@@ -105,11 +105,12 @@ $(document).ready(function() {
   }
 
   function atBottom () {
-    return window.innerHeight + document.body.scrollTop >= document.body.scrollHeight - 50
+    return window.innerHeight + document.body.scrollTop >= document.body.scrollHeight - 1
   }
 
   function getMoreTweets (e) {
-    var data = { tweets: howManyTweets() }
+    load = false
+    var data = { num_tweets: howManyTweets() }
 
     $.ajax({
       url: '/tweets',
@@ -117,7 +118,9 @@ $(document).ready(function() {
       data: data
     })
     .done(function(response) {
+      $('#loader-container').remove()
       $('.tweets-container').append(response)
+      load = true
     })
     .fail(function() {
       console.log("Cry, something wrong happened")
@@ -128,9 +131,16 @@ $(document).ready(function() {
   // Applies the listener scrolling
   $(document).on('scroll', function(e) {
     console.log(atBottom())
-    if (atBottom()) {
-      console.log("ho shit we made it")
-      getMoreTweets();
+    if (load) {
+      if (atBottom()) {
+        console.log("ho shit we made it")
+          $('.tweets-container').append(`
+      <div id="loader-container" class="section-borders">
+        <img src="/images/loader.gif" alt="">
+      </div>
+        `)
+        getMoreTweets();
+      }
     }
   });
 
@@ -149,7 +159,7 @@ $(document).ready(function() {
 
 });
 
-
+var load = true
 
 
 
