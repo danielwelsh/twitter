@@ -522,10 +522,6 @@ a.tweet-user-name:hover + div.hover-profile {
   font-size: 18px;
 }
 
-.suggested-users-container {
-
-}
-
 .suggested-user-container, .user-container {
   display: flex;
   margin: 15px;
