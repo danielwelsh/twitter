@@ -7,16 +7,23 @@
   </div>
 <% end %>
 
-  <div class="tweet-info">
-    <a class="tweet-user-name" href="/<%= tweet.user.handle %>"><%= tweet.user.full_name %></a>
-    <a class="tweet-extra-info" href="/<%= tweet.user.handle %>">@<%= tweet.user.handle %></a>
-    <a class="tweet-extra-info" href="/<%= tweet.user.handle %>"><%= tweet.date %></a>
-  </div>
+  <div class="tweet-top-half">
+    <div class="profile-image suggested-user left-col">
+      <img class="suggested-user-photo" src="<%= tweet.user.profile_image_location %>" height="48px">
+    </div>
 
-  <div class="tweet-text">
-    <%= "ACTUAL TWEET ID: #{actual_tweet_id}, ACTUAL CREATED AT: #{actual_created_at}, #{parse_tweet_for_hashtags(tweet.tweet)}" %>
-  </div>
+    <div class="right-col">
+      <div class="tweet-info">
+        <a class="tweet-user-name" href="/<%= tweet.user.handle %>"><%= tweet.user.full_name %></a>
+        <a class="tweet-extra-info" href="/<%= tweet.user.handle %>">@<%= tweet.user.handle %></a>
+        <a class="tweet-extra-info" href="/<%= tweet.user.handle %>"><%= tweet.date %></a>
+      </div>
 
+      <div class="tweet-text">
+        <%= "ACTUAL TWEET ID: #{actual_tweet_id}, ACTUAL CREATED AT: #{actual_created_at}, #{parse_tweet_for_hashtags(tweet.tweet)}" %>
+      </div>
+    </div>
+  </div>
 
   <div class="col-6 tweet-interaction">
     <%= erb :'/tweets/_reply_form', layout: false, locals: {tweet: tweet} %>

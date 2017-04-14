@@ -276,6 +276,18 @@ input  {
   color: green;
 }
 
+.tweet-top-half {
+  display: flex;
+}
+
+.left-col {
+  flex-shrink: 0;
+  margin-top: 8px;
+}
+
+.right-col {
+}
+
 
 .tweet-info {
   margin-bottom: 10px;
@@ -612,6 +624,15 @@ a.tweet-user-name:hover + div.hover-profile {
   padding-left: 10px;
 }
 
+#suggested-users {
+  color: #66757f;
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 22px;
+  padding-left: 15px;
+  margin-bottom: 20px;
+}
+
 .trending-container {
   margin-top: 7.5px;
 }
@@ -670,6 +691,10 @@ a.tweet-user-name:hover + div.hover-profile {
 .user-profile-tweets {
   margin: auto;
   width: 50%;
+}
+
+.user-info-profile-page {
+  margin-bottom: 20px;
 }
 
 
