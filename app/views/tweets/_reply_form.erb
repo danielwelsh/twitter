@@ -1,7 +1,8 @@
-<div class="reply-section">
+<div class="reply-section like-functionality">
   <!-- NEED TO FIX ENTIRE REPLY SECTION AND LOGIC -->
-  <form action="<%= "/tweets/#{tweet.id}/retweet" %>" method="POST">
+  <form class="like-form" action="<%= "/tweets/#{tweet.id}/retweet" %>" method="POST">
     <input type="hidden" name="_method" value="put">
-    <button type="submit">&#8617; Reply</button>
+    <button class="reply-button" type="submit">&#8617;</button>
   </form>
+  <a id="likes-count">0</a>
 </div>
