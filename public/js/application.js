@@ -94,15 +94,21 @@ $(document).ready(function() {
     })
   }
 
+
+
   function deleteUsersPopUp (e) {
     e.preventDefault();
     var toRemove = $(this).parent().parent();
     toRemove.remove();
   }
 
+
+
   function howManyTweets () {
     return $('.tweet-container').length
   }
+
+
 
   function atBottom () {
     return window.innerHeight + document.body.scrollTop >= document.body.scrollHeight - 1
@@ -112,9 +118,13 @@ $(document).ready(function() {
   function getMoreTweets (e) {
     load = false
     var data = { num_tweets: howManyTweets() }
-
+    var homeUrl = "http://localhost:9393/"
+    var url = $(document)[0].URL
+    if (homeUrl == url) {
+      url = "/tweets"
+    }
     $.ajax({
-      url: '/tweets',
+      url: url,
       type: 'get',
       data: data
     })
@@ -128,25 +138,6 @@ $(document).ready(function() {
     })
   }
 
-
-  function getMoreTweetsForTag (e) {
-    load = false
-    var data = { num_tweets: howManyTweets() }
-
-    $.ajax({
-      url: '/tweets',
-      type: 'get',
-      data: data
-    })
-    .done(function(response) {
-      $('#loader-container').remove()
-      $('.tweets-container').append(response)
-      load = true
-    })
-    .fail(function() {
-      console.log("Cry, something wrong happened")
-    })
-  }
 
   function deleteSuggestedUser (e) {
     e.preventDefault();
