@@ -73,7 +73,9 @@ users = []
 200.times do |index|
   first_name = Faker::Name.first_name
   last_name = Faker::Name.last_name
-  user = User.new(first_name: first_name, last_name: last_name, handle: first_name, password: 123456, email: "#{first_name}@#{first_name}.com")
+  profile_image = profile_pics.sample
+
+  user = User.new(first_name: first_name, last_name: last_name, handle: first_name, password: 123456, email: "#{first_name}@#{first_name}.com", profile_image_location: profile_image)
 
   users << user if user.save
 end
@@ -89,11 +91,12 @@ tweets = []
   tweet = tweet_strings.sample
   tweet = Tweet.new(user: user, tweet: tweet)
   tweet.gif_url = gif_url if gif_url
-  tweets << tweet.save
+  if tweet.save
+    tweets << tweet
+  end
 end
 
 
-retweets = []
 #Creating Retweets
 500.times do |index|
   user_who_retweeted = users.sample
