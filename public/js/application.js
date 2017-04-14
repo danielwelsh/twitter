@@ -129,12 +129,11 @@ $(document).ready(function() {
 
 
   function deleteSuggestedUser (e) {
-
+    e.preventDefault();
+    debugger
   }
 
-  // $('suggested-users-container').on('click')
-
-
+  $('.suggested-users-container').on('click', '.delete-suggested-user-button', deleteSuggestedUser);
   // Applies the listener scrolling
   $(document).on('scroll', function(e) {
     console.log(atBottom())
