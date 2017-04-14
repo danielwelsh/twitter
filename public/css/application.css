@@ -626,6 +626,7 @@ a.tweet-user-name:hover + div.hover-profile {
 .tag-container a {
   padding: 0;
   margin: 0;
+  color: #990000;
 }
 
 .tag-container p {
