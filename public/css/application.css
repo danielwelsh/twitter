@@ -4,6 +4,7 @@
 
 * {
   box-sizing: border-box;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
 body {
@@ -246,6 +247,7 @@ input  {
 .section-borders {
   border: 1px solid #e6ecf0;
   border-radius: 3px;
+  background-color: white;
 }
 
 .tweet-container {
@@ -587,10 +589,42 @@ a.tweet-user-name:hover + div.hover-profile {
   border-color: #e6ecf0;
 }
 
+#trends {
+  color: #66757f;
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 22px;
+  padding-left: 5px;
+}
+
+.trending-container {
+  margin-top: 7.5px;
+}
+
+.tag-container {
+  display: block;
+  padding: 1px 10px;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.tag-container a {
+  padding: 0;
+  margin: 0;
+}
+
+.tag-container p {
+  padding-left: 5px;
+  margin: 0;
+  font-size: 14px;
+  color: #657786;
+}
 
 
-
-
+.tag-container a:hover {
+  color: #1DA1F2;
+  text-decoration: underline;
+}
 
 
 
