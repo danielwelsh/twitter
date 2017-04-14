@@ -128,6 +128,13 @@ $(document).ready(function() {
   }
 
 
+  function deleteSuggestedUser (e) {
+
+  }
+
+  // $('suggested-users-container').on('click')
+
+
   // Applies the listener scrolling
   $(document).on('scroll', function(e) {
     console.log(atBottom())
@@ -143,10 +150,6 @@ $(document).ready(function() {
       }
     }
   });
-
-
-
-
   $('.tweets-container').on('mouseenter', '.tweet-user-name', displayHoverProfile);
   $('.tweets-container').on('submit', '.like-form', likeListener)
   $('.tweets-container').on('submit', '.retweet-form', retweetListener)
