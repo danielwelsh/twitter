@@ -108,6 +108,7 @@ $(document).ready(function() {
     return window.innerHeight + document.body.scrollTop >= document.body.scrollHeight - 1
   }
 
+  // Refactor this method to handle profile tweets and tags tweets
   function getMoreTweets (e) {
     load = false
     var data = { num_tweets: howManyTweets() }
@@ -127,6 +128,25 @@ $(document).ready(function() {
     })
   }
 
+
+  function getMoreTweetsForTag (e) {
+    load = false
+    var data = { num_tweets: howManyTweets() }
+
+    $.ajax({
+      url: '/tweets',
+      type: 'get',
+      data: data
+    })
+    .done(function(response) {
+      $('#loader-container').remove()
+      $('.tweets-container').append(response)
+      load = true
+    })
+    .fail(function() {
+      console.log("Cry, something wrong happened")
+    })
+  }
 
   function deleteSuggestedUser (e) {
     e.preventDefault();
@@ -157,11 +177,11 @@ $(document).ready(function() {
       data: data
     })
     .done(function (response) {
-      insertLocation.replaceWith(response);   
+      insertLocation.replaceWith(response);
     })
     .fail(function () {
       console.log("Something has failed here")
-    }) 
+    })
   }
 
 
@@ -191,11 +211,13 @@ $(document).ready(function() {
     })
   }
 
+
+
   $(document).on('submit', '#login-form', loginUser)
 
   $(document).on('submit', '.unfollow-form', followUser)
   $(document).on('submit', '.follow-form', followUser)
-  
+
 
   $('.suggested-users-container').on('click', '.delete-suggested-user-button', deleteSuggestedUser);
   // Applies the listener scrolling
@@ -213,6 +235,9 @@ $(document).ready(function() {
       }
     }
   });
+
+
+
   $('.tweets-container').on('mouseenter', '.tweet-user-name', displayHoverProfile);
   $('.tweets-container').on('submit', '.like-form', likeListener)
   $('.tweets-container').on('submit', '.retweet-form', retweetListener)
