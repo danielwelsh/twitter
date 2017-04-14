@@ -6,5 +6,5 @@ end
 
 def parse_tweet_for_hashtags(tweet_string)
   pattern = /#[a-zA-Z]{3,}/
-  tweet_string = tweet_string.gsub(pattern) { |hash_tag| %Q(<a class="hashtag-link" href="/tag/#{hash_tag}">#{hash_tag}</a>) }
+  tweet_string = tweet_string.gsub(pattern) { |hash_tag| %Q(<a class="hashtag-link" href="/tags/#{Tag.find_by(tag: hash_tag).id}">#{hash_tag}</a>) }
 end

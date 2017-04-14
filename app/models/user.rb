@@ -56,7 +56,11 @@ class User < ActiveRecord::Base
       filtered_followings_tweets = followings_tweets.where(
         "original_tweet_id is null or (original_tweet_id is not null and original_tweet_user_id not in #{ids_string})").order(id: :desc)
     end
-    own_tweets + filtered_followings_tweets
+    User.sort_by_time(own_tweets + filtered_followings_tweets)
+  end
+
+  def self.sort_by_time(tweets)
+    tweets.sort_by{ |tweet| tweet.id }.reverse!
   end
 
   def get_profile_page_tweets
