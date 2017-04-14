@@ -276,6 +276,11 @@ input  {
   color: green;
 }
 
+.retweet-info button.green {
+  margin: 0;
+  color: green;
+}
+
 .tweet-top-half {
   display: flex;
 }
@@ -349,7 +354,7 @@ a.tweet-user-name:hover + div.hover-profile {
 }
 
 .gif-container img {
-  border: 2px solid rgba(0,0,0,0.8);
+  border: 2px solid rgba(0,0,0,0.5);
   border-radius: 8px;
 }
 
@@ -362,6 +367,9 @@ a.tweet-user-name:hover + div.hover-profile {
   display: flex;
   align-items: center;
 }
+
+
+
 
 
 .create-tweet-form-container {
