@@ -157,45 +157,16 @@ $(document).ready(function() {
       data: data
     })
     .done(function (response) {
-      insertLocation.replaceWith(response);   
-    })
-    .fail(function () {
-      console.log("Something has failed here")
-    }) 
-  }
-
-
-  function loginUser (e) {
-    e.preventDefault();
-    var data = $(this).serialize();
-    var url = $(this)[0].action;
-    var type = $(this)[0].method;
-    var insertLocation = $(this).children()[0]
-    $.ajax({
-      url: url,
-      type: type,
-      data: data
-    })
-    .done(function (response) {
-      console.log(response)
-      debugger
-      response = JSON.parse(response)
-      if (response.error) {
-        $(insertLocation).html(response.error)
-      } else {
-        window.location.replace("/");
-      }
+      insertLocation.replaceWith(response);
     })
     .fail(function () {
       console.log("Something has failed here")
     })
   }
-
-  $(document).on('submit', '#login-form', loginUser)
 
   $(document).on('submit', '.unfollow-form', followUser)
   $(document).on('submit', '.follow-form', followUser)
-  
+
 
   $('.suggested-users-container').on('click', '.delete-suggested-user-button', deleteSuggestedUser);
   // Applies the listener scrolling

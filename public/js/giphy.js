@@ -68,6 +68,21 @@ function addGIFToForm(e) {
   console.log(this);
   var embedURL = this.dataset.gifEmbedUrl
   $('#gif-results').html(`<embed src="${embedURL}" height="350px"></embed>`)
+  toggleGifModule();
+
+}
+
+function toggleGifModule(e) {
+  if (e) { e.preventDefault(); }
+  console.log("I MADE IT TO TOGGLE GIF MODULE")
+  $('#gif-module').toggleClass("show")
+}
+
+function showLongForm(e) {
+  event.preventDefault();
+  console.log('MADE IT into showLongForm')
+  $('#small-form').toggleClass('hide')
+  $('#big-form').toggleClass('show')
 }
 
 $(document).ready(function() {
@@ -84,4 +99,8 @@ $(document).ready(function() {
   $(document).on('click', '.overlay', showGIFsInCategory)
 
   $(document).on('click', '.gif-category button', addGIFToForm)
+
+  $('.add-gif-button').on('click', toggleGifModule)
+
+  $('#create-tweet-form input').on('click', showLongForm)
 });

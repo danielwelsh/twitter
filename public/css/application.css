@@ -338,17 +338,22 @@ a.tweet-user-name:hover + div.hover-profile {
   display: flex;
   align-items: center;
   background-color: #F4E5E5;
-  height: 60px;
+  min-height: 60px;
 }
 
-#create-tweet-form {
+#create-tweet-form, #create-tweet-form2, #search-gif-form {
   display: flex;
   width: 100%;
   align-content: start;
   align-items: center;
+
+}
+#create-tweet-form2.taller {
+  align-items: flex-start;
+  margin: 15px 0;
 }
 
-#create-tweet-form input[name="tweet"], #create-tweet-form textarea {
+#create-tweet-form input[name="tweet"], #create-tweet-form2 textarea, #search-gif-form input {
   height: 32px;
   font-size: 14px;
   padding: 8px 10px;
@@ -358,22 +363,55 @@ a.tweet-user-name:hover + div.hover-profile {
   margin-right: 15px;
 }
 
+#search-gif-form input {
+  margin: 15px 5px;
+}
+
 .create-tweet-form-container.taller {
-  height: 150px;
+  min-height: 150px;
 }
 
-#create-tweet-form.taller textarea {
-  height: 60px;
+#create-tweet-form2.taller textarea {
+  height: 100px;
 }
 
-#create-tweet-form button {
+.right-side {
+  width: 100%;
+}
+
+#create-tweet-form2 button.add-gif-button {
+  padding: 2.5px 5px;
+  font-size: 11px;
+  height: 24px;
+  margin: 0;
+}
+
+.row-1 {
+  display: flex;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.row-2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.gif-button-container {
+  position: relative;
+}
+
+#create-tweet-form2 button {
   margin: 0 15px;
   height: 32px;
   padding: 5px 15px;
   font-size: 14px;
+  background-color: #990000;
+  background: rgba(153,0,0,.8);
 }
 
-#create-tweet-form button:hover {
+#create-tweet-form2 button:hover {
   background-color: #0084b4;
 }
 
@@ -392,6 +430,7 @@ a.tweet-user-name:hover + div.hover-profile {
 .profile-image.create-tweet {
   width: 32px;
   height: 32px;
+  flex-shrink: 0;
 }
 
 .suggested-user-photo {
@@ -667,14 +706,25 @@ a.tweet-user-name:hover + div.hover-profile {
 }
 
 #gif-module {
-  display: flex;
+  top: 30px;
+  /*display: flex;*/
+  position: absolute;
   flex-direction: column;
   width: 445px;
+  border: 2px solid #e6ecf0;
+  background: white;
+  display: none;
+  z-index: 6;
+}
+
+#gif-module.show {
+  display: flex
 }
 
 #gif-module form {
   display: flex;
   width: 100%;
+  background-color: white;
 }
 
 .gif-category {
@@ -685,7 +735,6 @@ a.tweet-user-name:hover + div.hover-profile {
 }
 
 #gif-categories {
-  border: 5px solid pink;
   display:flex;
   flex-wrap:wrap;
   overflow: auto;
@@ -727,6 +776,19 @@ a.tweet-user-name:hover + div.hover-profile {
   transform: translate(-50%,-50%);
 }
 
+#small-form.hide {
+  display:none;
+}
+
+#big-form {
+  display: none;
+}
+
+#big-form.show {
+  display:flex;
+}
+
+
 #gif-module form input::before {
   content: "⚲";
   /*transform: rotate(45deg);*/
@@ -736,7 +798,6 @@ a.tweet-user-name:hover + div.hover-profile {
 #magnifying-glass {
   transform: rotate(45deg);
 }
-
 
 
 
