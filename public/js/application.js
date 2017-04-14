@@ -100,6 +100,36 @@ $(document).ready(function() {
     toRemove.remove();
   }
 
+  function howManyTweets () {
+    return $('.tweet-container').length
+  }
+
+  function getMoreTweets (e) {
+
+  }
+
+
+  function scrollingListener (e) {
+
+  };
+
+  function atBottom () {
+    return window.innerHeight + document.body.scrollTop >= document.body.scrollHeight - 50
+  }
+
+
+
+  // Applies the listener scrolling
+  $(document).on('scroll', function(e) {
+    console.log(atBottom())
+    if (atBottom()) {
+      console.log("ho shit we made it")
+      getMoreTweets();
+    }
+  });
+
+
+
 
   $('.tweets-container').on('mouseenter', '.tweet-user-name', displayHoverProfile);
   $('.tweets-container').on('submit', '.like-form', likeListener)
