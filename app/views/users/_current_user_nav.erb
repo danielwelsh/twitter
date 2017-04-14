@@ -17,8 +17,7 @@
 </div>
 
 <div id="right-nav" class="col-5">
-  <div><%= "Welcome #{current_user.first_name} | @#{current_user.handle}" %></div>
   <form id="logout-form" action="/logout" method="POST">
-    <button type="submit">Logout</button>
+    <button id="logout-button" type="submit">Logout</button>
   </form>
 </div>

@@ -25,7 +25,7 @@ class Tweet < ActiveRecord::Base
 
   # parses tweets for tags and adds them to the tags and tweets_tags table
   def parse_tags
-    pattern = /#[a-z]{3,}/
+    pattern = /#[a-zA-Z]{3,}/
     hash_tags = self.tweet.scan(pattern)
     hash_tags.each do |hash_tag|
       tag = Tag.find_by(tag: hash_tag)

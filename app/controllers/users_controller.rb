@@ -1,3 +1,15 @@
+
+#Gets a single suggested user
+get '/suggested_user' do
+  if request.xhr?
+    suggested_user = current_user.get_suggested_users.sample
+    content_type :html
+    erb :'/users/_display_suggested_user', layout: false, locals: { suggested_user: suggested_user}
+  else
+    redirect '/'
+  end
+end
+
 get '/popup' do
   erb :'users/_login'
 end
@@ -50,15 +62,23 @@ end
 post '/:handle/follow' do
   user_to_follow = User.find_by(handle: params[:handle])
   Follow.create(follower: current_user, followed_user: user_to_follow)
-  redirect '/'
+
+  if request.xhr?
+    erb :'users/_display_unfollow_form_only', layout: false, locals: {user: user_to_follow}
+  else
+    redirect '/'
+  end
 end
 
 delete '/:handle/follow'  do
   user_to_unfollow = User.find_by(handle: params[:handle])
   Follow.find_by(follower: current_user, followed_user: user_to_unfollow).destroy
-  redirect '/'
+  if request.xhr?
+    erb :'users/_display_follow_form_only', layout: false, locals: {user: user_to_unfollow}
+  else
+    redirect '/'
+  end
 end
-
 
 
 

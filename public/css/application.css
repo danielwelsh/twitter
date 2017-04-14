@@ -4,6 +4,7 @@
 
 * {
   box-sizing: border-box;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
 body {
@@ -22,6 +23,7 @@ header {
   color: black;
   height: 46px;
   border-bottom: 2px solid #c4c4c4;
+  z-index: 10;
 }
 
 nav {
@@ -35,6 +37,8 @@ a {
   text-decoration: none;
   color: #1b95e0;
 }
+
+
 .popup {
   top:0;
   left:0;
@@ -54,11 +58,9 @@ a {
   display: flex;
   align-items: center;
   flex-direction: column;
+  max-height: 500px;
 }
 
-.popup-content.max-height {
-  height: 500px;
-}
 
 .scrollable {
   padding: 20px 15px;
@@ -115,9 +117,6 @@ input  {
   margin: 15px 0;
 }
 
-#logout-form button {
-  margin: 0;
-}
 
 .disable-link {
   pointer-events: none;
@@ -175,16 +174,15 @@ input  {
   color: black;
 }
 #logout-form button {
-  font-size:12px;
-  font-weight: bold;
-  padding: 0 25px;
+  font-size:14px;
+  line-height: 14px;
+  padding: 10px 25px;
   margin: 0;
   height: auto;
-  /*text-transform: uppercase;*/
 }
 
 #logout-form button:hover {
-  text-decoration: underline;
+  background-color: #0084b4;
 }
 
 #login-form input {
@@ -246,6 +244,7 @@ input  {
 .section-borders {
   border: 1px solid #e6ecf0;
   border-radius: 3px;
+  background-color: white;
 }
 
 .tweet-container {
@@ -360,8 +359,12 @@ a.tweet-user-name:hover + div.hover-profile {
 #create-tweet-form button {
   margin: 0 15px;
   height: 32px;
-  padding: 0 15px;
+  padding: 5px 15px;
+  font-size: 14px;
+}
 
+#create-tweet-form button:hover {
+  background-color: #0084b4;
 }
 
 .profile-image {
@@ -519,18 +522,32 @@ a.tweet-user-name:hover + div.hover-profile {
   font-size: 18px;
 }
 
-.suggested-users-container {
-  overflow: hidden;
-}
-
 .suggested-user-container, .user-container {
-  overflow: hidden;
   display: flex;
   margin: 15px;
-  width: 300px;
   flex-shrink: 0;
+  justify-content: space-between;
 }
 
+.suggested-user-info-container {
+  display: flex;
+}
+
+.delete-suggested-user-container {
+  position: relative;
+  top: -5px;
+}
+
+
+.delete-suggested-user-container a {
+  color: #657786;
+  padding-right: 15px;
+}
+
+
+.delete-suggested-user-container a:hover {
+  color: initial;
+}
 
 .suggested-user-name {
   color: #326ada;
@@ -567,7 +584,7 @@ a.tweet-user-name:hover + div.hover-profile {
 }
 
 .unfollow-button {
-  color: #14171a;
+  color: white;
   font-size: 13px;
   font-weight: bold;
   height: 30px;
@@ -587,13 +604,57 @@ a.tweet-user-name:hover + div.hover-profile {
   border-color: #e6ecf0;
 }
 
+#trends {
+  color: #66757f;
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 22px;
+  padding-left: 10px;
+}
+
+.trending-container {
+  margin-top: 7.5px;
+}
+
+.tag-container {
+  display: block;
+  padding: 1px 10px;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.tag-container a {
+  padding: 0;
+  margin: 0;
+}
+
+.tag-container p {
+  padding: 2px 5px;
+  margin: 0;
+  font-size: 14px;
+  color: #657786;
+}
 
 
+.tag-container a:hover {
+  color: #1DA1F2;
+  text-decoration: underline;
+}
 
 
+#title {
+  font-size: 48px;
+  font-weight: bold;
+  color: #657786;
+}
 
-
-
+#loader-container {
+  border-top: none;
+  padding: 15px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 
 

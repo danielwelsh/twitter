@@ -1,5 +1,15 @@
 # ADD A TOTAL_TWEETS AND TOTAL_FOLLOWERS AND TOTAL_FOLLOWINGS for a user
-require 'json'
+
+get '/tweets' do
+  num = params[:num_tweets].to_i
+  if request.xhr?
+    @tweets = current_user.get_landing_page_tweets[num...(num + 10)]
+    content_type :html
+    erb :'/tweets/_insert_tweets', layout: false
+  else
+    redirect '/'
+  end
+end
 
 post '/tweets' do
   @tweet = Tweet.new(user: current_user, tweet: params[:tweet])
