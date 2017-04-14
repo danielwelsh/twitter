@@ -3,7 +3,7 @@
 get '/tweets' do
   num = params[:num_tweets].to_i
   if request.xhr?
-    @tweets = current_user.get_landing_page_tweets[num...(num + 25)]
+    @tweets = current_user.get_landing_page_tweets[num...(num + 10)]
     content_type :html
     erb :'/tweets/_insert_tweets', layout: false
   else

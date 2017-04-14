@@ -1,6 +1,6 @@
 get '/' do
   if current_user
-    @tweets = current_user.get_landing_page_tweets[0...25]
+    @tweets = current_user.get_landing_page_tweets[0...10]
     @suggested_users = current_user.get_suggested_users[0...4]
     @trending_tags = Tag.get_trending_tags
     erb :'users/index'

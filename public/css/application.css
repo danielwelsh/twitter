@@ -523,18 +523,35 @@ a.tweet-user-name:hover + div.hover-profile {
 }
 
 .suggested-users-container {
-  overflow: hidden;
+
 }
 
 .suggested-user-container, .user-container {
-  overflow: hidden;
   display: flex;
   margin: 15px;
-  width: 300px;
   flex-shrink: 0;
-  margin-bottom: 2px;
+  justify-content: space-between;
 }
 
+.suggested-user-info-container {
+  display: flex;
+}
+
+.delete-suggested-user-container {
+  position: relative;
+  top: -5px;
+}
+
+
+.delete-suggested-user-container a {
+  color: #657786;
+  padding-right: 15px;
+}
+
+
+.delete-suggested-user-container a:hover {
+  color: initial;
+}
 
 .suggested-user-name {
   color: #326ada;
