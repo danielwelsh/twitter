@@ -3,7 +3,7 @@
     <div class="profile-image suggested-user"><img class="suggested-user-photo" src="<%= suggested_user.profile_image_location %>" height="48px"></div>
     <div class="follow-info">
       <a class="suggested-user-name" href="<%="/#{suggested_user.handle}" %>"><%= "#{suggested_user.full_name}"  %></a>
-      <form action="<%="/#{suggested_user.handle}/follow"%>" method="POST" >
+      <form class="follow-form" action="<%="/#{suggested_user.handle}/follow"%>" method="POST" >
         <button class="follow-button" type="submit">Follow</button>
       </form>
     </div>

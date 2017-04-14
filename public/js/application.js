@@ -145,6 +145,20 @@ $(document).ready(function() {
     })
   }
 
+  function unfollowUser (e) {
+    e.preventDefault();
+    debugger
+  }
+
+  function followUser (e) {
+    e.preventDefault();
+    debugger
+  }
+
+  $('body').on('submit', '.unfollow-form', unfollowUser)
+  $('body').on('submit', '.follow-form', followUser)
+  
+
   $('.suggested-users-container').on('click', '.delete-suggested-user-button', deleteSuggestedUser);
   // Applies the listener scrolling
   $(document).on('scroll', function(e) {
