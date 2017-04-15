@@ -61,12 +61,11 @@ function showGIFsInCategory(e) {
 
 function addGIFToForm(e) {
   console.log("i think I made it here DAN MY MAN")
-  debugger;
   e.preventDefault();
   var embedURL = this.dataset.gifEmbedUrl
   var hotlinkURL = this.dataset.hotlinkUrl
   $('#gif-results').html(`
-    <embed src="${hotlinkURL}" height="350px"></embed>
+    <embed src="${hotlinkURL}"></embed>
     <input type="hidden" name="gif_url" value="${hotlinkURL}">
     `)
   toggleGifModule();
