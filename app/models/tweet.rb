@@ -12,6 +12,8 @@ class Tweet < ActiveRecord::Base
   validates :tweet, length: { in: (2...140) }
   after_create :parse_tags
 
+
+#TWEET FUNCTIONALITY
   # used on retweets to get the original tweet
   def get_original_tweet
     original_tweet_id = self.original_tweet_id
@@ -29,21 +31,8 @@ class Tweet < ActiveRecord::Base
     hash_tags = self.tweet.scan(pattern)
     hash_tags.each do |hash_tag|
       tag = Tag.create(tag: hash_tag)
-
-      # tag = Tag.find_by(tag: hash_tag)
-      # if tag
-      #   tag.save # update the timestamps
-      # else
-      #   tag = Tag.create(tag: hash_tag)
-      # end
       TweetTag.create(tweet: self, tag: tag)
     end
-  end
-
-  def get_nested_objects(self_association_method, pluck_field_sym, class_name)
-    nested_objects_ids = self_association_method.pluck(pluck_field_sym)
-    nested_objects_ids_string = nested_objects_ids.reduce('(') { |final_string, id| final_string + id.to_s + ','}.chop + ')'
-    class_name.where("id in #{nested_objects_ids_string}")
   end
 
   def liked?(user)
@@ -56,6 +45,14 @@ class Tweet < ActiveRecord::Base
     self.user_id == user.id
   end
 
+  def change_likes_count(operator)
+    self.likes_count = self.likes_count.send(operator, 1)
+    self.save
+    self.likes_count
+  end
+
+
+#RETWEET FUNCTIONALITY
   # #Checks to see if user retweeted a given tweet
   def retweeted_by_self?(user)
     Tweet.all.where(user_id: user.id, original_tweet_id: self.id).count == 1
@@ -70,12 +67,6 @@ class Tweet < ActiveRecord::Base
     self.retweet_count = self.retweet_count.send(operator, 1)
     self.save
     self.retweet_count
-  end
-
-  def change_likes_count(operator)
-    self.likes_count = self.likes_count.send(operator, 1)
-    self.save
-    self.likes_count
   end
 
   def retweeted_by
