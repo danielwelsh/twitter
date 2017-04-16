@@ -198,7 +198,10 @@ $(document).ready(function() {
   $('.tweets-container').on('submit', '.retweet-form', retweetListener)
   $('.create-tweet-form-container').on('submit', '#create-tweet-form',createTweet)
 
-  $('.side-profile-profile-stats').on('click', 'ul a', displayUsersPopUp)
+  $('.side-profile-profile-stats').on('click', '.side-profile-following', displayUsersPopUp)
+  $('.side-profile-profile-stats').on('click', '.side-profile-followers', displayUsersPopUp)
+
+  // Listenter on tweet functionality
   $('.tweets-container').on('click', '#likes-count', displayUsersPopUp)
   $('.tweets-container').on('click', '#retweet-count', displayUsersPopUp)
   $(document).on('click', '.x-button', deleteUsersPopUp)
