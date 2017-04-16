@@ -14,7 +14,7 @@ get '/tags/:tag_id' do
   @tag = Tag.find(params[:tag_id])
   @tweets = @tag.tweets[num...(num + 10)]
 
-  #XHR needs to be implemented
+  #XHR used to load more tweets to the page
   if request.xhr?
     content_type :html
     erb :'/tweets/index', layout: false
