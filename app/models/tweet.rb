@@ -28,12 +28,7 @@ class Tweet < ActiveRecord::Base
     pattern = /#[a-zA-Z]{3,}/
     hash_tags = self.tweet.scan(pattern)
     hash_tags.each do |hash_tag|
-      tag = Tag.find_by(tag: hash_tag)
-      if tag
-        tag.save # update the timestamps
-      else
-        tag = Tag.create(tag: hash_tag)
-      end
+      tag = Tag.create(tag: hash_tag)
       TweetTag.create(tweet: self, tag: tag)
     end
   end
