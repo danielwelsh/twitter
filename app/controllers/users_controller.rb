@@ -27,7 +27,7 @@ end
 post '/hover/:handle' do
   @user = User.find_by(handle: params[:handle])
   if request.xhr?
-    erb :'users/_hover_profile', layout:false, locals: {current_user: @user}
+    erb :'users/_hover_profile', layout:false
   end
 end
 
