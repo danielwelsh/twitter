@@ -1,0 +1,14 @@
+<ul>
+  <li>
+    <span>Tweets</span>
+    <a href="<%= "/#{current_user.handle}" %>"><%= user.get_tweets_count %></a>
+  </li>
+  <li>
+    <span>Following</span>
+    <a class="side-profile-following" href="<%= "/#{current_user.handle}/followings" %>"><%= user.get_followings_count %></a>
+  </li>
+  <li>
+    <span>Followers</span>
+    <a class="side-profile-followers" href="<%= "/#{current_user.handle}/followers" %>"><%= user.get_followers_count %></a>
+  </li>
+</ul>
