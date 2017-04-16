@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
   validates :handle, :email, uniqueness: true
   before_save :capitalize_names
 
+#BRCYPT
   def authenticate(input_password)
     self.password == input_password
   end
@@ -28,6 +29,8 @@ class User < ActiveRecord::Base
    self.password_hash = @password
   end
 
+
+#FORMATING HELPERS
   def full_name
     "#{self.first_name} #{self.last_name}"
   end
@@ -37,6 +40,13 @@ class User < ActiveRecord::Base
     self.last_name = self.last_name.capitalize
   end
 
+  def self.sort_by_time(tweets)
+    tweets.sort_by{ |tweet| tweet.id }.reverse!
+  end
+
+
+
+#COLLECTING RESOURCES
   def get_landing_page_tweets
     #get the user's tweets that are not retweets
     own_tweets = []
@@ -59,18 +69,8 @@ class User < ActiveRecord::Base
     User.sort_by_time(own_tweets + filtered_followings_tweets)
   end
 
-  def self.sort_by_time(tweets)
-    tweets.sort_by{ |tweet| tweet.id }.reverse!
-  end
-
   def get_profile_page_tweets
     self.tweets.order(id: :desc)
-  end
-
-  def get_nested_objects(self_association_method, pluck_field_sym, class_name)
-    nested_objects_ids = self_association_method.pluck(pluck_field_sym)
-    nested_objects_ids_string = nested_objects_ids.reduce('(') { |final_string, id| final_string + id.to_s + ','}.chop + ')'
-    class_name.where("id in #{nested_objects_ids_string}")
   end
 
   def get_liked_tweets
@@ -108,5 +108,11 @@ class User < ActiveRecord::Base
   end
   ## END -- FUNCTIONALITY FOR SUGGESTING USERS TO FOLLOW
 
+
+  def get_nested_objects(self_association_method, pluck_field_sym, class_name)
+    nested_objects_ids = self_association_method.pluck(pluck_field_sym)
+    nested_objects_ids_string = nested_objects_ids.reduce('(') { |final_string, id| final_string + id.to_s + ','}.chop + ')'
+    class_name.where("id in #{nested_objects_ids_string}")
+  end
 
 end
