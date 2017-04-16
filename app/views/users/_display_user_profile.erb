@@ -8,19 +8,6 @@
     </div>
   </div>
   <div class="side-profile-profile-stats">
-    <ul>
-      <li>
-        <span>Tweets</span>
-        <a href=""><%= @user.get_tweets_count %></a>
-      </li>
-      <li>
-        <span>Following</span>
-        <a href="<%= "/#{@user.handle}/followings" %>"><%= @user.get_followings_count %></a>
-      </li>
-      <li>
-        <span>Followers</span>
-        <a href="<%= "/#{@user.handle}/followers" %>"><%= @user.get_followers_count %></a>
-      </li>
-    </ul>
+   <%= erb :'/users/_profile_stats', layout: false, locals: {user: @user} %>
   </div>
 </div>
