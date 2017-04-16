@@ -64,7 +64,7 @@ post '/:handle/follow' do
   Follow.create(follower: current_user, followed_user: user_to_follow)
 
   if request.xhr?
-    erb :'users/_display_unfollow_form_only', layout: false, locals: {user: user_to_follow}
+    erb :'users/_display_unfollow_form', layout: false, locals: {user: user_to_follow}
   else
     redirect '/'
   end
@@ -74,7 +74,7 @@ delete '/:handle/follow'  do
   user_to_unfollow = User.find_by(handle: params[:handle])
   Follow.find_by(follower: current_user, followed_user: user_to_unfollow).destroy
   if request.xhr?
-    erb :'users/_display_follow_form_only', layout: false, locals: {user: user_to_unfollow}
+    erb :'users/_display_follow_form', layout: false, locals: {user: user_to_unfollow}
   else
     redirect '/'
   end

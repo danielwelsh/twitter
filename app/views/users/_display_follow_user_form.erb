@@ -2,7 +2,5 @@
 <div class="follow-info">
   <a class="suggested-user-name" href="<%="/#{user.handle}" %>"><%= "#{user.full_name}"  %></a>
   <a class="suggested-extra-info" href="<%="/#{user.handle}" %>"><%= "@#{user.handle}" %></a>
-  <form class="follow-form" action="<%="/#{user.handle}/follow"%>" method="POST" >
-    <button class="follow-button" type="submit">Follow</button>
-  </form>
+  <%=  erb :'/users/_display_follow_form', layout: false, locals: {user: user} %>
 </div>
