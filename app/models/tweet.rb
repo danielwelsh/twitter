@@ -52,6 +52,7 @@ class Tweet < ActiveRecord::Base
   end
 
 
+
 #RETWEET FUNCTIONALITY
   # #Checks to see if user retweeted a given tweet
   def retweeted_by_self?(user)
@@ -77,8 +78,6 @@ class Tweet < ActiveRecord::Base
     end
     @users
   end
-
-
 end
 
 
