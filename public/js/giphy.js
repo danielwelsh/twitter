@@ -10,7 +10,7 @@ function searchGIPHY(e) {
     $('#gif-categories').html(gifCategories);
     return;
   }
-  var unencodedURL = 'http://api.giphy.com/v1/gifs/search?q=' + userSearch + `&offset=${offset}` + '&api_key=dc6zaTOxFJmzC'
+  var unencodedURL = 'https://api.giphy.com/v1/gifs/search?q=' + userSearch + `&offset=${offset}` + '&api_key=dc6zaTOxFJmzC'
   var encodedURL = encodeURI(unencodedURL)
   var request = $.ajax({
     url: encodedURL
@@ -35,7 +35,7 @@ function searchGIPHY(e) {
 
 function showGIFsInCategory(e) {
   e.preventDefault();
-  var unencodedURL = 'http://api.giphy.com/v1/gifs/search?q=' + $(this).next().html() + `&offset=${offset}` + '&api_key=dc6zaTOxFJmzC'
+  var unencodedURL = 'https://api.giphy.com/v1/gifs/search?q=' + $(this).next().html() + `&offset=${offset}` + '&api_key=dc6zaTOxFJmzC'
   var encodedURL = encodeURI(unencodedURL)
   var request = $.ajax({
     url: encodedURL
