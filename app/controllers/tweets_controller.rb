@@ -25,7 +25,7 @@ post '/tweets' do
     @errors = @tweet.errors.full_messages
     @errors = @tweet.errors
     # FIXME This should probably redirect to route instead
-    erb :'users/index'
+    erb :'index'
   end
 
 end

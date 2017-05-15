@@ -1,0 +1,16 @@
+
+<!-- #FIXME The count of how many users someone is following and what shows up is broken. Could be a problem with when creating and deleting following relationships. -->
+<ul>
+  <li>
+    <span>Tweets</span>
+    <a href="<%= "/#{user.handle}" %>"><%= user.get_tweets_count %></a>
+  </li>
+  <li>
+    <span>Following</span>
+    <a class="side-profile-following" href="<%= "/#{user.handle}/followings" %>"><%= user.get_followings_count %></a>
+  </li>
+  <li>
+    <span>Followers</span>
+    <a class="side-profile-followers" href="<%= "/#{user.handle}/followers" %>"><%= user.get_followers_count %></a>
+  </li>
+</ul>
